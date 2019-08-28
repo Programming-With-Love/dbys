@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>淡白影视 - 看你想看</title>
@@ -12,12 +13,6 @@
     <script src="http://cdn.p00q.cn:81/ys/js/bootstrap.min.js"></script>
     <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="http://cdn.p00q.cn:81/ys/css/bootadd.css">
     <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="http://cdn.p00q.cn:81/ys/css/css2.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="/css/html5shiv.min.js"></script>
-    <script src="/css/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <div style="background:#FFF">
@@ -57,10 +52,11 @@
                     <li ><a href="/type/dm.html">动漫</a></li>
                 </ul>
                 <div class="pull-right">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/user/reg.html"> 注册</a></li>
-                        <li><a href="/user/login.html">登录</a></li>
+                    <ul class="nav navbar-nav" th:if="${session.user}==null">
+                        <li><a href="/reg"> 注册</a></li>
+                        <li><a href="/login">登录</a></li>
                     </ul>
+                    <img style="border-radius: 25px;cursor:pointer;" width="40" height="40" th:src="${session.user.getHeadurl()}" th:if="${session.user}!=null" th:title="${session.user.getUsername()}">
                 </div>
             </div>
         </div>
@@ -79,7 +75,7 @@
                     <button class="hdtag">[[${ys.zt}]]</button>
                 </a>
                 <div class="meta">
-                    <div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="剑雨" class="movie-name" th:href="'ys?'+id+'='+(${ys.id})" >[[${ys.pm}]]</a></div>
+                    <div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" class="movie-name" th:href="'ys?'+id+'='+(${ys.id})" >[[${ys.pm}]]</a></div>
                     <em>添加时间：<strong><span style="color:#FF0000;">[[${ys.gxtime}]]</span></strong></em>
                 </div>
             </div>
@@ -139,12 +135,11 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <p>免责声明：本网站所有内容都是靠程序在互联网上自动搜集而来，仅供测试和学习交流。<br/>目前正在逐步删除和规避程序自动搜索采集到的不提供分享的版权影视。</p>
-        <p>若侵犯了您的权益，请即时发邮件通知站长 万分感谢！</p>
-        <em><a href="/">♥ 淡白影视</a></em>
 </div>
+<footer class="footer">
+    <p>免责声明：本网站所有内容都是靠程序在互联网上自动搜集而来，仅供测试和学习交流。<br/>目前正在逐步删除和规避程序自动搜索采集到的不提供分享的版权影视。</p>
+    <p>若侵犯了您的权益，请即时发邮件通知站长 万分感谢！</p>
+    <em><a href="/">♥ 淡白影视</a></em>
 </footer>
-</div>
 </body>
 </html>

@@ -82,9 +82,14 @@ public class MainController {
             String str = (String) UtilsController.yzb.get(user.getUsername());
             if(str.equals(yzm)){
                 UtilsController.yzb.remove(user.getUsername());
-            User user2 = new User();
-            user2.setUsername(user.getUsername());
-            User user1 = userService.getUser(user2);
+                User user2 = new User();
+                user2.setUsername(user.getUsername());
+                User user1 = userService.getUser(user2);
+                User user3 = userService.getUserByEmail(user.getEmail());
+                if (user3!=null){
+                    model.addAttribute("message", "邮箱已存在");
+                    return "/reg";
+                }
                 if (user1 == null) {
                     user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
                     user.setUserType(1);

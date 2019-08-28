@@ -97,10 +97,10 @@
             alert("用户名不能为空");
         }
         else {
+            $("#getyzm").attr('disabled', true);
             //此处可以操作向后台发送json数据，然后返回验证结果
             $.ajax({
                 url: "/getvalidate?email="+email+"&username="+username, success: function (result) {
-                    $("#getyzm").attr('disabled', true);
                 }
             });
         }
