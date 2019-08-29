@@ -113,10 +113,10 @@
     }
 </script>
 <script th:if="${xs!=null}">
-    var fstys= /*[[${xs[0].url}]]*/ null;
+    var fstys= "[[${xs[0].url}]]";
+    var ysid= "[[${ys.id+xs[0].name}]]";
 </script>
 <script th:inline="javascript">
-    var ysid= [[${ys.id}]];
     const dp = new DPlayer({
         container: document.getElementById('dplayer'),
         video: {

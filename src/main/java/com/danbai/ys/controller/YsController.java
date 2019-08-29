@@ -63,4 +63,12 @@ public class YsController {
         model.addAttribute("page",page);
         return "type/zy";
     }
+    @RequestMapping(value = "/search",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
+    String Search(String gjc,Model model){
+        if (gjc.equals(""))
+            return "/index";
+        model.addAttribute("ysb",ysService.selectYsByPm(gjc));
+        model.addAttribute("gjc",gjc);
+        return "/search";
+    }
 }
