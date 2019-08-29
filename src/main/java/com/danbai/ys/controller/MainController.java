@@ -4,6 +4,7 @@ import com.danbai.ys.entity.User;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.Impl.UserServiceImpl;
 import com.danbai.ys.service.Impl.YsServiceImpl;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +26,14 @@ public class MainController {
     UserServiceImpl userService;
     @RequestMapping(value = {"/","index"},produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String index(Model model){
-        List<Ysb> ysbs = ysService.indexYs("电影");
-        List<Ysb> ysbs1 = ysService.indexYs("电视剧");
-        List<Ysb> ysbs2 = ysService.indexYs("综艺");
-        List<Ysb> ysbs3 = ysService.indexYs("动漫");
-        model.addAttribute("dy",ysbs);
-        model.addAttribute("dsj",ysbs1);
-        model.addAttribute("zy",ysbs2);
-        model.addAttribute("dm",ysbs3);
+        PageInfo ysbs = ysService.getYs("电影",1,12);
+        PageInfo ysbs1 = ysService.getYs("电视剧",1,12);
+        PageInfo ysbs2 = ysService.getYs("综艺",1,12);
+        PageInfo ysbs3 = ysService.getYs("动漫",1,12);
+        model.addAttribute("dy",ysbs.getList());
+        model.addAttribute("dsj",ysbs1.getList());
+        model.addAttribute("zy",ysbs2.getList());
+        model.addAttribute("dm",ysbs3.getList());
         return "index";
     }
     @RequestMapping(value = "/adminlogin",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)

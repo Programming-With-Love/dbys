@@ -26,7 +26,8 @@ public class YsServiceImpl implements YsService {
 
     @Override
     public int contYs() {
-        return ysbMapper.selectAll().size();
+        Example example = new Example(Ysb.class);
+        return ysbMapper.selectCountByExample(example);
     }
 
     @Override
@@ -76,7 +77,7 @@ public class YsServiceImpl implements YsService {
     }
 
     @Override
-    public List<Ysb> indexYs(String lx) {
+    public PageInfo getYs(String lx,int page,int size) {
         List<Ysb> relist = new ArrayList<>();
         Example example=new Example(Ysb.class);
         switch (lx){
@@ -93,9 +94,10 @@ public class YsServiceImpl implements YsService {
                 example.createCriteria().andLike("lx","%动漫片%");
         }
         example.orderBy("id").desc();
-        PageHelper.startPage(1, 12,false); // 每次查询20条
+        PageHelper.startPage(page, size).getPages();
         List<Ysb> ysbs = ysbMapper.selectByExample(example);
+        PageInfo pages = new PageInfo(ysbs);
         relist.addAll(ysbs);
-        return relist;
+        return pages;
     }
 }

@@ -1,6 +1,7 @@
 package com.danbai.ys.service;
 
 import com.danbai.ys.entity.Ysb;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 public interface YsService {
@@ -12,5 +13,5 @@ public interface YsService {
     boolean addYs(Ysb ysb);
     boolean update(Ysb ysb);
     boolean delYs(Ysb ysb);
-    List<Ysb> indexYs(String lx);
+    PageInfo getYs(String lx, int page, int size);
 }

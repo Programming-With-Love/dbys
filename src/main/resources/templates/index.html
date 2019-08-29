@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>淡白影视 - 看你想看</title>
-    <meta name="Keywords" content="淡白电影,免费高清电影,收费电影免费看,最新电影,最新电影下载" />
+    <meta name="Keywords" content="淡白电影,免费高清电影,收费电影免费看,最新电影,在线观看最新电影" />
     <meta name="Description" content="淡白影视收集好看影视." />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="http://cdn.p00q.cn:81/favicon.ico">
@@ -15,56 +15,12 @@
     <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="http://cdn.p00q.cn:81/ys/css/css2.css">
 </head>
 <body>
-<div style="background:#FFF">
-    <div style="padding:5px 0;border-bottom:1px solid #DDD;">
-        <div class="container">
-            <span class="header-help">欢迎来到淡白影视,记住我们网址:ys.danbai6.top</span>
-            <div class="pull-right">
-                <a class="header-help" href="javascript:alert('快捷键Ctrl+D可以快速添加到收藏夹。');">Ctrl+D 加入收藏夹</a>
-            </div>
-        </div>
-    </div>
-    <div class="container" style="padding-top:15px;padding-bottom:15px;padding-right:0;">
-        <div class="pull-right">
-            <form class="navbar-form" target="_blank" accept-charset="utf-8" action="/search" method="get" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="wd" placeholder="影视搜索">
-                </div><button type="submit" class="btn btn-primary">搜索</button>
-            </form>
-        </div>
-    </div>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">首页</a></li>
-                    <li  ><a href="/type/dy.html">热门电影</a></li>
-                    <li ><a href="/type/dsj.html">热门电视剧</a></li>
-                    <li ><a href="/type/zy.html">综艺</a></li>
-                    <li ><a href="/type/dm.html">动漫</a></li>
-                </ul>
-                <div class="pull-right">
-                    <ul class="nav navbar-nav" th:if="${session.user}==null">
-                        <li><a href="/reg"> 注册</a></li>
-                        <li><a href="/login">登录</a></li>
-                    </ul>
-                    <img style="border-radius: 25px;cursor:pointer;" width="40" height="40" th:src="${session.user.getHeadurl()}" th:if="${session.user}!=null" th:title="${session.user.getUsername()}">
-                </div>
-            </div>
-        </div>
-    </nav>
-</div><div class="container">
+<div style="background:#FFF" th:include="include/include :: dhl">
+</div>
+<div class="container">
     <div class="row" style="padding:0px 7px 0 7px;">
         <div class="col-md-12 movie-item-out">
-            <span><a target="_blank" href="/type/dy.html" title="电影">更多电影>>></a></span>
+            <span><a target="_blank" href="/type/dy?page=1" title="电影">更多电影>>></a></span>
             <h3 style="padding-left:10px;border-left:8px solid #00A6DE;">最新电影：</h3>
         </div>
         <!--/*@thymesVar id="dy" type="com.danbai.ys.entity.Ysb"*/-->
@@ -83,7 +39,7 @@
     </div>
     <div class="row" style="padding:0 7px;">
         <div class="col-md-12 movie-item-out">
-            <span><a target="_blank" href="/type/dsj.html" title="电视剧">更多剧集>>></a></span>
+            <span><a target="_blank" href="/type/dsj?page=1" title="电视剧">更多剧集>>></a></span>
             <h3 style="padding-left:10px;border-left:8px solid #00A6DE;">最新剧集：</h3>
         </div>
         <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out" th:each="ys:${dsj}">
@@ -93,7 +49,7 @@
                     <button class="hdtag">[[${ys.zt}]]</button>
                 </a>
                 <div class="meta">
-                    <div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="剑雨" class="movie-name" th:href="'ys?'+id+'='+(${ys.id})" >[[${ys.pm}]]</a></div>
+                    <div style="width:100%;overflow:hidden;height:20px;"><a target="_blank"  class="movie-name" th:href="'ys?'+id+'='+(${ys.id})" >[[${ys.pm}]]</a></div>
                     <em>添加时间：<strong><span style="color:#FF0000;">[[${ys.gxtime}]]</span></strong></em>
                 </div>
             </div>
@@ -101,7 +57,7 @@
     </div>
     <div class="row" style="padding:0 7px;">
         <div class="col-md-12 movie-item-out">
-            <span><a target="_blank" href="/type/zy.html" title="综艺">更多综艺>>></a></span>
+            <span><a target="_blank" href="/type/zy?page=1" title="综艺">更多综艺>>></a></span>
             <h3 style="padding-left:10px;border-left:8px solid #00A6DE;">最新综艺：</h3>
         </div>
         <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out" th:each="ys:${zy}">
@@ -111,7 +67,7 @@
                     <button class="hdtag">[[${ys.zt}]]</button>
                 </a>
                 <div class="meta">
-                    <div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="剑雨" class="movie-name" th:href="'ys?'+id+'='+(${ys.id})" >[[${ys.pm}]]</a></div>
+                    <div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="" class="movie-name" th:href="'ys?'+id+'='+(${ys.id})" >[[${ys.pm}]]</a></div>
                     <em>添加时间：<strong><span style="color:#FF0000;">[[${ys.gxtime}]]</span></strong></em>
                 </div>
             </div>
@@ -119,7 +75,7 @@
     </div>
     <div class="row" style="padding:0 7px;">
         <div class="col-md-12 movie-item-out">
-            <span><a target="_blank" href="/type/dm.html" title="动漫">更多动漫>>></a></span>
+            <span><a target="_blank" href="/type/dm?page=1" title="动漫">更多动漫>>></a></span>
             <h3 style="padding-left:10px;border-left:8px solid #00A6DE;">最新动漫：</h3>
         </div>
         <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out" th:each="ys:${dm}">
@@ -129,17 +85,13 @@
                     <button class="hdtag">[[${ys.zt}]]</button>
                 </a>
                 <div class="meta">
-                    <div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="剑雨" class="movie-name" th:href="'ys?'+id+'='+(${ys.id})" >[[${ys.pm}]]</a></div>
+                    <div style="width:100%;overflow:hidden;height:20px;"><a target="_blank" title="" class="movie-name" th:href="'ys?'+id+'='+(${ys.id})" >[[${ys.pm}]]</a></div>
                     <em>添加时间：<strong><span style="color:#FF0000;">[[${ys.gxtime}]]</span></strong></em>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<footer class="footer">
-    <p>免责声明：本网站所有内容都是靠程序在互联网上自动搜集而来，仅供测试和学习交流。<br/>目前正在逐步删除和规避程序自动搜索采集到的不提供分享的版权影视。</p>
-    <p>若侵犯了您的权益，请即时发邮件通知站长 万分感谢！</p>
-    <em><a href="/">♥ 淡白影视</a></em>
-</footer>
+<footer class="footer" th:include="include/include :: foot"></footer>
 </body>
 </html>
