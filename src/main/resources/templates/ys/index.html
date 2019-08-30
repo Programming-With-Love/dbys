@@ -115,10 +115,15 @@
 <script th:if="${xs!=null}">
     var fstys= "[[${xs[0].url}]]";
     var ysid= "[[${ys.id+xs[0].name}]]";
+    var id= "[[${ys.id}]]";
 </script>
 <script th:inline="javascript">
+    var timeout = true; //启动及关闭按钮
+    console.log(gettime())
     const dp = new DPlayer({
         container: document.getElementById('dplayer'),
+        logo:'http://cdn.p00q.cn:81/ys/img/logo.png',
+        autoplay:true,
         video: {
             url:fstys,
             pic: 'http://cdn.p00q.cn:81/ys/img/tip.png'
@@ -132,19 +137,57 @@
             unlimited: true
         }
     });
+    dp.seek(gettime());
     $(".ji").click(function () {
+        timeout=false;
+        ysid=id+$(this).html();
         dp.switchVideo({
             url: $(this).attr("value"),
             pic: 'http://cdn.p00q.cn:81/ys/img/tip.png'
         },{
-            id: ysid+$(this).html(),
+            id: ysid,
             api: 'http://39.108.110.44:1207/',
             maximum: 1000,
             user: username
         });
         dp.notice("正在加载请稍后!");
+        gettime();
+        dp.seek(gettime());
         dp.play();
+        timeout=true;
     });
+    dp.on('ended', function () {
+        console.log('看完了');
+    });
+    function dsj() {
+        if (!timeout) return;
+        puttime();
+        setTimeout(dsj, 5000); //time是指本身,延时递归调用自己,100为间隔调用时间,单位毫秒
+    }
+    function puttime() {
+        $.post("/ys/time",
+            {
+                ysidname:ysid,
+                username: username,
+                time: dp.video.currentTime
+            });
+    }
+    function gettime() {
+        var result = "";
+        $.ajax({
+            type: "POST",
+            url: '/ys/gettime',
+            data: {ysidname:ysid, username: username},
+            async: false,//同步
+            success: function (data) {
+                result = data;
+            }, failure: function () {
+                result = "";
+            }
+        })
+        return result;
+    }
+    dsj();
 </script>
 </body>
 </html>

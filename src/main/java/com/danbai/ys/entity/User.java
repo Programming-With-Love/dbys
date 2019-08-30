@@ -4,25 +4,25 @@ import javax.persistence.*;
 
 public class User {
     /**
-     * ÓÃ»§id
+     * ç”¨æˆ·id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
-     * ÓÃ»§Ãû
+     * ç”¨æˆ·å
      */
     private String username;
 
     /**
-     * ÓÃ»§ÀàĞÍ 0 ½ûÓÃ 1ÆÕÍ¨ 2 ¹ÜÀíÔ±
+     * ç”¨æˆ·ç±»å‹ 0 ç¦ç”¨ 1æ™®é€š 2 ç®¡ç†å‘˜
      */
     @Column(name = "user_type")
     private Integer userType;
 
     /**
-     * ÓÃ»§ÃÜÂë
+     * ç”¨æˆ·å¯†ç 
      */
     private String password;
 
@@ -31,72 +31,72 @@ public class User {
     private String headurl;
 
     /**
-     * »ñÈ¡ÓÃ»§id
+     * è·å–ç”¨æˆ·id
      *
-     * @return id - ÓÃ»§id
+     * @return id - ç”¨æˆ·id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * ÉèÖÃÓÃ»§id
+     * è®¾ç½®ç”¨æˆ·id
      *
-     * @param id ÓÃ»§id
+     * @param id ç”¨æˆ·id
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * »ñÈ¡ÓÃ»§Ãû
+     * è·å–ç”¨æˆ·å
      *
-     * @return username - ÓÃ»§Ãû
+     * @return username - ç”¨æˆ·å
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * ÉèÖÃÓÃ»§Ãû
+     * è®¾ç½®ç”¨æˆ·å
      *
-     * @param username ÓÃ»§Ãû
+     * @param username ç”¨æˆ·å
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * »ñÈ¡ÓÃ»§ÀàĞÍ 0 ½ûÓÃ 1ÆÕÍ¨ 2 ¹ÜÀíÔ±
+     * è·å–ç”¨æˆ·ç±»å‹ 0 ç¦ç”¨ 1æ™®é€š 2 ç®¡ç†å‘˜
      *
-     * @return user_type - ÓÃ»§ÀàĞÍ 0 ½ûÓÃ 1ÆÕÍ¨ 2 ¹ÜÀíÔ±
+     * @return user_type - ç”¨æˆ·ç±»å‹ 0 ç¦ç”¨ 1æ™®é€š 2 ç®¡ç†å‘˜
      */
     public Integer getUserType() {
         return userType;
     }
 
     /**
-     * ÉèÖÃÓÃ»§ÀàĞÍ 0 ½ûÓÃ 1ÆÕÍ¨ 2 ¹ÜÀíÔ±
+     * è®¾ç½®ç”¨æˆ·ç±»å‹ 0 ç¦ç”¨ 1æ™®é€š 2 ç®¡ç†å‘˜
      *
-     * @param userType ÓÃ»§ÀàĞÍ 0 ½ûÓÃ 1ÆÕÍ¨ 2 ¹ÜÀíÔ±
+     * @param userType ç”¨æˆ·ç±»å‹ 0 ç¦ç”¨ 1æ™®é€š 2 ç®¡ç†å‘˜
      */
     public void setUserType(Integer userType) {
         this.userType = userType;
     }
 
     /**
-     * »ñÈ¡ÓÃ»§ÃÜÂë
+     * è·å–ç”¨æˆ·å¯†ç 
      *
-     * @return password - ÓÃ»§ÃÜÂë
+     * @return password - ç”¨æˆ·å¯†ç 
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * ÉèÖÃÓÃ»§ÃÜÂë
+     * è®¾ç½®ç”¨æˆ·å¯†ç 
      *
-     * @param password ÓÃ»§ÃÜÂë
+     * @param password ç”¨æˆ·å¯†ç 
      */
     public void setPassword(String password) {
         this.password = password;

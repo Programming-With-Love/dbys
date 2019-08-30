@@ -2,6 +2,7 @@ package com.danbai.ys.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.Ji;
+import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.Impl.YsServiceImpl;
 import com.github.pagehelper.PageInfo;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -70,5 +72,21 @@ public class YsController {
         model.addAttribute("ysb",ysService.selectYsByPm(gjc));
         model.addAttribute("gjc",gjc);
         return "/search";
+    }
+    @RequestMapping(value = "/ys/time",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
+    @ResponseBody
+    String ysTimeApi(VideoTime videoTime){
+        if (videoTime.getUsername().equals("user")){
+            return "ok";
+        }
+        ysService.addYsTime(videoTime);
+        return "ok";
+    }
+    @RequestMapping(value = "/ys/gettime",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
+    @ResponseBody
+    String ysGetTimeApi(VideoTime videoTime){
+        if (videoTime.getUsername().equals("user"))
+            return "0";
+        return String.valueOf(ysService.getYsTime(videoTime));
     }
 }

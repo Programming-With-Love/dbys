@@ -1,6 +1,8 @@
 package com.danbai.ys.service.Impl;
 
+import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
+import com.danbai.ys.mapper.VideoTimeMapper;
 import com.danbai.ys.mapper.YsbMapper;
 import com.danbai.ys.service.YsService;
 import com.github.pagehelper.PageHelper;
@@ -15,6 +17,8 @@ import java.util.List;
 public class YsServiceImpl implements YsService {
     @Autowired
     YsbMapper ysbMapper;
+    @Autowired
+    VideoTimeMapper videoTimeMapper;
     public List<Ysb> page(int page, int pagenum){
         PageHelper.offsetPage(page, pagenum);
         // 设置分页查询条件
@@ -99,5 +103,28 @@ public class YsServiceImpl implements YsService {
         PageInfo pages = new PageInfo(ysbs);
         relist.addAll(ysbs);
         return pages;
+    }
+
+    @Override
+    public void addYsTime(VideoTime videoTime) {
+        VideoTime videoTime1 = new VideoTime();
+        videoTime1.setUsername(videoTime.getUsername());
+        videoTime1.setYsidname(videoTime.getYsidname());
+        VideoTime videoTime2 = videoTimeMapper.selectOne(videoTime1);
+        if(videoTime2!=null){
+            Example example =new Example(VideoTime.class);
+            example.createCriteria().andEqualTo("username",videoTime2.getUsername()).andEqualTo("ysidname",videoTime2.getYsidname());
+            int i = videoTimeMapper.deleteByExample(example);
+        }
+        videoTimeMapper.insert(videoTime);
+    }
+
+    @Override
+    public float getYsTime(VideoTime videoTime) {
+        VideoTime videoTime1 = videoTimeMapper.selectOne(videoTime);
+        if (videoTime1!=null){
+            return videoTime1.getTime();
+        }
+        return 0;
     }
 }

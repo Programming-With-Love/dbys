@@ -1,5 +1,6 @@
 package com.danbai.ys.service;
 
+import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
 import com.github.pagehelper.PageInfo;
 
@@ -14,4 +15,6 @@ public interface YsService {
     boolean update(Ysb ysb);
     boolean delYs(Ysb ysb);
     PageInfo getYs(String lx, int page, int size);
+    void addYsTime(VideoTime videoTime);
+    float getYsTime(VideoTime videoTime);
 }
