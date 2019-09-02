@@ -23,15 +23,15 @@ public class AdminController {
     UserServiceImpl userService;
     @RequestMapping(value = "/admin",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String admin(Model model){
-        return "/admin/index";
+        return "admin/index";
     }
     @RequestMapping(value = "/admin/index_v1",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String adminIndex(Model model){
-        return "/admin/index_v1";
+        return "admin/index_v1";
     }
     @RequestMapping(value = "/admin/ystable",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String adminYstable(Model model){
-        return "/admin/ystable";
+        return "admin/ystable";
     }
     @RequestMapping(value = "/admin/getysb",produces = "application/json;charset=UTF-8",method= RequestMethod.GET)
     @ResponseBody

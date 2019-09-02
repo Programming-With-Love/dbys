@@ -71,7 +71,7 @@ public class YsController {
             return "/index";
         model.addAttribute("ysb",ysService.selectYsByPm(gjc));
         model.addAttribute("gjc",gjc);
-        return "/search";
+        return "search";
     }
     @RequestMapping(value = "/ys/time",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
     @ResponseBody

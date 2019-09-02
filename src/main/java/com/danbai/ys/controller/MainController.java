@@ -38,7 +38,7 @@ public class MainController {
     }
     @RequestMapping(value = "/adminlogin",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String adminLogi(){
-        return "/adminlogin";
+        return "adminlogin";
     }
     @RequestMapping(value = "/adminlogin",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
     String adminLogiApi(User user, HttpServletRequest request, HttpServletResponse response, Model model){
@@ -55,30 +55,30 @@ public class MainController {
                         Cookie cookie = new Cookie("JSESSIONID", sessoin.getId());
                         cookie.setMaxAge(60 * 60 * 24);
                         response.addCookie(cookie);
-                        return "redirect:/admin/";
+                        return "redirect:admin/index";
                     }
                     model.addAttribute("message","账号不是管理员账号");
-                    return "/adminlogin";
+                    return "adminlogin";
                 }
             }
             model.addAttribute("message","账号或密码错误");
         }
-        return "/adminlogin";
+        return "adminlogin";
     }
     @RequestMapping(value = "/login",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String Logi(){
-        return "/login";
+        return "login";
     }
     @RequestMapping(value = "/reg",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String Reg(){
-        return "/reg";
+        return "reg";
     }
     @RequestMapping(value = "/reg",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
     String RegApi(User user,Model model,String yzm){
         if (user!=null){
             if(yzm==null){
                 model.addAttribute("message", "验证码有误");
-                return "/reg";
+                return "reg";
             }
             String str = (String) UtilsController.yzb.get(user.getUsername());
             if(str.equals(yzm)){
@@ -97,7 +97,7 @@ public class MainController {
                     user.setHeadurl("http://gravatar.com/avatar/"+user.getUsername()+"?s=256&d=identicon");
                     if (userService.addUser(user)) {
                         model.addAttribute("message", "注册成功");
-                        return "/reg";
+                        return "reg";
                     }
                 }else {
                     model.addAttribute("message", "用户名已存在");
@@ -122,16 +122,16 @@ public class MainController {
                         Cookie cookie = new Cookie("JSESSIONID", sessoin.getId());
                         cookie.setMaxAge(60 * 60 * 24);
                         response.addCookie(cookie);
-                        return "redirect:/";
+                        return "redirect:/index";
                 }
             }
             model.addAttribute("message","账号或密码错误");
         }
-        return "/login";
+        return "login";
     }
     @RequestMapping(value = "/logout",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
     String Logout(HttpServletRequest request){
         request.getSession().removeAttribute("user");
-        return "/login";
+        return "login";
     }
 }
