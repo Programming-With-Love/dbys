@@ -1,5 +1,6 @@
 package com.danbai.ys.service.Impl;
 
+import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.mapper.VideoTimeMapper;
@@ -127,5 +128,35 @@ public class YsServiceImpl implements YsService {
             return videoTime1.getTime();
         }
         return 0;
+    }
+
+    @Override
+    public List<Gkls> getGkls(String username) {
+        Example example = new Example(VideoTime.class);
+        example.createCriteria().andEqualTo("username",username);
+        example.orderBy("gktime").desc();
+        List<VideoTime> select = videoTimeMapper.selectByExample(example);
+        List<Gkls> list =new ArrayList<>();
+        for (VideoTime v:select) {
+            Gkls gkls = new Gkls();
+            for(int i=0;i<v.getUsername().length();i++){
+                String ysidname = v.getYsidname();
+                if(ysidname.charAt(i)>57||ysidname.charAt(i)<48){
+                    int ysid = Integer.parseInt(ysidname.substring(0,i));
+                    Ysb ysb = selectYsById(ysid);
+                    if(ysb!=null){
+                        gkls.setPm(ysb.getPm());
+                        gkls.setYsimg(ysb.getTp());
+                    }
+                    gkls.setJi(ysidname.substring(i));
+                    gkls.setTime(v.getTime()/60+"分");
+                    gkls.setGktime(v.getGktime());
+                    gkls.setId(ysid);
+                    list.add(gkls);
+                    i=100;
+                }
+            }
+        }
+        return list;
     }
 }

@@ -44,13 +44,14 @@
                         <li><a href="/reg"> 注册</a></li>
                         <li><a href="/login">登录</a></li>
                     </ul>
-                    <img style="border-radius: 25px;cursor:pointer;" width="40" height="40" th:src="${session.user.getHeadurl()}" th:if="${session.user}!=null" th:title="${session.user.getUsername()}">
+                    <a href="/person" target="_blank">
+                        <img style="border-radius: 25px;cursor:pointer;" width="40" height="40" th:src="${session.user.getHeadurl()}" th:if="${session.user}!=null" th:title="${session.user.getUsername()}">
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 </div>
-
 
 <footer class="footer" th:fragment="foot">
     <p>免责声明：本网站所有内容都是靠程序在互联网上自动搜集而来，仅供测试和学习交流。<br/>目前正在逐步删除和规避程序自动搜索采集到的不提供分享的版权影视。</p>

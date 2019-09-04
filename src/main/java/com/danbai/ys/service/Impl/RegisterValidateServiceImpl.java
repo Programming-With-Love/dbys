@@ -2,8 +2,8 @@ package com.danbai.ys.service.Impl;
 
 import com.danbai.ys.service.RegisterValidateService;
 import com.danbai.ys.utils.SendEmail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Random;
 @Service
 public class RegisterValidateServiceImpl implements RegisterValidateService {

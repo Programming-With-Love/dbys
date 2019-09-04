@@ -8,5 +8,6 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="ysidname" jdbcType="VARCHAR" property="ysidname" />
     <result column="time" jdbcType="REAL" property="time" />
+    <result column="gktime" jdbcType="TIMESTAMP" property="gktime" />
   </resultMap>
 </mapper>

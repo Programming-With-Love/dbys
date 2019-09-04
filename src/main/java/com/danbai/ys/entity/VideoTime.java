@@ -1,5 +1,6 @@
 package com.danbai.ys.entity;
 
+import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "video_time")
@@ -18,6 +19,11 @@ public class VideoTime {
      * 观看时间
      */
     private Float time;
+
+    /**
+     * 观看更新时间
+     */
+    private Date gktime;
 
     /**
      * 获取用户名
@@ -71,5 +77,23 @@ public class VideoTime {
      */
     public void setTime(Float time) {
         this.time = time;
+    }
+
+    /**
+     * 获取观看更新时间
+     *
+     * @return gktime - 观看更新时间
+     */
+    public Date getGktime() {
+        return gktime;
+    }
+
+    /**
+     * 设置观看更新时间
+     *
+     * @param gktime 观看更新时间
+     */
+    public void setGktime(Date gktime) {
+        this.gktime = gktime;
     }
 }

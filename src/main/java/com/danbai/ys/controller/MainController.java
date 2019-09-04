@@ -1,5 +1,6 @@
 package com.danbai.ys.controller;
 
+import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.Impl.UserServiceImpl;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +36,7 @@ public class MainController {
         model.addAttribute("dsj",ysbs1.getList());
         model.addAttribute("zy",ysbs2.getList());
         model.addAttribute("dm",ysbs3.getList());
-        return "index";
+        return "/index";
     }
     @RequestMapping(value = "/adminlogin",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String adminLogi(){
@@ -133,5 +135,35 @@ public class MainController {
     String Logout(HttpServletRequest request){
         request.getSession().removeAttribute("user");
         return "login";
+    }
+    @RequestMapping(value = "/hedimgupdate",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
+    String Hedimgupdate(){
+        return "/hedimgupdate";
+    }
+
+    @RequestMapping(value = "/hedimgupdate",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
+    @ResponseBody
+    String HedimgupdateApi(String url,HttpServletRequest servletRequest){
+        User user = (User)servletRequest.getSession().getAttribute("user");
+        if(user==null){
+            return "err";
+        }
+        if(userService.upheadimg(user.getUsername(),url)){
+            user.setHeadurl(url);
+            servletRequest.getSession().setAttribute("user",user);
+            return "ok";
+        }
+        return "err";
+    }
+    @RequestMapping(value = "/person",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
+    String Person(HttpServletRequest request,Model model){
+        User user = (User) request.getSession().getAttribute("user");
+        if(user==null){
+            return "/login";
+        }
+        List<Gkls> gkls = ysService.getGkls(user.getUsername());
+        model.addAttribute("gkls",gkls);
+        model.addAttribute("gks",gkls.size());
+        return "/person";
     }
 }

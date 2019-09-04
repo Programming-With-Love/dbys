@@ -1,7 +1,6 @@
 package com.danbai.ys.service.Impl;
 
 import com.danbai.ys.entity.User;
-import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.mapper.UserMapper;
 import com.danbai.ys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +28,16 @@ public class UserServiceImpl implements UserService {
         Example example=new Example(User.class);
         example.createCriteria().andEqualTo("email",email);
         return userMapper.selectOneByExample(example);
+    }
+
+    @Override
+    public boolean upheadimg(String username, String url) {
+        User user = new User();
+        user.setUsername(username);
+        User user1 = userMapper.selectOne(user);
+        user1.setHeadurl(url);
+        if(userMapper.updateByPrimaryKey(user1)>0)
+            return true;
+        return false;
     }
 }
