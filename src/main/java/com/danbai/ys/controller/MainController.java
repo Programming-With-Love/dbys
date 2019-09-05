@@ -36,7 +36,7 @@ public class MainController {
         model.addAttribute("dsj",ysbs1.getList());
         model.addAttribute("zy",ysbs2.getList());
         model.addAttribute("dm",ysbs3.getList());
-        return "/index";
+        return "index";
     }
     @RequestMapping(value = "/adminlogin",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
     String adminLogi(){
