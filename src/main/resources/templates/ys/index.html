@@ -74,7 +74,8 @@
             </div>
             <div class="row" style="margin-top:10px;"></div>
         </div>
-        <h3 class="movie-title" th:text="'视频名称：'+${ys.pm}+' - '+${ys.zt}"></h3>
+        <h3 class="movie-title" th:text="'影视名称：'+${ys.pm}"></h3>
+        <h4 id="jxs" th:text="${jiname}"></h4>
         <div class="player" id="player">
             <div id="dplayer"></div>
         </div>
@@ -113,13 +114,11 @@
     }
 </script>
 <script th:if="${xs!=null}">
-    var fstys= "[[${xs[0].url}]]";
-    var ysid= "[[${ys.id+xs[0].name}]]";
+    var fstys= "[[${url}]]";
+    var ysid= "[[${ysid}]]";
     var id= "[[${ys.id}]]";
-</script>
-<script th:inline="javascript">
+    var jiname= "[[${jiname}]]";
     var timeout = true; //启动及关闭按钮
-    console.log(gettime())
     const dp = new DPlayer({
         container: document.getElementById('dplayer'),
         logo:'http://cdn.p00q.cn:81/ys/img/logo.png',
@@ -137,8 +136,11 @@
             unlimited: true
         }
     });
+    console.log(jiname);
     dp.seek(gettime());
     $(".ji").click(function () {
+        $("#jxs").text($(this).text());
+        jiname=$(this).text();
         timeout=false;
         ysid=id+$(this).html();
         dp.switchVideo({
@@ -167,9 +169,10 @@
     function puttime() {
         $.post("/ys/time",
             {
-                ysidname:ysid,
+                ysid:id,
                 username: username,
-                time: dp.video.currentTime
+                time: dp.video.currentTime,
+                ysjiname:jiname
             });
     }
     function gettime() {
@@ -177,7 +180,7 @@
         $.ajax({
             type: "POST",
             url: '/ys/gettime',
-            data: {ysidname:ysid, username: username},
+            data: {ysid:id, username: username,ysjiname:jiname},
             async: false,//同步
             success: function (data) {
                 result = data;

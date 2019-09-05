@@ -10,19 +10,18 @@ public class VideoTime {
      */
     private String username;
 
+    private Integer ysid;
+
     /**
      * 影视id
      */
-    private String ysidname;
+    private String ysjiname;
 
     /**
      * 观看时间
      */
     private Float time;
 
-    /**
-     * 观看更新时间
-     */
     private Date gktime;
 
     /**
@@ -44,21 +43,35 @@ public class VideoTime {
     }
 
     /**
+     * @return ysid
+     */
+    public Integer getYsid() {
+        return ysid;
+    }
+
+    /**
+     * @param ysid
+     */
+    public void setYsid(Integer ysid) {
+        this.ysid = ysid;
+    }
+
+    /**
      * 获取影视id
      *
-     * @return ysidname - 影视id
+     * @return ysjiname - 影视id
      */
-    public String getYsidname() {
-        return ysidname;
+    public String getYsjiname() {
+        return ysjiname;
     }
 
     /**
      * 设置影视id
      *
-     * @param ysidname 影视id
+     * @param ysjiname 影视id
      */
-    public void setYsidname(String ysidname) {
-        this.ysidname = ysidname;
+    public void setYsjiname(String ysjiname) {
+        this.ysjiname = ysjiname;
     }
 
     /**
@@ -80,18 +93,14 @@ public class VideoTime {
     }
 
     /**
-     * 获取观看更新时间
-     *
-     * @return gktime - 观看更新时间
+     * @return gktime
      */
     public Date getGktime() {
         return gktime;
     }
 
     /**
-     * 设置观看更新时间
-     *
-     * @param gktime 观看更新时间
+     * @param gktime
      */
     public void setGktime(Date gktime) {
         this.gktime = gktime;

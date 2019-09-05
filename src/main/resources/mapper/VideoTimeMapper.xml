@@ -6,7 +6,8 @@
       WARNING - @mbg.generated
     -->
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="ysidname" jdbcType="VARCHAR" property="ysidname" />
+    <result column="ysid" jdbcType="INTEGER" property="ysid" />
+    <result column="ysjiname" jdbcType="VARCHAR" property="ysjiname" />
     <result column="time" jdbcType="REAL" property="time" />
     <result column="gktime" jdbcType="TIMESTAMP" property="gktime" />
   </resultMap>

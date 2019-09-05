@@ -1,6 +1,8 @@
 package com.danbai.ys.service.Impl;
 
+import com.alibaba.fastjson.JSON;
 import com.danbai.ys.entity.Gkls;
+import com.danbai.ys.entity.Ji;
 import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.mapper.VideoTimeMapper;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 @Service
 public class YsServiceImpl implements YsService {
@@ -111,11 +114,11 @@ public class YsServiceImpl implements YsService {
     public void addYsTime(VideoTime videoTime) {
         VideoTime videoTime1 = new VideoTime();
         videoTime1.setUsername(videoTime.getUsername());
-        videoTime1.setYsidname(videoTime.getYsidname());
+        videoTime1.setYsid(videoTime.getYsid());
         VideoTime videoTime2 = videoTimeMapper.selectOne(videoTime1);
         if(videoTime2!=null){
             Example example =new Example(VideoTime.class);
-            example.createCriteria().andEqualTo("username",videoTime2.getUsername()).andEqualTo("ysidname",videoTime2.getYsidname());
+            example.createCriteria().andEqualTo("username",videoTime2.getUsername()).andEqualTo("ysid",videoTime2.getYsid());
             int i = videoTimeMapper.deleteByExample(example);
         }
         videoTimeMapper.insert(videoTime);
@@ -139,24 +142,37 @@ public class YsServiceImpl implements YsService {
         List<Gkls> list =new ArrayList<>();
         for (VideoTime v:select) {
             Gkls gkls = new Gkls();
-            for(int i=0;i<v.getUsername().length();i++){
-                String ysidname = v.getYsidname();
-                if(ysidname.charAt(i)>57||ysidname.charAt(i)<48){
-                    int ysid = Integer.parseInt(ysidname.substring(0,i));
-                    Ysb ysb = selectYsById(ysid);
-                    if(ysb!=null){
-                        gkls.setPm(ysb.getPm());
-                        gkls.setYsimg(ysb.getTp());
+            Ysb ysb = selectYsById(v.getYsid());
+            if(ysb!=null){
+                gkls.setPm(ysb.getPm());
+                gkls.setYsimg(ysb.getTp());
+            }
+            gkls.setJi(v.getYsjiname());
+            gkls.setTime(v.getTime()/60+"分");
+            gkls.setGktime(v.getGktime());
+            gkls.setId(v.getYsid());
+            list.add(gkls);
+        }
+        return list;
+    }
+
+    @Override
+    public HashMap getYsLs(String username, int ysid) {
+        HashMap<String, String> map = new HashMap<>();
+        Ysb ysb = selectYsById(ysid);
+        List<Gkls> gkls = getGkls(username);
+        for (Gkls g :gkls) {
+            if(g.getId()==ysid){
+                List<Ji> jis = JSON.parseArray(ysb.getXzdz(), Ji.class);
+                for (Ji j: jis){
+                    if(g.getJi().equals(j.getName())){
+                        map.put("url",j.getUrl());
+                        map.put("jiname",j.getName());
+                        return map;
                     }
-                    gkls.setJi(ysidname.substring(i));
-                    gkls.setTime(v.getTime()/60+"分");
-                    gkls.setGktime(v.getGktime());
-                    gkls.setId(ysid);
-                    list.add(gkls);
-                    i=100;
                 }
             }
         }
-        return list;
+        return null;
     }
 }

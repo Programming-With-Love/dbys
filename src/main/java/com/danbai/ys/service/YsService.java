@@ -5,6 +5,7 @@ import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
 import com.github.pagehelper.PageInfo;
 
+import java.util.HashMap;
 import java.util.List;
 public interface YsService {
     List<Ysb> page(int page, int pagenum);
@@ -19,4 +20,5 @@ public interface YsService {
     void addYsTime(VideoTime videoTime);
     float getYsTime(VideoTime videoTime);
     List<Gkls> getGkls(String username);
+    HashMap getYsLs(String username, int ysid);
 }
