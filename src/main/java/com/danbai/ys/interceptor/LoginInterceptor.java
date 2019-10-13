@@ -1,4 +1,4 @@
-package com.danbai.ys.Interceptor;
+package com.danbai.ys.interceptor;
 
 import com.danbai.ys.entity.User;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -7,13 +7,17 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author danbai
+ * @date 2019/10/13
+ */
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
-        User user = (User)request.getSession().getAttribute("user");
-        if (user == null || user.equals(""))  {
-            request.getSession().setAttribute("message","请先登陆管理员账号");
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null || "".equals(user)) {
+            request.getSession().setAttribute("message", "请先登陆管理员账号");
             response.sendRedirect("/adminlogin");
             return false;
         }

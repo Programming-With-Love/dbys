@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -11,7 +10,8 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="shortcut icon" href="http://cdn.p00q.cn:81/favicon.ico"> <link href="http://cdn.p00q.cn:81/hAdmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="shortcut icon" href="http://cdn.p00q.cn:81/favicon.ico">
+    <link href="http://cdn.p00q.cn:81/hAdmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="http://cdn.p00q.cn:81/hAdmin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 
     <!-- jqgrid-->
@@ -53,7 +53,6 @@
 <script src="http://cdn.p00q.cn:81/hAdmin/js/bootstrap.min.js?v=3.3.6"></script>
 
 
-
 <!-- Peity -->
 <script src="http://cdn.p00q.cn:81/hAdmin/js/plugins/peity/jquery.peity.min.js"></script>
 
@@ -70,17 +69,17 @@
 
         $.jgrid.defaults.styleUI = 'Bootstrap';
         // Examle data for jqGrid
-          // Configuration for jqGrid Example 2
+        // Configuration for jqGrid Example 2
         $("#table_list_2").jqGrid({
-            url:'/admin/getysb',//请求数据的地址
-            editurl:"/admin/ysedit",
+            url: '/admin/getysb',//请求数据的地址
+            editurl: "/admin/ysedit",
             datatype: "json",
             height: 700,
             autowidth: true,
             shrinkToFit: true,
             rowNum: 20,
-            rowList: [10, 20, 30,50],
-            colNames: ['序号', '片名', '图片地址', '状态', '评分', '别名', '导演','主演','类型','地区','语言','上映时间','片长','更新时间','介绍','观看地址','下载地址'],
+            rowList: [10, 20, 30, 50],
+            colNames: ['序号', '片名', '图片地址', '状态', '评分', '别名', '导演', '主演', '类型', '地区', '语言', '上映时间', '片长', '更新时间', '介绍', '观看地址', '下载地址'],
             colModel: [
                 {
                     name: 'id',
@@ -90,8 +89,8 @@
                     sorttype: "int",
                     search: true,
                     sortable: false,
-                    searchoptions:{
-                        sopt:['eq']
+                    searchoptions: {
+                        sopt: ['eq']
                     }
                 },
                 {
@@ -101,8 +100,8 @@
                     width: 120,
                     search: true,
                     sortable: false,
-                    searchoptions:{
-                        sopt:['cn']
+                    searchoptions: {
+                        sopt: ['cn']
                     }
                 },
                 {
@@ -111,14 +110,14 @@
                     editable: true,
                     width: 80,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'zt',
                     index: 'zt',
                     editable: true,
                     width: 100,
-                    search:false,
+                    search: false,
                     sortable: false,
                 },
                 {
@@ -128,8 +127,8 @@
                     width: 40,
                     align: "right",
                     sorttype: "float"
-                    ,sortable: false,
-                    search:false
+                    , sortable: false,
+                    search: false
                 },
                 {
                     name: 'bm',
@@ -137,7 +136,7 @@
                     editable: true,
                     width: 120,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'dy',
@@ -145,7 +144,7 @@
                     editable: true,
                     width: 60,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'zy',
@@ -153,7 +152,7 @@
                     editable: true,
                     width: 80,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'lx',
@@ -161,7 +160,7 @@
                     editable: true,
                     width: 60,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'dq',
@@ -169,7 +168,7 @@
                     editable: true,
                     width: 50,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'yy',
@@ -177,7 +176,7 @@
                     editable: true,
                     width: 50,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'sytime',
@@ -187,7 +186,7 @@
                     sorttype: "date",
                     formatter: "date",
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'pctime',
@@ -195,7 +194,7 @@
                     editable: true,
                     width: 50,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'gxtime',
@@ -205,7 +204,7 @@
                     sorttype: "date",
                     formatter: "date",
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'js',
@@ -213,7 +212,7 @@
                     editable: true,
                     width: 150,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'gkdz',
@@ -221,7 +220,7 @@
                     editable: true,
                     width: 100,
                     sortable: false,
-                    search:false
+                    search: false
                 },
                 {
                     name: 'xzdz',
@@ -229,7 +228,7 @@
                     editable: true,
                     width: 100,
                     sortable: false,
-                    search:false
+                    search: false
                 }
             ],
             pager: "#pager_list_2",

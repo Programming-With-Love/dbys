@@ -10,6 +10,11 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+/**
+ * @author danbai
+ * @date 2019/10/13
+ */
 public class SendEmail {
 
     public static final String HOST = "smtp.sohu.com";
@@ -20,14 +25,15 @@ public class SendEmail {
 
     /**
      * 获取Session
+     *
      * @return
      */
     private static Session getSession() {
         Properties props = new Properties();
         props.put("mail.smtp.host", HOST);//设置服务器地址
-        props.put("mail.store.protocol" , PROTOCOL);//设置协议
+        props.put("mail.store.protocol", PROTOCOL);//设置协议
         props.put("mail.smtp.port", PORT);//设置端口
-        props.put("mail.smtp.auth" , true);
+        props.put("mail.smtp.auth", true);
 
         Authenticator authenticator = new Authenticator() {
 
@@ -37,12 +43,12 @@ public class SendEmail {
             }
 
         };
-        Session session = Session.getDefaultInstance(props , authenticator);
+        Session session = Session.getDefaultInstance(props, authenticator);
 
         return session;
     }
 
-    public static void send(String toEmail , String content) {
+    public static void send(String toEmail, String content) {
         Session session = getSession();
         try {
             // Instantiate a message
@@ -54,12 +60,11 @@ public class SendEmail {
             msg.setRecipients(Message.RecipientType.TO, address);
             msg.setSubject("账号激活邮件");
             msg.setSentDate(new Date());
-            msg.setContent(content , "text/html;charset=utf-8");
+            msg.setContent(content, "text/html;charset=utf-8");
 
             //Send the message
             Transport.send(msg);
-        }
-        catch (MessagingException mex) {
+        } catch (MessagingException mex) {
             mex.printStackTrace();
         }
     }

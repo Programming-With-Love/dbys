@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.danbai.ys.mapper.YsbMapper">
-  <resultMap id="BaseResultMap" type="com.danbai.ys.entity.Ysb">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="pf" jdbcType="REAL" property="pf" />
-    <result column="pm" jdbcType="LONGVARCHAR" property="pm" />
-    <result column="tp" jdbcType="LONGVARCHAR" property="tp" />
-    <result column="zt" jdbcType="LONGVARCHAR" property="zt" />
-    <result column="bm" jdbcType="LONGVARCHAR" property="bm" />
-    <result column="dy" jdbcType="LONGVARCHAR" property="dy" />
-    <result column="zy" jdbcType="LONGVARCHAR" property="zy" />
-    <result column="lx" jdbcType="LONGVARCHAR" property="lx" />
-    <result column="dq" jdbcType="LONGVARCHAR" property="dq" />
-    <result column="yy" jdbcType="LONGVARCHAR" property="yy" />
-    <result column="sytime" jdbcType="LONGVARCHAR" property="sytime" />
-    <result column="pctime" jdbcType="LONGVARCHAR" property="pctime" />
-    <result column="gxtime" jdbcType="LONGVARCHAR" property="gxtime" />
-    <result column="js" jdbcType="LONGVARCHAR" property="js" />
-    <result column="gkdz" jdbcType="LONGVARCHAR" property="gkdz" />
-    <result column="xzdz" jdbcType="LONGVARCHAR" property="xzdz" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.danbai.ys.entity.Ysb">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="pf" jdbcType="REAL" property="pf"/>
+        <result column="pm" jdbcType="LONGVARCHAR" property="pm"/>
+        <result column="tp" jdbcType="LONGVARCHAR" property="tp"/>
+        <result column="zt" jdbcType="LONGVARCHAR" property="zt"/>
+        <result column="bm" jdbcType="LONGVARCHAR" property="bm"/>
+        <result column="dy" jdbcType="LONGVARCHAR" property="dy"/>
+        <result column="zy" jdbcType="LONGVARCHAR" property="zy"/>
+        <result column="lx" jdbcType="LONGVARCHAR" property="lx"/>
+        <result column="dq" jdbcType="LONGVARCHAR" property="dq"/>
+        <result column="yy" jdbcType="LONGVARCHAR" property="yy"/>
+        <result column="sytime" jdbcType="LONGVARCHAR" property="sytime"/>
+        <result column="pctime" jdbcType="LONGVARCHAR" property="pctime"/>
+        <result column="gxtime" jdbcType="LONGVARCHAR" property="gxtime"/>
+        <result column="js" jdbcType="LONGVARCHAR" property="js"/>
+        <result column="gkdz" jdbcType="LONGVARCHAR" property="gkdz"/>
+        <result column="xzdz" jdbcType="LONGVARCHAR" property="xzdz"/>
+    </resultMap>
 </mapper>

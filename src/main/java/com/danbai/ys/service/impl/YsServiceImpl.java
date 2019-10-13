@@ -1,4 +1,4 @@
-package com.danbai.ys.service.Impl;
+package com.danbai.ys.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.danbai.ys.entity.Gkls;
@@ -17,13 +17,20 @@ import tk.mybatis.mapper.entity.Example;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+/**
+ * @author danbai
+ * @date 2019/10/13
+ */
 @Service
 public class YsServiceImpl implements YsService {
     @Autowired
     YsbMapper ysbMapper;
     @Autowired
     VideoTimeMapper videoTimeMapper;
-    public List<Ysb> page(int page, int pagenum){
+
+    @Override
+    public List<Ysb> page(int page, int pagenum) {
         PageHelper.offsetPage(page, pagenum);
         // 设置分页查询条件
         Example example = new Example(Ysb.class);
@@ -41,66 +48,71 @@ public class YsServiceImpl implements YsService {
 
     @Override
     public Ysb selectYsById(int id) {
-        Example example =new Example(Ysb.class);
-        example.createCriteria().andEqualTo("id",id);
+        Example example = new Example(Ysb.class);
+        example.createCriteria().andEqualTo("id", id);
         return ysbMapper.selectOneByExample(example);
     }
 
     @Override
     public List<Ysb> selectYsByPm(String pm) {
-        Example example =new Example(Ysb.class);
-        example.createCriteria().andLike("pm","%"+pm+"%");
+        Example example = new Example(Ysb.class);
+        example.createCriteria().andLike("pm", "%" + pm + "%");
         return ysbMapper.selectByExample(example);
     }
 
     @Override
     public List<Ysb> selectYsByIdlist(int id) {
-        Example example =new Example(Ysb.class);
-        example.createCriteria().andEqualTo("id",id);
+        Example example = new Example(Ysb.class);
+        example.createCriteria().andEqualTo("id", id);
         return ysbMapper.selectByExample(example);
     }
 
     @Override
     public boolean addYs(Ysb ysb) {
-        if(ysbMapper.insert(ysb)>0){
+        if (ysbMapper.insert(ysb) > 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
     @Override
     public boolean update(Ysb ysb) {
-        if (ysbMapper.updateByPrimaryKey(ysb)>0){
+        if (ysbMapper.updateByPrimaryKey(ysb) > 0) {
             return true;
         }
         return false;
     }
+
     @Override
     public boolean delYs(Ysb ysb) {
 
-        if(ysbMapper.delete(ysb)>0){
+        if (ysbMapper.delete(ysb) > 0) {
             return true;
         }
         return false;
     }
 
     @Override
-    public PageInfo getYs(String lx,int page,int size) {
+    public PageInfo getYs(String lx, int page, int size) {
         List<Ysb> relist = new ArrayList<>();
-        Example example=new Example(Ysb.class);
-        switch (lx){
+        Example example = new Example(Ysb.class);
+        switch (lx) {
             case "电影":
-                example.createCriteria().orLike("lx","%动作片%").orLike("lx","%喜剧片%").orLike("lx","%爱情片%").orLike("lx","%科幻片%");
+                example.createCriteria().orLike("lx", "%动作片%").orLike("lx", "%喜剧片%").orLike("lx", "%爱情片%").orLike("lx", "%科幻片%");
                 break;
             case "电视剧":
-                example.createCriteria().orLike("lx","%国产剧%").orLike("lx","%韩国剧%").orLike("lx","%欧美剧%").orLike("lx","%海外剧%");
+                example.createCriteria().orLike("lx", "%国产剧%").orLike("lx", "%韩国剧%").orLike("lx", "%欧美剧%").orLike("lx", "%海外剧%");
                 break;
             case "综艺":
-                example.createCriteria().andLike("lx","%综艺片%");
+                example.createCriteria().andLike("lx", "%综艺片%");
                 break;
             case "动漫":
-                example.createCriteria().andLike("lx","%动漫片%");
+                example.createCriteria().andLike("lx", "%动漫片%");
+                break;
+            case "全部":
+                break;
+            default:
         }
         example.orderBy("gxtime").desc();
         PageHelper.startPage(page, size).getPages();
@@ -116,9 +128,9 @@ public class YsServiceImpl implements YsService {
         videoTime1.setUsername(videoTime.getUsername());
         videoTime1.setYsid(videoTime.getYsid());
         VideoTime videoTime2 = videoTimeMapper.selectOne(videoTime1);
-        if(videoTime2!=null){
-            Example example =new Example(VideoTime.class);
-            example.createCriteria().andEqualTo("username",videoTime2.getUsername()).andEqualTo("ysid",videoTime2.getYsid());
+        if (videoTime2 != null) {
+            Example example = new Example(VideoTime.class);
+            example.createCriteria().andEqualTo("username", videoTime2.getUsername()).andEqualTo("ysid", videoTime2.getYsid());
             int i = videoTimeMapper.deleteByExample(example);
         }
         videoTimeMapper.insert(videoTime);
@@ -127,7 +139,7 @@ public class YsServiceImpl implements YsService {
     @Override
     public float getYsTime(VideoTime videoTime) {
         VideoTime videoTime1 = videoTimeMapper.selectOne(videoTime);
-        if (videoTime1!=null){
+        if (videoTime1 != null) {
             return videoTime1.getTime();
         }
         return 0;
@@ -136,19 +148,19 @@ public class YsServiceImpl implements YsService {
     @Override
     public List<Gkls> getGkls(String username) {
         Example example = new Example(VideoTime.class);
-        example.createCriteria().andEqualTo("username",username);
+        example.createCriteria().andEqualTo("username", username);
         example.orderBy("gktime").desc();
         List<VideoTime> select = videoTimeMapper.selectByExample(example);
-        List<Gkls> list =new ArrayList<>();
-        for (VideoTime v:select) {
+        List<Gkls> list = new ArrayList<>();
+        for (VideoTime v : select) {
             Gkls gkls = new Gkls();
             Ysb ysb = selectYsById(v.getYsid());
-            if(ysb!=null){
+            if (ysb != null) {
                 gkls.setPm(ysb.getPm());
                 gkls.setYsimg(ysb.getTp());
             }
             gkls.setJi(v.getYsjiname());
-            gkls.setTime(v.getTime()/60+"分");
+            gkls.setTime(v.getTime() / 60 + "分");
             gkls.setGktime(v.getGktime());
             gkls.setId(v.getYsid());
             list.add(gkls);
@@ -158,16 +170,16 @@ public class YsServiceImpl implements YsService {
 
     @Override
     public HashMap getYsLs(String username, int ysid) {
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>(30);
         Ysb ysb = selectYsById(ysid);
         List<Gkls> gkls = getGkls(username);
-        for (Gkls g :gkls) {
-            if(g.getId()==ysid){
-                List<Ji> jis = JSON.parseArray(ysb.getXzdz(), Ji.class);
-                for (Ji j: jis){
-                    if(g.getJi().equals(j.getName())){
-                        map.put("url",j.getUrl());
-                        map.put("jiname",j.getName());
+        for (Gkls g : gkls) {
+            if (g.getId() == ysid) {
+                List<Ji> jis = JSON.parseArray(ysb.getGkdz(), Ji.class);
+                for (Ji j : jis) {
+                    if (g.getJi().equals(j.getName())) {
+                        map.put("url", j.getUrl());
+                        map.put("jiname", j.getName());
                         return map;
                     }
                 }

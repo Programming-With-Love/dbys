@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 
@@ -16,7 +15,7 @@
     <link href="http://cdn.p00q.cn:81/hAdmin/css/style.css" rel="stylesheet">
     <link href="http://cdn.p00q.cn:81/hAdmin/css/login.css" rel="stylesheet">
     <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html" />
+    <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
     <script>
         if (window.top !== window.self) {
@@ -33,8 +32,8 @@
             <form method="post" action="/adminlogin">
                 <h4 class="no-margins">登录：后台管理</h4>
                 <p class="m-t-md" th:text="${message?:session.message}">欢迎使用</p>
-                <input name="username" type="text" class="form-control uname" placeholder="用户名" />
-                <input name="password" type="password" class="form-control pword m-b" placeholder="密码" />
+                <input name="username" type="text" class="form-control uname" placeholder="用户名"/>
+                <input name="password" type="password" class="form-control pword m-b" placeholder="密码"/>
                 <button class="btn btn-success btn-block">登录</button>
             </form>
         </div>

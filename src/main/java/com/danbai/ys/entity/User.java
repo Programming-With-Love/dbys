@@ -2,14 +2,21 @@ package com.danbai.ys.entity;
 
 import javax.persistence.*;
 
+/**
+ * @author danbai
+ * @date 2019/10/13
+ */
 public class User {
+    public static int GENERAL = 2;
+    public static int ADMIN = 2;
+    public static int BAN = 0;
+    public static String DEFAULT_USER = "user";
     /**
      * 用户id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     /**
      * 用户名
      */

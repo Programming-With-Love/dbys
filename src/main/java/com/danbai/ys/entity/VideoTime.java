@@ -3,6 +3,10 @@ package com.danbai.ys.entity;
 import java.util.Date;
 import javax.persistence.*;
 
+/**
+ * @author danbai
+ * @date 2019/10/13
+ */
 @Table(name = "video_time")
 public class VideoTime {
     /**

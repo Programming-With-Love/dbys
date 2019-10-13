@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.danbai.ys.mapper.VideoTimeMapper">
-  <resultMap id="BaseResultMap" type="com.danbai.ys.entity.VideoTime">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="ysid" jdbcType="INTEGER" property="ysid" />
-    <result column="ysjiname" jdbcType="VARCHAR" property="ysjiname" />
-    <result column="time" jdbcType="REAL" property="time" />
-    <result column="gktime" jdbcType="TIMESTAMP" property="gktime" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.danbai.ys.entity.VideoTime">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="ysid" jdbcType="INTEGER" property="ysid"/>
+        <result column="ysjiname" jdbcType="VARCHAR" property="ysjiname"/>
+        <result column="time" jdbcType="REAL" property="time"/>
+        <result column="gktime" jdbcType="TIMESTAMP" property="gktime"/>
+    </resultMap>
 </mapper>

@@ -2,6 +2,10 @@ package com.danbai.ys.entity;
 
 import javax.persistence.*;
 
+/**
+ * @author danbai
+ * @date 2019/10/13
+ */
 public class Ysb {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

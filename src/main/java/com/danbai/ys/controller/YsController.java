@@ -1,12 +1,11 @@
 package com.danbai.ys.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.Ji;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
-import com.danbai.ys.service.Impl.YsServiceImpl;
+import com.danbai.ys.service.impl.YsServiceImpl;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,24 +17,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
-
+/**
+ *
+ * @author danbai
+ * @date 2019/10/13
+ */
 @Controller
 public class YsController {
     @Autowired
     YsServiceImpl ysService;
     @RequestMapping(value = "/ys",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
-    String Ys(int id , Model model, HttpServletRequest request){
+    String ys(int id , Model model, HttpServletRequest request){
         Ysb ysb = ysService.selectYsById(id);
         model.addAttribute("ys",ysb);
         List<Ji> list;
-        if(ysb.getXzdz().equals("[]")){
+        String kong="[]";
+        if(kong.equals(ysb.getGkdz())){
+            list = JSONObject.parseArray(ysb.getXzdz(),Ji.class);
+        }else{
             list = JSONObject.parseArray(ysb.getGkdz(),Ji.class);
-            model.addAttribute("gs",list);
-            return "ys/index";
         }
-        list = JSONObject.parseArray(ysb.getXzdz(),Ji.class);
-        User user = (User) request.getSession().getAttribute("user");
         model.addAttribute("xs",list);
+        User user = (User) request.getSession().getAttribute("user");
         if(user!=null) {
             HashMap ysLs = ysService.getYsLs(user.getUsername(), id);
             if (ysLs != null) {
@@ -51,7 +54,7 @@ public class YsController {
         return "ys/index";
     }
     @RequestMapping(value = "/type/dy",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
-    String Dy(int page,Model model){
+    String dy(int page,Model model){
         PageInfo page1 = ysService.getYs("电影",page,20);
         model.addAttribute("ysb",page1.getList());
         model.addAttribute("zys",page1.getPages());
@@ -59,7 +62,7 @@ public class YsController {
         return "type/dy";
     }
     @RequestMapping(value = "/type/dsj",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
-    String Dsj(int page,Model model){
+    String dsj(int page,Model model){
         PageInfo page1 = ysService.getYs("电视剧",page,20);
         model.addAttribute("ysb",page1.getList());
         model.addAttribute("zys",page1.getPages());
@@ -67,7 +70,7 @@ public class YsController {
         return "type/dsj";
     }
     @RequestMapping(value = "/type/dm",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
-    String Dm(int page,Model model){
+    String dm(int page,Model model){
         PageInfo page1 = ysService.getYs("动漫",page,20);
         model.addAttribute("ysb",page1.getList());
         model.addAttribute("zys",page1.getPages());
@@ -75,7 +78,7 @@ public class YsController {
         return "type/dm";
     }
     @RequestMapping(value = "/type/zy",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
-    String Zy(int page,Model model){
+    String zy(int page,Model model){
         PageInfo page1 = ysService.getYs("综艺",page,20);
         model.addAttribute("ysb",page1.getList());
         model.addAttribute("zys",page1.getPages());
@@ -83,9 +86,10 @@ public class YsController {
         return "type/zy";
     }
     @RequestMapping(value = "/search",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
-    String Search(String gjc,Model model){
-        if (gjc.equals(""))
+    String search(String gjc,Model model){
+        if ("".equals(gjc)) {
             return "/index";
+        }
         model.addAttribute("ysb",ysService.selectYsByPm(gjc));
         model.addAttribute("gjc",gjc);
         return "search";
@@ -93,7 +97,8 @@ public class YsController {
     @RequestMapping(value = "/ys/time",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
     @ResponseBody
     String ysTimeApi(VideoTime videoTime){
-        if (videoTime.getUsername().equals("user")){
+        String user="user";
+        if (user.equals(videoTime.getUsername())){
             return "ok";
         }
         ysService.addYsTime(videoTime);
@@ -102,8 +107,9 @@ public class YsController {
     @RequestMapping(value = "/ys/gettime",produces = "text/plain;charset=UTF-8",method= RequestMethod.POST)
     @ResponseBody
     String ysGetTimeApi(VideoTime videoTime){
-        if (videoTime.getUsername().equals("user"))
+        if (videoTime.getUsername().equals(User.DEFAULT_USER)) {
             return "0";
+        }
         return String.valueOf(ysService.getYsTime(videoTime));
     }
 }

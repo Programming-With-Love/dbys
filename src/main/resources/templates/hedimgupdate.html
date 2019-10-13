@@ -59,6 +59,9 @@
         uploader.on('uploadSuccess', function (file, response) {
             var arrayJsonObject =eval("("+response._raw+")");
             $.post("/hedimgupdate",{url:arrayJsonObject.data.url},function(result){
+                if(result=="ok"){
+                    alert("上传成功!");
+                }
             });
         });
         uploader.on( 'uploadError', function() {

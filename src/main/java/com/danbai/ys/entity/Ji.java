@@ -1,5 +1,9 @@
 package com.danbai.ys.entity;
 
+/**
+ * @author danbai
+ * @date 2019/10/13
+ */
 public class Ji {
     String name;
     String url;

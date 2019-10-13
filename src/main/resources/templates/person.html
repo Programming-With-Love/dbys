@@ -9,7 +9,8 @@
     <title>淡白影视 - 个人资料</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="http://cdn.p00q.cn:81/favicon.ico"> <link href="http://cdn.p00q.cn:81/hAdmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="shortcut icon" href="http://cdn.p00q.cn:81/favicon.ico">
+    <link href="http://cdn.p00q.cn:81/hAdmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="http://cdn.p00q.cn:81/hAdmin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="http://cdn.p00q.cn:81/hAdmin/css/animate.css" rel="stylesheet">
     <link href="http://cdn.p00q.cn:81/hAdmin/css/style.css?v=4.1.0" rel="stylesheet">
@@ -27,7 +28,7 @@
                 <div>
                     <div class="ibox-content no-padding border-left-right">
                         <a href="/hedimgupdate" target="_blank">
-                        <img alt="image" class="img-responsive" th:src="${session.user.getHeadurl()}">
+                            <img alt="image" class="img-responsive" th:src="${session.user.getHeadurl()}">
                         </a>
                     </div>
                     <div class="ibox-content profile-content">
@@ -55,17 +56,17 @@
                         <div class="feed-activity-list" th:each=" ls,iterStat: ${gkls}">
                             <div class="feed-element">
                                 <a class="pull-left" th:href="'/ys?'+id+'='+(${ls.id})">
-                                    <img alt="image" class="img-circle"  th:src="${ls.ysimg}">
+                                    <img alt="image" class="img-circle" th:src="${ls.ysimg}">
                                 </a>
                                 <div class="media-body ">
-                                    <small class="pull-right" th:text="${#dates.format(ls.gktime, 'yyyy-MM-dd HH:mm:ss')}"></small>
+                                    <small class="pull-right"
+                                           th:text="${#dates.format(ls.gktime, 'yyyy-MM-dd HH:mm:ss')}"></small>
                                     <strong th:text="${ls.pm}"></strong><span th:text="${ls.ji}+${ls.time}"></span>
                                     <br>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        <button class="btn btn-primary btn-block m"><i class="fa fa-arrow-down"></i> 显示更多</button>
                 </div>
             </div>
         </div>

@@ -2,11 +2,8 @@
   <artifact type="exploded-war" name="dbys:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/dbys_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="dbys/web/Web" />
       <element id="directory" name="WEB-INF">
-        <element id="directory" name="classes">
-          <element id="module-output" name="dbys" />
-        </element>
+        <element id="directory" name="classes" />
         <element id="directory" name="lib">
           <element id="library" level="project" name="commons-dbutils-1.7" />
           <element id="library" level="project" name="mysql-connector-java-8.0.15" />

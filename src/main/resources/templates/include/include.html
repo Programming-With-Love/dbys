@@ -14,17 +14,20 @@
     </div>
     <div class="container" style="padding-top:15px;padding-bottom:15px;padding-right:0;">
         <div class="pull-right">
-            <form class="navbar-form" target="_blank" accept-charset="utf-8" action="/search" method="get" role="search">
+            <form class="navbar-form" target="_blank" accept-charset="utf-8" action="/search" method="get"
+                  role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" name="gjc" placeholder="影视搜索">
-                </div><button type="submit" class="btn btn-primary">搜索</button>
+                </div>
+                <button type="submit" class="btn btn-primary">搜索</button>
             </form>
         </div>
     </div>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -34,10 +37,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">首页</a></li>
-                    <li  ><a href="/type/dy?page=1">电影</a></li>
-                    <li ><a href="/type/dsj?page=1">电视剧</a></li>
-                    <li ><a href="/type/zy?page=1">综艺</a></li>
-                    <li ><a href="/type/dm?page=1">动漫</a></li>
+                    <li><a href="/type/dy?page=1">电影</a></li>
+                    <li><a href="/type/dsj?page=1">电视剧</a></li>
+                    <li><a href="/type/zy?page=1">综艺</a></li>
+                    <li><a href="/type/dm?page=1">动漫</a></li>
                 </ul>
                 <div class="pull-right">
                     <ul class="nav navbar-nav" th:if="${session.user}==null">
@@ -45,7 +48,9 @@
                         <li><a href="/login">登录</a></li>
                     </ul>
                     <a href="/person" target="_blank">
-                        <img style="border-radius: 25px;cursor:pointer;" width="40" height="40" th:src="${session.user.getHeadurl()}" th:if="${session.user}!=null" th:title="${session.user.getUsername()}">
+                        <img style="border-radius: 25px;cursor:pointer;" width="40" height="40"
+                             th:src="${session.user.getHeadurl()}" th:if="${session.user}!=null"
+                             th:title="${session.user.getUsername()}">
                     </a>
                 </div>
             </div>

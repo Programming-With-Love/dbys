@@ -12,9 +12,11 @@
     <link href="http://cdn.p00q.cn:81/hAdmin/css/animate.css" rel="stylesheet">
     <link href="http://cdn.p00q.cn:81/hAdmin/css/style.css?v=4.1.0" rel="stylesheet">
     <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html" />
+    <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
-    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+    <script>if (window.top !== window.self) {
+        window.top.location = window.location;
+    }</script>
 </head>
 <body class="gray-bg">
 <div class="middle-box text-center loginscreen  animated fadeInDown">
@@ -32,7 +34,9 @@
                 <input name="password" type="password" class="form-control" placeholder="密码" required="">
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
-            <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="/reg">注册一个新账号</a>
+            <p class="text-muted text-center"><a href="login.html#">
+                <small>忘记密码了？</small>
+            </a> | <a href="/reg">注册一个新账号</a>
             </p>
         </form>
         <div th:unless="${session.user==null}">
