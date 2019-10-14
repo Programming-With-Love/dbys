@@ -28,7 +28,7 @@
     </div>
     <div style="padding:0 10px;">
         <div class="row" style="background: #F6F5F6;">
-            <div class="col-md-1-5 col-sm-4 col-xs-6" th:each="ys:${ysb}">
+            <div class="col-md-2 col-sm-3 col-xs-6 movie-item-out" th:each="ys:${ysb}">
                 <div class="movie-item" th:inline="text">
                     <a style="position:relative;display:block;" target="_blank" th:href="'/ys?'+id+'='+(${ys.id})"
                        th:title="${ys.pm}">

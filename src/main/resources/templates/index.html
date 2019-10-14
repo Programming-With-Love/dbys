@@ -24,7 +24,7 @@
             <h3 style="padding-left:10px;border-left:8px solid #00A6DE;">最新电影：</h3>
         </div>
         <!--/*@thymesVar id="dy" type="com.danbai.ys.entity.Ysb"*/-->
-        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out" th:each="ys:${dy}">
+        <div class="col-md-2 col-sm-3 col-xs-6 movie-item-out" th:each="ys:${dy}">
             <div class="movie-item" th:inline="text">
                 <a style="position:relative;display:block;" target="_blank" th:href="'ys?'+id+'='+(${ys.id})"
                    th:title="${ys.pm}">
@@ -45,7 +45,7 @@
             <span><a target="_blank" href="/type/dsj?page=1" title="电视剧">更多剧集>>></a></span>
             <h3 style="padding-left:10px;border-left:8px solid #00A6DE;">最新剧集：</h3>
         </div>
-        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out" th:each="ys:${dsj}">
+        <div class="col-md-2 col-sm-3 col-xs-6 movie-item-out" th:each="ys:${dsj}">
             <div class="movie-item" th:inline="text">
                 <a style="position:relative;display:block;" target="_blank" th:href="'ys?'+id+'='+(${ys.id})"
                    th:title="${ys.pm}">
@@ -66,7 +66,7 @@
             <span><a target="_blank" href="/type/zy?page=1" title="综艺">更多综艺>>></a></span>
             <h3 style="padding-left:10px;border-left:8px solid #00A6DE;">最新综艺：</h3>
         </div>
-        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out" th:each="ys:${zy}">
+        <div class="col-md-2 col-sm-3 col-xs-6 movie-item-out" th:each="ys:${zy}">
             <div class="movie-item" th:inline="text">
                 <a style="position:relative;display:block;" target="_blank" th:href="'ys?'+id+'='+(${ys.id})"
                    th:title="${ys.pm}">
@@ -87,7 +87,7 @@
             <span><a target="_blank" href="/type/dm?page=1" title="动漫">更多动漫>>></a></span>
             <h3 style="padding-left:10px;border-left:8px solid #00A6DE;">最新动漫：</h3>
         </div>
-        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out" th:each="ys:${dm}">
+        <div class="col-md-2 col-sm-3 col-xs-6 movie-item-out" th:each="ys:${dm}">
             <div class="movie-item" th:inline="text">
                 <a style="position:relative;display:block;" target="_blank" th:href="'ys?'+id+'='+(${ys.id})"
                    th:title="${ys.pm}">

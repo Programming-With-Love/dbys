@@ -71,7 +71,7 @@ public class YsController {
 
     @RequestMapping(value = "/type/dy", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String dy(int page, Model model) {
-        PageInfo page1 = ysService.getYs("电影", page, 20);
+        PageInfo page1 = ysService.getYs("电影", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
         model.addAttribute("page", page);
@@ -80,7 +80,7 @@ public class YsController {
 
     @RequestMapping(value = "/type/dsj", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String dsj(int page, Model model) {
-        PageInfo page1 = ysService.getYs("电视剧", page, 20);
+        PageInfo page1 = ysService.getYs("电视剧", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
         model.addAttribute("page", page);
@@ -89,7 +89,7 @@ public class YsController {
 
     @RequestMapping(value = "/type/dm", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String dm(int page, Model model) {
-        PageInfo page1 = ysService.getYs("动漫", page, 20);
+        PageInfo page1 = ysService.getYs("动漫", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
         model.addAttribute("page", page);
@@ -98,7 +98,7 @@ public class YsController {
 
     @RequestMapping(value = "/type/zy", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String zy(int page, Model model) {
-        PageInfo page1 = ysService.getYs("综艺", page, 20);
+        PageInfo page1 = ysService.getYs("综艺", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
         model.addAttribute("page", page);
