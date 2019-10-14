@@ -1,14 +1,11 @@
 package com.danbai.ys.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-/**
- * @author danbai
- * @date 2019/10/13
- */
 @Table(name = "video_time")
-public class VideoTime {
+public class VideoTime implements Serializable {
     /**
      * 用户名
      */

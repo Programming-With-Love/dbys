@@ -2,6 +2,7 @@ package com.danbai.ys.controller;
 
 import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.User;
+import com.danbai.ys.service.impl.RegisterValidateServiceImpl;
 import com.danbai.ys.service.impl.UserServiceImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.github.pagehelper.PageInfo;
@@ -29,7 +30,8 @@ public class MainController {
     YsServiceImpl ysService;
     @Autowired
     UserServiceImpl userService;
-
+    @Autowired
+    RegisterValidateServiceImpl registerValidateService;
     @RequestMapping(value = {"/", "index"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String index(Model model) {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
@@ -91,9 +93,9 @@ public class MainController {
                 model.addAttribute("message", "验证码有误");
                 return "reg";
             }
-            String str = (String) UtilsController.yzb.get(user.getUsername());
+            String str = registerValidateService.getVerificationCode(user.getEmail());
             if (str.equals(yzm)) {
-                UtilsController.yzb.remove(user.getUsername());
+                registerValidateService.deleteVerificationCode(user.getEmail());
                 User user2 = new User();
                 user2.setUsername(user.getUsername());
                 User user1 = userService.getUser(user2);

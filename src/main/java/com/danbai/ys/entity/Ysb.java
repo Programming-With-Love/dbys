@@ -1,12 +1,9 @@
 package com.danbai.ys.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-/**
- * @author danbai
- * @date 2019/10/13
- */
-public class Ysb {
+public class Ysb implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

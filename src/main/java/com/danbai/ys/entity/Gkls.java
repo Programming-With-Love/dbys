@@ -1,17 +1,18 @@
 package com.danbai.ys.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author danbai
  * @date 2019/10/13
  */
-public class Gkls {
+public class Gkls implements Serializable {
     //最多显示30条历史记录
     /**
      * 最大历史记录
      */
-    public static int MAX = 30;
+    public static final int MAX = 30;
     public String ysimg;
     public String pm;
     public String ji;

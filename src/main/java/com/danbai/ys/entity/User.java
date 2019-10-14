@@ -1,16 +1,17 @@
 package com.danbai.ys.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author danbai
  * @date 2019/10/13
  */
-public class User {
-    public static int GENERAL = 2;
-    public static int ADMIN = 2;
-    public static int BAN = 0;
-    public static String DEFAULT_USER = "user";
+public class User implements Serializable {
+    public static final int GENERAL = 2;
+    public static final int ADMIN = 2;
+    public static final int BAN = 0;
+    public static final String DEFAULT_USER = "user";
     /**
      * 用户id
      */

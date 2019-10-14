@@ -1,10 +1,12 @@
 package com.danbai.ys.entity;
 
+import java.io.Serializable;
+
 /**
  * @author danbai
  * @date 2019/10/13
  */
-public class Ji {
+public class Ji implements Serializable {
     String name;
     String url;
 

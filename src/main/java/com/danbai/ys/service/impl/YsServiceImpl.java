@@ -28,7 +28,6 @@ public class YsServiceImpl implements YsService {
     YsbMapper ysbMapper;
     @Autowired
     VideoTimeMapper videoTimeMapper;
-
     @Override
     public List<Ysb> page(int page, int pagenum) {
         PageHelper.offsetPage(page, pagenum);
@@ -105,10 +104,10 @@ public class YsServiceImpl implements YsService {
                 example.createCriteria().orLike("lx", "%国产剧%").orLike("lx", "%韩国剧%").orLike("lx", "%欧美剧%").orLike("lx", "%海外剧%");
                 break;
             case "综艺":
-                example.createCriteria().andLike("lx", "%综艺片%");
+                example.createCriteria().andLike("lx", "%综艺%");
                 break;
             case "动漫":
-                example.createCriteria().andLike("lx", "%动漫片%");
+                example.createCriteria().andLike("lx", "%动漫%");
                 break;
             case "全部":
                 break;

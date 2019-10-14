@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.Ysb;
+import com.danbai.ys.service.Statistical;
+import com.danbai.ys.service.impl.StatisticalImpl;
 import com.danbai.ys.service.impl.UserServiceImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.github.pagehelper.PageInfo;
@@ -27,6 +29,8 @@ public class AdminController {
     YsServiceImpl ysService;
     @Autowired
     UserServiceImpl userService;
+    @Autowired
+    StatisticalImpl statistical;
 
     @RequestMapping(value = "/admin", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String admin(Model model) {
@@ -37,6 +41,8 @@ public class AdminController {
     String adminIndex(Model model) {
         model.addAttribute("yssize", ysService.contYs());
         model.addAttribute("usersize", userService.contUser());
+        model.addAttribute("totalAccess",statistical.getAccess());
+        model.addAttribute("dayAccess",statistical.getDayAccess());
         return "admin/index_v1";
     }
 

@@ -40,8 +40,8 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="panel padder-v item bg-primary">
-                                <div class="h1 text-fff font-thin h1">521</div>
-                                <span class="text-muted text-xs">销售数量</span>
+                                <div class="h1 text-fff font-thin h1" th:text="${totalAccess}"></div>
+                                <span class="text-muted text-xs">总访问</span>
                                 <div class="top text-right w-full">
                                     <i class="fa fa-caret-down text-warning m-r-sm"></i>
                                 </div>
@@ -49,8 +49,8 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="panel padder-v item">
-                                <div class="font-thin h1">$129</div>
-                                <span class="text-muted text-xs">近日盈利</span>
+                                <div class="font-thin h1" th:text="${dayAccess}"></div>
+                                <span class="text-muted text-xs">今日访问</span>
                                 <div class="bottom text-left">
                                     <i class="fa fa-caret-up text-warning m-l-sm"></i>
                                 </div>

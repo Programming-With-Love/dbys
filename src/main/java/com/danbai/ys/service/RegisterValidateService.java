@@ -9,7 +9,8 @@ public interface RegisterValidateService {
      * 发送注册验证码
      *
      * @param email 接收邮箱
-     * @return String
      */
-    String senValidate(String email);
+    void senValidate(String email);
+    String getVerificationCode(String email);
+    void deleteVerificationCode(String email);
 }

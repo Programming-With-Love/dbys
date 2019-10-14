@@ -17,6 +17,12 @@ spring:
       max-active: 20
       test-on-borrow: true
       driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: 39.108.110.44
+    password: danbai225
+    port: 6379
+    timeout: 1000
 mybatis:
   type-aliases-package: tk.mybatis.springboot.model
   mapper-locations: classpath:mapper/*.xml
