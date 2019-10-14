@@ -17,22 +17,22 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendEmail {
 
-    public static final String HOST = "smtp.sohu.com";
-    public static final String PROTOCOL = "smtp";
-    public static final int PORT = 25;
-    public static final String FROM = "db225@sohu.com";//发件人的email
-    public static final String PWD = "hjj20010906";//发件人密码
+    private static final String HOST = "smtp.sohu.com";
+    private static final String PROTOCOL = "smtp";
+    private static final int PORT = 25;
+    private static final String FROM = "db225@sohu.com";
+    private static final String PWD = "hjj20010906";
 
     /**
      * 获取Session
      *
-     * @return
+     * @return Session
      */
     private static Session getSession() {
         Properties props = new Properties();
-        props.put("mail.smtp.host", HOST);//设置服务器地址
-        props.put("mail.store.protocol", PROTOCOL);//设置协议
-        props.put("mail.smtp.port", PORT);//设置端口
+        props.put("mail.smtp.host", HOST);
+        props.put("mail.store.protocol", PROTOCOL);
+        props.put("mail.smtp.port", PORT);
         props.put("mail.smtp.auth", true);
 
         Authenticator authenticator = new Authenticator() {
@@ -43,9 +43,8 @@ public class SendEmail {
             }
 
         };
-        Session session = Session.getDefaultInstance(props, authenticator);
 
-        return session;
+        return Session.getDefaultInstance(props, authenticator);
     }
 
     public static void send(String toEmail, String content) {

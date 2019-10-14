@@ -3,7 +3,9 @@ package com.danbai.ys.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
-
+/**
+ * @author danbai
+ */
 @Table(name = "video_time")
 public class VideoTime implements Serializable {
     /**
@@ -51,7 +53,7 @@ public class VideoTime implements Serializable {
     }
 
     /**
-     * @param ysid
+     * @param ysid 影视id
      */
     public void setYsid(Integer ysid) {
         this.ysid = ysid;
@@ -94,14 +96,14 @@ public class VideoTime implements Serializable {
     }
 
     /**
-     * @return gktime
+     * @return gktime 观看时间
      */
     public Date getGktime() {
         return gktime;
     }
 
     /**
-     * @param gktime
+     * @param gktime 观看时间
      */
     public void setGktime(Date gktime) {
         this.gktime = gktime;

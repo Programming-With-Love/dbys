@@ -11,6 +11,17 @@ public interface RegisterValidateService {
      * @param email 接收邮箱
      */
     void senValidate(String email);
+
+    /**
+     * 根据邮箱获取验证码
+     * @param email 邮箱
+     * @return String
+     */
     String getVerificationCode(String email);
+
+    /**
+     * 删除验证码
+     * @param email 邮箱
+     */
     void deleteVerificationCode(String email);
 }
