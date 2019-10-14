@@ -42,6 +42,6 @@ public class RegisterValidateServiceImpl implements RegisterValidateService {
 
     @Override
     public void deleteVerificationCode(String email) {
-        redisTemplate.opsForValue().set(email,0);
+        redisTemplate.delete(email);
     }
 }
