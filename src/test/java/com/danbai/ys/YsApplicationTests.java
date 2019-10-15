@@ -41,7 +41,7 @@ public class YsApplicationTests {
     @Test
     public void test(){
         System.out.println(HtmlUtils.getHtmlContent("http://whatismyip.akamai.com/"));
-        System.out.println(ysService.getYsDanMu("空降利刃",1));
+        System.out.println(ysService.getYsDanMu("空降利刃",0));
     }
     @Test
     public void get(){
