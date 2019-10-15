@@ -122,7 +122,8 @@ public interface YsService {
     /**
      * 获取腾讯弹幕连接
      * @param pm 片名
+     * @param jidi 集id
      * @return
      */
-    String getYsDanMu(String pm);
+    String getYsDanMu(String pm,int jid);
 }

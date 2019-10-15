@@ -1,8 +1,14 @@
 package com.danbai.ys.utils;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.alibaba.fastjson.JSONObject;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author danbai
@@ -12,84 +18,47 @@ public class HtmlUtils {
     /**
      * 获取url网页的源代码
      * @param urlStr 链接
-     * @param charset 网页的编码格式
      * @return 网页源代码
      */
-    static String HTTP="http://";
-    static int ERR=400;
-    public static String getHtmlContent(String urlStr, String charset) {
-        //检查urlStr头部格式是否正确
-        if (!urlStr.toLowerCase().startsWith("HTTP")) {
-            urlStr = "http://" + urlStr;
+    private static String ip=null;
+    private static int port=0;
+    public static String getHtmlContent(String urlStr) {
+        if (ip==null){
+            upipdl();
         }
-
-        URL url=null;
-        StringBuffer contentBuffer = new StringBuffer();
-        //内容源代码
-        int responseCode = -1;
-        //网页返回信息吗
-        HttpURLConnection con = null;
-
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress(ip, port)))
+                .build();
+        Request request = new Request.Builder()
+                .url(urlStr)
+                .build();
         try {
-            url = new URL(urlStr);
-            con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-            // IE代理进行下载
-            con.setConnectTimeout(60000);
-            //连接超时设置为60s即一分钟
-            con.setReadTimeout(60000);
-            //con.setDoOutput(true);
-            // 获得网页返回信息码
-            responseCode = con.getResponseCode();
-            if (responseCode == -1) {
-                System.out.println(url.toString() + " : connection is failure...");
-                con.disconnect();
-                return null;
-            }
-            if (responseCode >= ERR)
-                // 请求失败
-            {
-                System.out.println("请求失败:get response code: " + responseCode);
-                con.disconnect();
-                return null;
-            }
-            //获取网页源代码
-            InputStream in = con.getInputStream();
-            //InputStream in = url.openStream();
-            InputStreamReader is = new InputStreamReader(in, charset);
-            BufferedReader br = new BufferedReader(is);
-
-            String str = null;
-            while((str = br.readLine()) != null) {
-                contentBuffer.append(str);
-            }
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            contentBuffer = null;
-            System.out.println("error: " + url.toString());
-        }finally {
-            con.disconnect();
-        }
-        return contentBuffer.toString();
-    }
-
-    /**
-     * 保存HTML内容
-     * @param content HTML源代码内容
-     * @param charset 网页编码格式
-     * @param savePath 保存路径
-     */
-    public static void saveHtmlContent(String content,String charset,String savePath){
-        try {
-            FileOutputStream fout = new FileOutputStream(savePath);
-            OutputStreamWriter os = new OutputStreamWriter(fout, charset);
-            BufferedWriter bw=new BufferedWriter(os);
-            bw.write(content);
-            bw.flush();
-            bw.close();
+            Response response = okHttpClient.newCall(request).execute();
+            return response.body().string();
         } catch (Exception e) {
             System.out.println(e);
+        }
+        upipdl();
+        return getHtmlContent(urlStr);
+    }
+    public static void upipdl(){
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .build();
+        Request request = new Request.Builder()
+                .url("http://118.24.52.95/get/")
+                .build();
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            JSONObject jsonObject = JSONObject.parseObject(response.body().string());
+            String proxy=jsonObject.getString("proxy");
+            String[] temp1;
+            temp1 = proxy.split(":");
+            ip=temp1[0];
+            port= Integer.parseInt(temp1[1]);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

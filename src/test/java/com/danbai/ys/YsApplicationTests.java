@@ -1,6 +1,10 @@
 package com.danbai.ys;
 
 import com.danbai.ys.service.impl.YsServiceImpl;
+import com.danbai.ys.utils.HtmlUtils;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+
 
 
 /**
@@ -34,8 +40,11 @@ public class YsApplicationTests {
     }
     @Test
     public void test(){
-
-        System.out.println(ysService.getYsDanMu("空降利刃"));
+        System.out.println(HtmlUtils.getHtmlContent("http://whatismyip.akamai.com/"));
+        System.out.println(ysService.getYsDanMu("空降利刃",1));
     }
-
+    @Test
+    public void get(){
+        System.out.println();
+    }
 }

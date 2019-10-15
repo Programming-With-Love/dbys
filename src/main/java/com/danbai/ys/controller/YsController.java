@@ -12,10 +12,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -45,7 +42,6 @@ public class YsController {
     String ys(int id, Model model, HttpServletRequest request) {
         Ysb ysb = ysService.selectYsById(id);
         model.addAttribute("ys", ysb);
-        model.addAttribute("dmlist", ysService.getYsDanMu(ysb.getPm()+ysb.getDy()));
         List<Ji> list;
         String kong = "[]";
         if (kong.equals(ysb.getGkdz())) {
@@ -134,5 +130,10 @@ public class YsController {
             return "0";
         }
         return String.valueOf(ysService.getYsTime(videoTime));
+    }
+    @RequestMapping(value = "/ys/gettagid", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ResponseBody
+    String ysGetTagIdApi(@RequestParam(value = "pm", required = true) String pm,@RequestParam(value = "id", required = true) int id) {
+        return ysService.getYsDanMu(pm,id);
     }
 }

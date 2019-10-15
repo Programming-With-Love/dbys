@@ -110,10 +110,6 @@
     /*<![CDATA[*/
     var user = /*[[${session.user}]]*/ null;
     /*]]>*/
-    /*<![CDATA[*/
-    var dmlist = /*[[${dmlist}]]*/ null;
-    /*]]>*/
-    var json = eval(dmlist);
     if (user == null) {
         var username = "user";
     } else {
@@ -122,9 +118,6 @@
 </script>
 <script th:if="${xs!=null}">
     tagid=0;
-    if(json[0] != null){
-        tagid=json[0]
-    }
     var fstys = "[[${url}]]";
     var ysid = "[[${ysid}]]";
     var id = "[[${ys.id}]]";
@@ -152,8 +145,7 @@
         var $this = $(this).parent();
         $(this).parent().parent().children().each(function(i, o) {
             if ($this[0] === $(o)[0]) {
-                tagid=json[i];
-                console.log(tagid)
+                gettagid(i);
             }
         })
 
@@ -214,14 +206,26 @@
 
     dsj();
     $(document).ready(function() {
-        if (json[0] != null) {
-            var danmudsq = setInterval(function() {
+        gettagid(0);
+        var danmudsq = setInterval(function() {
+            if (tagid!= 0) {
                 getdm(tagid,~~(dp.video.currentTime+30))
-            }, 30000)
-        }
+            }
+        }, 30000)
     });
+    function gettagid(id) {
+        $.ajax({
+            type: "GET",
+            url: '/ys/gettagid',
+            data: {pm:"[[${ys.pm}+${ys.dy}+${ys.lx}]]",id:id},
+            success: function (data) {
+                if (data!=""){
+                    tagid = data;
+                }
+            }
+        })
+    }
     function getdm(id,time){
-        console.log(id+"---"+time);
         $.getJSON("http://mfm.video.qq.com/danmu?otype=json&target_id="+id+"&timestamp="+time, function(json) {
             ds = []
             $.each(json.comments, function(i, d) {

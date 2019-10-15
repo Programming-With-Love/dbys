@@ -10,8 +10,8 @@ spring:
   datasource:
     druid:
       url: jdbc:mysql://39.108.110.44:3306/ys?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-      username: ys
-      password: hjj225
+      username:
+      password:
       initial-size: 1
       min-idle: 1
       max-active: 20
@@ -20,7 +20,7 @@ spring:
   redis:
     database: 0
     host: 39.108.110.44
-    password: danbai225
+    password:
     port: 6379
     timeout: 1000
 mybatis:

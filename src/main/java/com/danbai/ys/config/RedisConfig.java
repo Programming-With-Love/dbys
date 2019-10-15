@@ -24,8 +24,10 @@ import java.time.Duration;
  */
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
+    /**
+     * redis
+     */
     @Bean
-        //如使用注解的话需要配置cacheManager
     CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
         //初始化一个RedisCacheWriter
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(connectionFactory);
@@ -38,6 +40,9 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     // 以下两种redisTemplate自由根据场景选择
+    /**
+     * redis
+     */
     @Bean
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
@@ -57,7 +62,9 @@ public class RedisConfig extends CachingConfigurerSupport {
         template.afterPropertiesSet();
         return template;
     }
-
+    /**
+     * redis
+     */
     @Bean
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
