@@ -118,4 +118,11 @@ public interface YsService {
      * @return HashMap
      */
     HashMap getYsLs(String username, int ysid);
+
+    /**
+     * 获取腾讯弹幕连接
+     * @param pm 片名
+     * @return
+     */
+    String getYsDanMu(String pm);
 }

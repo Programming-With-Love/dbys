@@ -1,6 +1,8 @@
 package com.danbai.ys.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.Ji;
 import com.danbai.ys.entity.VideoTime;
@@ -8,15 +10,23 @@ import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.mapper.VideoTimeMapper;
 import com.danbai.ys.mapper.YsbMapper;
 import com.danbai.ys.service.YsService;
+import com.danbai.ys.utils.HtmlUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 /**
  * @author danbai
@@ -28,6 +38,10 @@ public class YsServiceImpl implements YsService {
     YsbMapper ysbMapper;
     @Autowired
     VideoTimeMapper videoTimeMapper;
+    @Autowired
+    RedisTemplate redisTemplate;
+    static String DMTYPE="2";
+    static String PAY_TYPE="payType";
     @Override
     public List<Ysb> page(int page, int pagenum) {
         PageHelper.offsetPage(page, pagenum);
@@ -185,5 +199,56 @@ public class YsServiceImpl implements YsService {
             }
         }
         return null;
+    }
+
+    @Override
+    public String getYsDanMu(String pm) {
+        String rr= (String) redisTemplate.opsForValue().get(pm);
+        if(rr!=null){
+            return rr;
+        }
+        String encodePm = "";
+        try {
+            //对片面转码
+            encodePm = URLEncoder.encode(pm, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        //获取搜索结果
+        String urlStr="http://v.qq.com/x/search/?q="+encodePm;
+        String charset="utf-8";
+        String content=HtmlUtils.getHtmlContent(urlStr,charset);
+        //匹配影视id
+        String regEx = "data-id=\"(.*?)\"";
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(content);
+        matcher.find();
+        String str=matcher.group(0);
+        //截取id
+        String id=str.substring(9,str.length()-1);
+        content=HtmlUtils.getHtmlContent("http://s.video.qq.com/get_playsource?plat=2&type=4&range=1&otype=json&callback=_jsonp_0_e484&_t=1571056402010&id="+id,charset);
+        String json=content.substring(14,content.length()-1);
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        jsonObject=jsonObject.getJSONObject("PlaylistItem");
+
+        if(jsonObject==null||!(jsonObject.getString(PAY_TYPE).equals(DMTYPE))){
+            return null;
+        }
+        //解析为数组
+        JSONArray jsonArray = jsonObject.getJSONArray("videoPlayList");
+        int max=jsonArray.size();
+        //创建个列表用来存弹幕id;
+        List<String> list=new ArrayList<>();
+        for (;max>0;max--){
+            urlStr="http://bullet.video.qq.com/fcgi-bin/target/regist?otype=json&vid="+jsonArray.getJSONObject(max-1).getString("id");
+            content=HtmlUtils.getHtmlContent(urlStr,charset);
+            json=content.substring(13,content.length()-1);
+            jsonObject = JSONObject.parseObject(json);
+            list.add(jsonObject.getString("targetid"));
+        }
+        // List转json
+        String jsonString = JSON.toJSONString(list);
+        redisTemplate.opsForValue().set(pm,jsonString,1, TimeUnit.HOURS);
+        return jsonString;
     }
 }

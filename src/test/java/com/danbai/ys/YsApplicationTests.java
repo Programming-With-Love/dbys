@@ -1,6 +1,6 @@
 package com.danbai.ys;
-import com.danbai.ys.entity.Ysb;
-import org.assertj.core.util.DateUtil;
+
+import com.danbai.ys.service.impl.YsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 
 /**
  * @author danbai
@@ -22,6 +21,8 @@ import java.util.Map;
 public class YsApplicationTests {
     @Autowired
     RedisTemplate redisTemplate;
+    @Autowired
+    YsServiceImpl ysService;
     @Test
     public void redis() {
         //这里相当于redis对String类型的set操作
@@ -30,6 +31,11 @@ public class YsApplicationTests {
         String test = (String)redisTemplate.opsForValue().get("test");
         System.out.println(test);
 
+    }
+    @Test
+    public void test(){
+
+        System.out.println(ysService.getYsDanMu("空降利刃"));
     }
 
 }

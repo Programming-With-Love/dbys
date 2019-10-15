@@ -45,6 +45,7 @@ public class YsController {
     String ys(int id, Model model, HttpServletRequest request) {
         Ysb ysb = ysService.selectYsById(id);
         model.addAttribute("ys", ysb);
+        model.addAttribute("dmlist", ysService.getYsDanMu(ysb.getPm()+ysb.getDy()));
         List<Ji> list;
         String kong = "[]";
         if (kong.equals(ysb.getGkdz())) {

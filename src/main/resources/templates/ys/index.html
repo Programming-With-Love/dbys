@@ -110,6 +110,10 @@
     /*<![CDATA[*/
     var user = /*[[${session.user}]]*/ null;
     /*]]>*/
+    /*<![CDATA[*/
+    var dmlist = /*[[${dmlist}]]*/ null;
+    /*]]>*/
+    var json = eval(dmlist);
     if (user == null) {
         var username = "user";
     } else {
@@ -117,6 +121,10 @@
     }
 </script>
 <script th:if="${xs!=null}">
+    tagid=0;
+    if(json[0] != null){
+        tagid=json[0]
+    }
     var fstys = "[[${url}]]";
     var ysid = "[[${ysid}]]";
     var id = "[[${ys.id}]]";
@@ -141,6 +149,14 @@
     });
     dp.seek(gettime());
     $(".ji").click(function () {
+        var $this = $(this).parent();
+        $(this).parent().parent().children().each(function(i, o) {
+            if ($this[0] === $(o)[0]) {
+                tagid=json[i];
+                console.log(tagid)
+            }
+        })
+
         $("#jxs").text($(this).text());
         jiname = $(this).text();
         timeout = false;
@@ -197,6 +213,40 @@
     }
 
     dsj();
+    $(document).ready(function() {
+        if (json[0] != null) {
+            var danmudsq = setInterval(function() {
+                getdm(tagid,~~(dp.video.currentTime+30))
+            }, 30000)
+        }
+    });
+    function getdm(id,time){
+        console.log(id+"---"+time);
+        $.getJSON("http://mfm.video.qq.com/danmu?otype=json&target_id="+id+"&timestamp="+time, function(json) {
+            ds = []
+            $.each(json.comments, function(i, d) {
+                ds.push(d)
+            });
+            ds = ds.sort(function(a, b) {
+                return (a.timepoint > b.timepoint) ? 1 : ((a.timepoint < b.timepoint) ? -1 : 0);
+            });
+            $.each(ds, function(i, d) {
+                adddm({
+                    text: d.content,
+                    color: 16777215,
+                    type: 0,
+                    time: d.timepoint,
+                    author: "user"
+                })
+            });
+            dp.danmaku.dan = dp.danmaku.dan.sort(function(a, b) {
+                return (a.time > b.time) ? 1 : ((a.time < b.time) ? -1 : 0);
+            });
+        });
+    }
+    function adddm(dm) {
+        dp.danmaku.dan.push(dm);
+    }
 </script>
 </body>
 </html>
