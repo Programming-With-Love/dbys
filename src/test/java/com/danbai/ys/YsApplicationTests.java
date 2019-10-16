@@ -40,8 +40,7 @@ public class YsApplicationTests {
     }
     @Test
     public void test(){
-        System.out.println(HtmlUtils.getHtmlContent("http://whatismyip.akamai.com/"));
-        System.out.println(ysService.getYsDanMu("空降利刃",0));
+        System.out.println(ysService.getYsDanMu("快把我哥带走韩青国产剧  ",0));
     }
     @Test
     public void get(){

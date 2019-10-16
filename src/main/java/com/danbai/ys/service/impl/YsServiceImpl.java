@@ -237,7 +237,7 @@ public class YsServiceImpl implements YsService {
         }
         //解析为数组
         JSONArray jsonArray = jsonObject.getJSONArray("videoPlayList");
-        urlStr = "http://bullet.video.qq.com/fcgi-bin/target/regist?otype=json&vid=" + jsonArray.getJSONObject(jid).getString("id");
+        urlStr = "http://bullet.video.qq.com/fcgi-bin/target/regist?otype=json&vid=" + jsonArray.getJSONObject(jsonArray.size()-jid-1).getString("id");
         content = HtmlUtils.getHtmlContent(urlStr);
         json = content.substring(13, content.length() - 1);
         jsonObject = JSONObject.parseObject(json);

@@ -30,8 +30,8 @@ public class StatisticalImpl implements Statistical {
     public void addIp(String ip) {
         redisTemplate.opsForSet().add(IpUtils.getDay(), ip);
         redisTemplate.opsForValue().increment(IpUtils.getDay() + "-Access");
-        redisTemplate.expire(IpUtils.getDay(),1,TimeUnit.DAYS);
-        redisTemplate.expire(IpUtils.getDay() + "-Access",1,TimeUnit.DAYS);
+        redisTemplate.expire(IpUtils.getDay(),30,TimeUnit.DAYS);
+        redisTemplate.expire(IpUtils.getDay() + "-Access",30,TimeUnit.DAYS);
     }
 
     @Override

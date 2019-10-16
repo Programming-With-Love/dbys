@@ -3,13 +3,16 @@ package com.danbai.ys.controller;
 import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.service.impl.RegisterValidateServiceImpl;
+import com.danbai.ys.service.impl.StatisticalImpl;
 import com.danbai.ys.service.impl.UserServiceImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
+import com.danbai.ys.utils.IpUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +35,17 @@ public class MainController {
     UserServiceImpl userService;
     @Autowired
     RegisterValidateServiceImpl registerValidateService;
+    @Autowired
+    StatisticalImpl statistical;
+
+    @ModelAttribute
+    void count(HttpServletRequest request) {
+        String ip = IpUtils.getIpAddr(request);
+        if (!statistical.isIpInTheDatabase(ip)) {
+            statistical.addIp(ip);
+            statistical.addAccess();
+        }
+    }
     @RequestMapping(value = {"/", "index"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String index(Model model) {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);

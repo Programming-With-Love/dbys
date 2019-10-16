@@ -26,17 +26,6 @@ import java.util.List;
 public class YsController {
     @Autowired
     YsServiceImpl ysService;
-    @Autowired
-    StatisticalImpl statistical;
-
-    @ModelAttribute
-    void count(HttpServletRequest request) {
-        String ip = IpUtils.getIpAddr(request);
-        if (!statistical.isIpInTheDatabase(ip)) {
-            statistical.addIp(ip);
-            statistical.addAccess();
-        }
-    }
 
     @RequestMapping(value = "/ys", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String ys(int id, Model model, HttpServletRequest request) {

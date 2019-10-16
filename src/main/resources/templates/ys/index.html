@@ -110,6 +110,7 @@
     /*<![CDATA[*/
     var user = /*[[${session.user}]]*/ null;
     /*]]>*/
+
     if (user == null) {
         var username = "user";
     } else {
@@ -123,10 +124,13 @@
     var id = "[[${ys.id}]]";
     var jiname = "[[${jiname}]]";
     var timeout = true; //启动及关闭按钮
+    var dmtimeout=true;
+    var jii=0;
     const dp = new DPlayer({
         container: document.getElementById('dplayer'),
         logo: 'http://cdn.p00q.cn:81/ys/img/logo.png',
         autoplay: true,
+        theme:'#FFFFF0',
         video: {
             url: fstys,
             pic: 'http://cdn.p00q.cn:81/ys/img/tip.png'
@@ -148,7 +152,6 @@
                 gettagid(i);
             }
         })
-
         $("#jxs").text($(this).text());
         jiname = $(this).text();
         timeout = false;
@@ -163,21 +166,64 @@
             user: username
         });
         dp.notice("正在加载请稍后!");
-        gettime();
         dp.seek(gettime());
         dp.play();
         timeout = true;
     });
     dp.on('ended', function () {
-        console.log('看完了');
+        var nexitji=$(".dslist-group").children().eq(jii+1).children().eq(0);
+        if(nexitji.html!=null){
+            jii+=1;
+            gettagid(jii);
+            $("#jxs").text(nexitji.text());
+            jiname=nexitji.text();
+            timeout = false;
+            ysid = id + nexitji.html();
+            dp.switchVideo({
+                url: nexitji.attr("value"),
+                pic: 'http://cdn.p00q.cn:81/ys/img/tip.png'
+            }, {
+                id: ysid,
+                api: 'http://39.108.110.44:1207/',
+                maximum: 1000,
+                user: username
+            });
+            dp.notice("自动播放下一集!");
+            dp.seek(gettime());
+            dp.play();
+            timeout = true;
+        }
     });
-
+    dp.on('pause', function() {
+        dmtimeout=false;
+        setTimeout(function(){
+            if(dp.video.paused){
+                if(!dmtimeout){
+                    dmtimeout=true;
+                    dmdsq();
+                }
+            }
+        },30000);
+    });
+    dp.on('play', function() {
+        dmtimeout=true;
+    });
+    //定时器puttime
     function dsj() {
         if (!timeout) return;
         puttime();
-        setTimeout(dsj, 5000); //time是指本身,延时递归调用自己,100为间隔调用时间,单位毫秒
+        setTimeout(dsj, 5000); //time是指本身,延时递归调用自己,5000为间隔调用时间,单位毫秒
     }
-
+    //定时器getdanmu
+    function dmdsq(){
+        if (!dmtimeout) return;
+        if (tagid!= 0) {
+            if(!dp.video.paused){
+                getdm(tagid,~~(dp.video.currentTime+30));
+            }
+        }
+        setTimeout(dmdsq,30000);
+    }
     function puttime() {
         $.post("/ys/time",
             {
@@ -203,15 +249,15 @@
         })
         return result;
     }
-
     dsj();
     $(document).ready(function() {
-        gettagid(0);
-        var danmudsq = setInterval(function() {
-            if (tagid!= 0) {
-                getdm(tagid,~~(dp.video.currentTime+30))
+        $('.dslist-group').children().each(function (i,o) {
+            if($(o).children().html()==jiname){
+                jii=i;
             }
-        }, 30000)
+        })
+        gettagid(jii);
+        dmdsq();
     });
     function gettagid(id) {
         $.ajax({
@@ -221,6 +267,7 @@
             success: function (data) {
                 if (data!=""){
                     tagid = data;
+                    getdm(tagid,~~(dp.video.currentTime));
                 }
             }
         })
