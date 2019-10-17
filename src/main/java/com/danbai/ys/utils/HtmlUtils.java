@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.springframework.scheduling.annotation.Async;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -60,5 +61,19 @@ public class HtmlUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static String getHtmlContentNp(String urlStr) {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .build();
+        Request request = new Request.Builder()
+                .url(urlStr)
+                .build();
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            return response.body().string();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return getHtmlContent(urlStr);
     }
 }

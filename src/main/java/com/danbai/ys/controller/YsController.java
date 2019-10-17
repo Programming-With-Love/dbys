@@ -122,7 +122,7 @@ public class YsController {
     }
     @RequestMapping(value = "/ys/gettagid", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
-    String ysGetTagIdApi(@RequestParam(value = "pm", required = true) String pm,@RequestParam(value = "id", required = true) int id) {
-        return ysService.getYsDanMu(pm,id);
+    String ysGetTagIdApi(@RequestParam(value = "pm", required = true) String pm,@RequestParam(value = "id", required = true) int id,@RequestParam(value = "ysid", required = true)String ysid) {
+        return ysService.getYsDanMu(pm,id,ysid);
     }
 }

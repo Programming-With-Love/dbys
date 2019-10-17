@@ -146,6 +146,7 @@
     });
     dp.seek(gettime());
     $(".ji").click(function () {
+        ysid = id + $(this).html();
         var $this = $(this).parent();
         $(this).parent().parent().children().each(function(i, o) {
             if ($this[0] === $(o)[0]) {
@@ -155,7 +156,6 @@
         $("#jxs").text($(this).text());
         jiname = $(this).text();
         timeout = false;
-        ysid = id + $(this).html();
         dp.switchVideo({
             url: $(this).attr("value"),
             pic: 'http://cdn.p00q.cn:81/ys/img/tip.png'
@@ -263,7 +263,7 @@
         $.ajax({
             type: "GET",
             url: '/ys/gettagid',
-            data: {pm:"[[${ys.pm}+${ys.dy}+${ys.lx}]]",id:id},
+            data: {pm:"[[${ys.pm}+${ys.dy}+${ys.lx}]]",id:id,ysid:ysid},
             success: function (data) {
                 if (data!=""){
                     tagid = data;

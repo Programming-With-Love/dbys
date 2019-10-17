@@ -34,6 +34,7 @@ import java.util.regex.Pattern;
  */
 @Service
 public class YsServiceImpl implements YsService {
+    static final String OKTAGIDS="oktagids";
     @Autowired
     YsbMapper ysbMapper;
     @Autowired
@@ -203,9 +204,14 @@ public class YsServiceImpl implements YsService {
     }
 
     @Override
-    public String getYsDanMu(String pm, int jid) {
+    public String getYsDanMu(String pm, int jid,String ysid) {
         String rr = (String) redisTemplate.opsForValue().get(pm+jid);
         if (rr != null) {
+            if(redisTemplate.opsForSet().isMember(OKTAGIDS,rr)){
+                return null;
+            }
+            String json="{tagid:"+rr+",player:\""+ysid+ "\"}";
+            redisTemplate.opsForSet().add("tagids",json);
             return rr;
         }
         String encodePm = "";
@@ -241,7 +247,9 @@ public class YsServiceImpl implements YsService {
         content = HtmlUtils.getHtmlContent(urlStr);
         json = content.substring(13, content.length() - 1);
         jsonObject = JSONObject.parseObject(json);
-        redisTemplate.opsForValue().set(pm+jid, jsonObject.getString("targetid"), 30, TimeUnit.DAYS);
-        return jsonObject.getString("targetid");
+        String tagid=jsonObject.getString("targetid");
+        redisTemplate.opsForValue().set(pm+jid, tagid, 30, TimeUnit.DAYS);
+        redisTemplate.opsForSet().add("tagids","{tagid:"+tagid+",player:\""+ysid+"\"}");
+        return tagid;
     }
 }
