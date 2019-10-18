@@ -4,9 +4,12 @@ server:
   tomcat.max-threads: 0
   tomcat.uri-encoding: UTF-8
 spring:
+  mvc:
+    favicon:
+      enabled=false:
   data:
     mongodb:
-      uri: ***
+      uri: mongodb://:@39.108.110.44:27017/dm
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
@@ -14,7 +17,7 @@ spring:
     druid:
       url: jdbc:mysql://39.108.110.44:3306/ys?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
       username: ys
-      password: ***
+      password:
       initial-size: 1
       min-idle: 1
       max-active: 20
@@ -23,7 +26,7 @@ spring:
   redis:
     database: 0
     host: 39.108.110.44
-    password: ***
+    password:
     port: 6379
     timeout: 1000
 mybatis:

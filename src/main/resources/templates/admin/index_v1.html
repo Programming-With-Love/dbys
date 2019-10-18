@@ -58,6 +58,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-8">
+                    <canvas id="myChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -73,6 +76,47 @@
 <script src="http://cdn.p00q.cn:81/hAdmin/js/plugins/flot/jquery.flot.pie.js"></script>
 <!-- 自定义js -->
 <script src="http://cdn.p00q.cn:81/hAdmin/js/content.js"></script>
+<script src="https://cdn.bootcss.com/Chart.js/2.8.0-rc.1/Chart.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    Chart.defaults.global.elements.point.radius=5;
+    Chart.defaults.global.elements.point.pointStyle="triangle";
+    Chart.defaults.global.elements.point.borderColor="#FFFF33";
+    Chart.defaults.global.elements.point.backgroundColor="#FF3300";
+    Chart.defaults.global.elements.line.tension=0.4;
+    Chart.defaults.global.elements.line.backgroundColor='rgba(	175,238,238, 0.5)';
+    var ctx = document.getElementById("myChart")
+    /*<![CDATA[*/
+    var labels = /*[[${times}]]*/ null;
+    var data = /*[[${is}]]*/ null;
+    /*]]>*/
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: eval(labels),
+            datasets: [{
+                label: '最近30天访问量',
+                data: eval(data)
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+                labels: {
+                    fontColor: 'black',
+                }
+            },
+            animation:{
+                easing:"easeInOutBack"
+            }
+        }
+    });
+</script>
 </body>
 
 </html>

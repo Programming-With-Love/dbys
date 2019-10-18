@@ -3,6 +3,7 @@ package com.danbai.ys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.danbai.ys.entity.Acces;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.Statistical;
 import com.danbai.ys.service.impl.StatisticalImpl;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +45,15 @@ public class AdminController {
         model.addAttribute("usersize", userService.contUser());
         model.addAttribute("totalAccess",statistical.getAccess());
         model.addAttribute("dayAccess",statistical.getDayAccess());
+        List<Acces> dayAccess = statistical.get30DayAccess();
+        List<String> times=new ArrayList<>();
+        List<Integer> is=new ArrayList<>();
+        for (Acces a:dayAccess) {
+            times.add(a.getName());
+            is.add(a.getCount());
+        }
+        model.addAttribute("times",JSON.toJSONString(times));
+        model.addAttribute("is",JSON.toJSONString(is));
         return "admin/index_v1";
     }
 

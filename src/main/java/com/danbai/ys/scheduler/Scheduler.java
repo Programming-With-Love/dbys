@@ -23,14 +23,12 @@ public class Scheduler {
     RedisTemplate redisTemplate;
     @Autowired
     private Dmas testas;
-
     @Scheduled(fixedDelay = 10000)
     @Async
     public void cronJobSchedule() {
         Set tagids = redisTemplate.opsForSet().members("tagids");
         redisTemplate.delete("tagids");
         Object[] das = tagids.toArray();
-        System.out.println(das.length);
         for (Object s : das) {
             JSONObject jsonObject = JSON.parseObject(String.valueOf(s));
             String tagid = jsonObject.getString("tagid");

@@ -1,5 +1,9 @@
 package com.danbai.ys.utils;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import java.security.Security;
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -17,55 +21,58 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendEmail {
 
-    private static final String HOST = "smtp.sohu.com";
+    private static final String HOST = "smtp.163.com";
     private static final String PROTOCOL = "smtp";
-    private static final int PORT = 25;
-    private static final String FROM = "db225@sohu.com";
-    private static final String PWD = "hjj20010906";
+    private static final int PORT = 465;
+    private static final String FROM = "danbaiyingshi@163.com";
+    private static final String PWD = "0";
+
+    private static JavaMailSenderImpl javaMailSender;
+    static {
+        javaMailSender = new JavaMailSenderImpl();
+        javaMailSender.setProtocol(PROTOCOL);
+        javaMailSender.setHost(HOST);
+        //链接服务器
+        javaMailSender.setPort(PORT);
+        //默认使用25端口发送
+        javaMailSender.setUsername(FROM);
+        //账号
+        javaMailSender.setPassword(PWD);
+        //密码
+        javaMailSender.setDefaultEncoding("UTF-8");
+        Properties properties = new Properties();
+        properties.setProperty("mail.smtp.auth", "true");
+        //开启认证
+        properties.setProperty("mail.smtp.socketFactory.port", "465");
+        //设置ssl端口
+        properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        javaMailSender.setJavaMailProperties(properties);
+    }
 
     /**
-     * 获取Session
-     *
-     * @return Session
+     * @方法名: sendEmail<br>
+     * @描述: 发送邮件<br>
+     * @创建者: lidongyang<br>
+     * @修改时间: 2017年12月20日 下午3:59:15<br>
+     * @param title
+     * @param content
+     * @param toMail 多个用英文格式逗号分隔
      */
-    private static Session getSession() {
-        Properties props = new Properties();
-        props.put("mail.smtp.host", HOST);
-        props.put("mail.store.protocol", PROTOCOL);
-        props.put("mail.smtp.port", PORT);
-        props.put("mail.smtp.auth", true);
-
-        Authenticator authenticator = new Authenticator() {
-
+    public static void sendEmail(final String title, final String content, final String toMail) {
+        //开启线程异步发送  防止发送请求时间过长
+        new Thread(new Runnable() {
             @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(FROM, PWD);
+            public void run() {
+                    SimpleMailMessage mailMessage = new SimpleMailMessage();
+                    mailMessage.setFrom(FROM);
+                    mailMessage.setSubject(title);
+                    mailMessage.setText(content);
+
+                    String[] toAddress = toMail.split(",");
+                    mailMessage.setTo(toAddress);
+                    //发送邮件
+                    javaMailSender.send(mailMessage);
             }
-
-        };
-
-        return Session.getDefaultInstance(props, authenticator);
+        }).start();
     }
-
-    public static void send(String toEmail, String content) {
-        Session session = getSession();
-        try {
-            // Instantiate a message
-            Message msg = new MimeMessage(session);
-
-            //Set message attributes
-            msg.setFrom(new InternetAddress(FROM));
-            InternetAddress[] address = {new InternetAddress(toEmail)};
-            msg.setRecipients(Message.RecipientType.TO, address);
-            msg.setSubject("账号激活邮件");
-            msg.setSentDate(new Date());
-            msg.setContent(content, "text/html;charset=utf-8");
-
-            //Send the message
-            Transport.send(msg);
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
-        }
-    }
-
 }

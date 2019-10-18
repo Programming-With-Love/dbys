@@ -49,14 +49,4 @@ public class IpUtils {
         }
         return ip;
     }
-
-    /**
-     * 获取今日日期 2019-10-14
-     * @return String
-     */
-    public static String getDay(){
-        Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(d);
-    }
 }

@@ -1,4 +1,7 @@
 package com.danbai.ys.service;
+
+import java.util.List;
+
 /**
  * @author danbai
  * @date 2019/10/14
@@ -33,4 +36,10 @@ public interface Statistical {
      * @return
      */
     int getDayAccess();
+
+    /**
+     * 获取近30天访问
+     * @return
+     */
+    List get30DayAccess();
 }
