@@ -3,10 +3,7 @@ package com.danbai.ys.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.danbai.ys.entity.Gkls;
-import com.danbai.ys.entity.Ji;
-import com.danbai.ys.entity.VideoTime;
-import com.danbai.ys.entity.Ysb;
+import com.danbai.ys.entity.*;
 import com.danbai.ys.mapper.VideoTimeMapper;
 import com.danbai.ys.mapper.YsbMapper;
 import com.danbai.ys.service.YsService;
@@ -14,6 +11,9 @@ import com.danbai.ys.utils.HtmlUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -41,6 +41,8 @@ public class YsServiceImpl implements YsService {
     VideoTimeMapper videoTimeMapper;
     @Autowired
     RedisTemplate redisTemplate;
+    @Autowired
+    MongoTemplate mongoTemplate;
     static String DMTYPE = "2";
     static String PAY_TYPE = "payType";
 
@@ -207,6 +209,10 @@ public class YsServiceImpl implements YsService {
     public String getYsDanMu(String pm, int jid,String ysid) {
         String rr = (String) redisTemplate.opsForValue().get(pm+jid);
         if (rr != null) {
+            Query query = new Query(Criteria.where("player").is(rr));
+            if(mongoTemplate.count(query, Dan.class)<100){
+                return rr;
+            }
             if(redisTemplate.opsForSet().isMember(OKTAGIDS,rr)){
                 return null;
             }

@@ -6,13 +6,16 @@
 <div style="background:#FFF" th:fragment="dhl">
     <div style="padding:5px 0;border-bottom:1px solid #DDD;">
         <div class="container">
-            <span class="header-help">欢迎来到淡白影视,记住我们网址:http://ys.p00q.cn:8081</span>
+            <span class="header-help">欢迎来到淡白影视,记住我们网址:http://ys.p00q.cn</span>
             <div class="pull-right">
                 <a class="header-help" href="javascript:alert('快捷键Ctrl+D可以快速添加到收藏夹。');">Ctrl+D 加入收藏夹</a>
             </div>
         </div>
     </div>
     <div class="container" style="padding-top:15px;padding-bottom:15px;padding-right:0;">
+        <div th:text="${gg}">
+
+        </div>
         <div class="pull-right">
             <form class="navbar-form" target="_blank" accept-charset="utf-8" action="/search" method="get"
                   role="search">
@@ -61,6 +64,7 @@
 <footer class="footer" th:fragment="foot">
     <p>免责声明：本网站所有内容都是靠程序在互联网上自动搜集而来，仅供测试和学习交流。<br/>目前正在逐步删除和规避程序自动搜索采集到的不提供分享的版权影视。</p>
     <p>若侵犯了您的权益，请即时发邮件通知站长 万分感谢！</p>
+    <p>db225@qq.com</p>
     <em><a href="/">♥ 淡白影视</a></em>
 </footer>
 </body>

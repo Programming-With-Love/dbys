@@ -5,7 +5,14 @@ import com.danbai.ys.mapper.UserMapper;
 import com.danbai.ys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import tk.mybatis.mapper.entity.Example;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author danbai
@@ -15,7 +22,8 @@ import tk.mybatis.mapper.entity.Example;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
-
+    @Autowired
+    RegisterValidateServiceImpl registerValidateService;
     @Override
     public User getUser(User user) {
         return userMapper.selectOne(user);
@@ -53,4 +61,63 @@ public class UserServiceImpl implements UserService {
         Example example = new Example(User.class);
         return userMapper.selectCountByExample(example);
     }
+
+    @Override
+    public boolean yzUser(User user, HttpServletRequest request, HttpServletResponse response) {
+        if (user != null) {
+            User user1 = new User();
+            user1.setUsername(user.getUsername());
+            User user2 = getUser(user1);
+            if (user2 != null) {
+                if (DigestUtils.md5DigestAsHex(user.getPassword().getBytes()).equals(user2.getPassword())) {
+                    HttpSession sessoin = request.getSession();
+                    sessoin.setMaxInactiveInterval(60 * 60 * 24);
+                    sessoin.setAttribute("user", user2);
+                    Cookie cookie = new Cookie("JSESSIONID", sessoin.getId());
+                    cookie.setMaxAge(60 * 60 * 24);
+                    response.addCookie(cookie);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void reg(User user, Model model, String yzm) {
+        if (user != null) {
+            if (yzm == null) {
+                model.addAttribute("message", "验证码有误");
+                return;
+            }
+            String str = registerValidateService.getVerificationCode(user.getEmail());
+            if (str.equals(yzm)) {
+                registerValidateService.deleteVerificationCode(user.getEmail());
+                User user2 = new User();
+                user2.setUsername(user.getUsername());
+                User user1 = getUser(user2);
+                User user3 = getUserByEmail(user.getEmail());
+                if (user3 != null) {
+                    model.addAttribute("message", "邮箱已存在");
+                    return;
+                }
+                if (user1 == null) {
+                    user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+                    user.setUserType(1);
+                    user.setHeadurl("http://gravatar.com/avatar/" + user.getUsername() + "?s=256&d=identicon");
+                    if (addUser(user)) {
+                        model.addAttribute("message", "注册成功");
+                        return;
+                    }
+                } else {
+                    model.addAttribute("message", "用户名已存在");
+                }
+            } else {
+                model.addAttribute("message", "验证码有误");
+            }
+        }
+        return;
+    }
+
+
 }

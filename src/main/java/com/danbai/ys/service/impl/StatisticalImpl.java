@@ -3,7 +3,6 @@ package com.danbai.ys.service.impl;
 import com.danbai.ys.entity.Acces;
 import com.danbai.ys.service.Statistical;
 import com.danbai.ys.utils.DateUtils;
-import com.danbai.ys.utils.IpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

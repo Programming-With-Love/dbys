@@ -1,6 +1,10 @@
 package com.danbai.ys.service;
 
 import com.danbai.ys.entity.User;
+import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author danbai
@@ -46,4 +50,14 @@ public interface UserService {
      * @return int
      */
     int contUser();
+
+    /**
+     * 验证user是否正确
+     * @param user 待验证user
+     * @param request 请求
+     * @param response 返回
+     * @return boolean
+     */
+    boolean yzUser(User user, HttpServletRequest request, HttpServletResponse response);
+    void reg(User user, Model model, String yzm);
 }
