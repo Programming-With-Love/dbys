@@ -62,7 +62,7 @@ public class YsController {
     @RequestMapping(value = "/getys", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     String getYsApi(int id,HttpServletRequest request) {
-        Map<String,Object> map =new HashMap<>();
+        Map<String,Object> map =new HashMap<>(5);
         Ysb ys=ysService.selectYsById(id);
         map.put("ys",ys);
         User user = (User) request.getSession().getAttribute("user");
@@ -84,7 +84,7 @@ public class YsController {
     @ResponseBody
     String getTypeYsApi(String type,int page) {
         PageInfo page1 = ysService.getYs(type, page, 24);
-        Map<String,Object> map = new HashMap<String, Object>();
+        Map<String,Object> map = new HashMap<>(10);
         map.put("list",page1.getList());
         map.put("zys",page1.getPages());
         map.put("page",page);
@@ -141,11 +141,21 @@ public class YsController {
         model.addAttribute("gjc", gjc);
         return "search";
     }
-
+    @RequestMapping(value = "/searchapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ResponseBody
+    String searchApp(String gjc) {
+        return JSON.toJSONString(ysService.selectYsByPm(gjc));
+    }
     @RequestMapping(value = "/ys/time", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
-    String ysTimeApi(VideoTime videoTime) {
+    String ysTimeApi(VideoTime videoTime,HttpServletRequest request) {
         String user = "user";
+
+        User u= (User) request.getSession().getAttribute("user");
+        if(user==null){
+            return "";
+        }
+        videoTime.setUsername(u.getUsername());
         if (user.equals(videoTime.getUsername())) {
             return "ok";
         }

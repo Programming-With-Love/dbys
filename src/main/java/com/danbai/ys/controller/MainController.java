@@ -38,18 +38,7 @@ public class MainController {
     @Autowired
     RegisterValidateServiceImpl registerValidateService;
     @Autowired
-    StatisticalImpl statistical;
-    @Autowired
     RedisTemplate redisTemplate;
-    @ModelAttribute
-    void count(HttpServletRequest request) {
-        System.out.println(request.getSession().getId());
-        String ip = IpUtils.getIpAddr(request);
-        if (!statistical.isIpInTheDatabase(ip)) {
-            statistical.addIp(ip);
-            statistical.addAccess();
-        }
-    }
     @RequestMapping(value = {"/", "index"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String index(Model model) {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
@@ -65,19 +54,28 @@ public class MainController {
     }
     @RequestMapping(value = {"/sy"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
-    String indexApi(Model model) {
+    String indexApi(HttpServletRequest request) {
+
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
         PageInfo ysbs1 = ysService.getYs("电视剧", 1, 12);
         PageInfo ysbs2 = ysService.getYs("综艺", 1, 12);
         PageInfo ysbs3 = ysService.getYs("动漫", 1, 12);
-        Map<String,Object> map = new HashMap<String, Object>();
+        Map<String,Object> map = new HashMap<>(10);
         map.put("dy",ysbs.getList());
         map.put("dsj",ysbs1.getList());
         map.put("zy",ysbs2.getList());
         map.put("dm",ysbs3.getList());
         map.put("gg",redisTemplate.opsForValue().get("gg"));
-
         return JSON.toJSONString(map);
+    }
+    @RequestMapping(value = {"/iflogin"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ResponseBody
+    String ifLogin(HttpServletRequest request) {
+        if(request.getSession().getAttribute("user")!=null) {
+            return "yes";
+        }else {
+            return "no";
+        }
     }
     @RequestMapping(value = "/adminlogin", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String adminLogi() {
@@ -107,6 +105,12 @@ public class MainController {
     String regApi(User user, Model model, String yzm) {
         userService.reg(user,model,yzm);
         return "reg";
+    }
+    @RequestMapping(value = "/regapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    String regAppApi(User user, Model model, String yzm) {
+
+        return userService.regapp(user,yzm);
     }
 
     @RequestMapping(value = "/login", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)

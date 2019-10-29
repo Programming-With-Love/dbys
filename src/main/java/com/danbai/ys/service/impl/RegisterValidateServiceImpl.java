@@ -19,7 +19,7 @@ public class RegisterValidateServiceImpl implements RegisterValidateService {
     /**
      * 验证码位数
      */
-    public static int MAXINT = 4;
+    public static int MAXINT = 8;
 
     @Autowired
     RedisTemplate redisTemplate;

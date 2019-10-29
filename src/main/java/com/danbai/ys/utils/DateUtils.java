@@ -18,7 +18,8 @@ public class DateUtils {
     public static final String YEAR_PATTERN = "yyyy";
     public static final String MINUTE_ONLY_PATTERN = "mm";
     public static final String HOUR_ONLY_PATTERN = "HH";
-
+    public static final String KONG = "";
+    public static final String LING = "00:00:00";
     /**
      * 日期相加减天数
      * @param date 如果为Null，则为当前时间
@@ -49,7 +50,7 @@ public class DateUtils {
      * @throws ParseException
      */
     public static String dateFormat(Date date, String pattern) throws ParseException{
-        if(pattern==null|pattern.equals("")){
+        if(pattern==null|KONG.equals(pattern)){
             pattern = DateUtils.DATE_PATTERN;
         }
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -64,7 +65,7 @@ public class DateUtils {
      * @throws ParseException
      */
     public static Date dateParse(String dateTimeString, String pattern) throws ParseException{
-        if(pattern==null|pattern.equals("")){
+        if(pattern==null|KONG.equals(pattern)){
             pattern = DateUtils.DATE_PATTERN;
         }
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -91,7 +92,7 @@ public class DateUtils {
      */
     public static String dateTimeToDateStringIfTimeEndZero(Date dateTime) throws ParseException{
         String dateTimeString = DateUtils.dateFormat(dateTime, DateUtils.DATE_TIME_PATTERN);
-        if(dateTimeString.endsWith("00:00:00")){
+        if(dateTimeString.endsWith(LING)){
             return dateTimeString.substring(0, 10);
         }else{
             return dateTimeString;

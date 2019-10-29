@@ -53,7 +53,8 @@ public class StatisticalImpl implements Statistical {
     public List get30DayAccess() {
         List<Acces> list=new ArrayList<>();
         Date date=new Date();
-        for (int i=29;i>=0;i--){
+        int yue=29;
+        for (int i=yue;i>=0;i--){
             try {
                 Date rdate = DateUtils.dateAdd(date, -i, false);
                 String s = DateUtils.dateFormat(rdate, DateUtils.DATE_PATTERN);

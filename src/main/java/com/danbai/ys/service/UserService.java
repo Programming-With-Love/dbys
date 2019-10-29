@@ -59,5 +59,20 @@ public interface UserService {
      * @return boolean
      */
     boolean yzUser(User user, HttpServletRequest request, HttpServletResponse response);
+
+    /**
+     * 注册
+     * @param user 用户信息
+     * @param model 视图返回
+     * @param yzm 验证码
+     */
     void reg(User user, Model model, String yzm);
+
+    /**
+     * app注册
+     * @param user 用户信息
+     * @param yzm 验证码
+     * @return String
+     */
+    String regapp(User user,String yzm);
 }

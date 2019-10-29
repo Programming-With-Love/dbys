@@ -1,6 +1,7 @@
 package com.danbai.ys.interceptor;
 
 import com.danbai.ys.entity.User;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author danbai
  * @date 2019/10/13
  */
+@Component
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,

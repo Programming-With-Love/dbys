@@ -9,7 +9,7 @@ spring:
       enabled=false:
   data:
     mongodb:
-      uri: mongodb://dnmu:danmu@39.108.110.44:27017/dm
+      uri: mongodb://danmu:danmu@39.108.110.44:27017/dm
   thymeleaf:
     cache: false
     mode: LEGACYHTML5

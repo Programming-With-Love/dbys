@@ -1,5 +1,6 @@
 package com.danbai.ys.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.mapper.UserMapper;
 import com.danbai.ys.service.UserService;
@@ -13,6 +14,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author danbai
@@ -91,7 +94,7 @@ public class UserServiceImpl implements UserService {
                 return;
             }
             String str = registerValidateService.getVerificationCode(user.getEmail());
-            if (str.equals(yzm)) {
+            if (str!=null&str.equals(yzm)) {
                 registerValidateService.deleteVerificationCode(user.getEmail());
                 User user2 = new User();
                 user2.setUsername(user.getUsername());
@@ -119,5 +122,42 @@ public class UserServiceImpl implements UserService {
         return;
     }
 
+    @Override
+    public String regapp(User user, String yzm) {
+        Map<String,String> map=new HashMap<>(3);
+        if (yzm == null) {
+            map.put("message", "验证码有误");
+            return JSON.toJSONString(map);
+        }
+        if (user != null) {
+            String str = registerValidateService.getVerificationCode(user.getEmail());
+            if (str!=null&str.equals(yzm)) {
+                registerValidateService.deleteVerificationCode(user.getEmail());
+                User user2 = new User();
+                user2.setUsername(user.getUsername());
+                User user1 = getUser(user2);
+                User user3 = getUserByEmail(user.getEmail());
+                if (user3 != null) {
+                    map.put("message", "邮箱已存在");
+                    return JSON.toJSONString(map);
+                }
+                if (user1 == null) {
+                    user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+                    user.setUserType(1);
+                    user.setHeadurl("http://gravatar.com/avatar/" + user.getUsername() + "?s=256&d=identicon");
+                    if (addUser(user)) {
+                        map.put("message", "注册成功");
+                        map.put("zt","ok");
+                        return JSON.toJSONString(map);
+                    }
+                } else {
+                    map.put("message", "用户名已存在");
+                }
+            } else {
+                map.put("message", "验证码有误");
+            }
+        }
+        return JSON.toJSONString(map);
+    }
 
 }

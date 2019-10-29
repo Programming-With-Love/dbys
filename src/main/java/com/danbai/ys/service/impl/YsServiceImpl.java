@@ -45,7 +45,7 @@ public class YsServiceImpl implements YsService {
     MongoTemplate mongoTemplate;
     static String DMTYPE = "2";
     static String PAY_TYPE = "payType";
-
+    static int MIN_DM = 100;
     @Override
     public List<Ysb> page(int page, int pagenum) {
         PageHelper.offsetPage(page, pagenum);
@@ -209,16 +209,15 @@ public class YsServiceImpl implements YsService {
     public String getYsDanMu(String pm, int jid,String ysid) {
         String rr = (String) redisTemplate.opsForValue().get(pm+jid);
         if (rr != null) {
-            Query query = new Query(Criteria.where("player").is(rr));
-            if(mongoTemplate.count(query, Dan.class)<100){
-                return rr;
-            }
+            Query query = new Query(Criteria.where("player").is(ysid));
             if(redisTemplate.opsForSet().isMember(OKTAGIDS,rr)){
+                if(mongoTemplate.count(query, Dan.class)<MIN_DM){
+                    String json="{tagid:"+rr+",player:\""+ysid+ "\"}";
+                    redisTemplate.opsForSet().add("tagids",json);
+                    return rr;
+                }
                 return null;
             }
-            String json="{tagid:"+rr+",player:\""+ysid+ "\"}";
-            redisTemplate.opsForSet().add("tagids",json);
-            return rr;
         }
         String encodePm = "";
         try {
