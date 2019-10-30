@@ -141,11 +141,6 @@ public class YsController {
         model.addAttribute("gjc", gjc);
         return "search";
     }
-    @RequestMapping(value = "/searchapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
-    @ResponseBody
-    String searchApp(String gjc) {
-        return JSON.toJSONString(ysService.selectYsByPm(gjc));
-    }
     @RequestMapping(value = "/ys/time", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     String ysTimeApi(VideoTime videoTime,HttpServletRequest request) {

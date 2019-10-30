@@ -127,4 +127,10 @@ public interface YsService {
      * @return
      */
     String getYsDanMu(String pm,int jid,String ysid);
+
+    /**
+     * 获取所有影视
+     * @return List
+     */
+    List<Ysb> getAll();
 }

@@ -1,13 +1,6 @@
-<center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="http://img.p00q.cn:222/2019/10/25/b8fc388600d73.ico">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 2px;">淡白影视</div>
-</center>
+<p align="center">
+<img src="http://img.p00q.cn:222/2019/10/25/b8fc388600d73.ico" alt="db" width="100">
+</p>
 
 # 淡白影视
 

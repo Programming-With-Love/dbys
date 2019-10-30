@@ -7,6 +7,7 @@ import com.danbai.ys.entity.*;
 import com.danbai.ys.mapper.VideoTimeMapper;
 import com.danbai.ys.mapper.YsbMapper;
 import com.danbai.ys.service.YsService;
+import com.danbai.ys.utils.DateUtils;
 import com.danbai.ys.utils.HtmlUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -177,7 +178,7 @@ public class YsServiceImpl implements YsService {
                 gkls.setYsimg(ysb.getTp());
             }
             gkls.setJi(v.getYsjiname());
-            gkls.setTime(v.getTime() / 60 + "分");
+            gkls.setTime(DateUtils.secondToTime(v.getTime().longValue()));
             gkls.setGktime(v.getGktime());
             gkls.setId(v.getYsid());
             list.add(gkls);
@@ -256,5 +257,10 @@ public class YsServiceImpl implements YsService {
         redisTemplate.opsForValue().set(pm+jid, tagid, 30, TimeUnit.DAYS);
         redisTemplate.opsForSet().add("tagids","{tagid:"+tagid+",player:\""+ysid+"\"}");
         return tagid;
+    }
+
+    @Override
+    public List<Ysb> getAll() {
+        return ysbMapper.selectAll();
     }
 }

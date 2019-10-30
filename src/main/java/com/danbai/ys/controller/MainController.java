@@ -71,7 +71,7 @@ public class MainController {
     @RequestMapping(value = {"/iflogin"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     String ifLogin(HttpServletRequest request) {
-        if(request.getSession().getAttribute("user")!=null) {
+        if(request.getSession().getAttribute(User.DEFAULT_USER)!=null) {
             return "yes";
         }else {
             return "no";
