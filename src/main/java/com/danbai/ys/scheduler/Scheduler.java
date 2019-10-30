@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 import java.util.Set;
 
 
@@ -23,6 +24,7 @@ public class Scheduler {
     RedisTemplate redisTemplate;
     @Autowired
     private Dmas testas;
+
     @Scheduled(fixedDelay = 10000)
     @Async
     public void cronJobSchedule() {
@@ -34,15 +36,15 @@ public class Scheduler {
             String tagid = jsonObject.getString("tagid");
             redisTemplate.opsForSet().add("oktagids", tagid);
             String player = (jsonObject.getString("player"));
-            redisTemplate.delete("danmaku"+player);
+            redisTemplate.delete("danmaku" + player);
             int timestamp = 0;
-            boolean flg=true;
+            boolean flg = true;
             while (flg) {
                 String url = "http://mfm.video.qq.com/danmu?otype=json&target_id=" + tagid + "&timestamp=" + timestamp;
                 timestamp += 30;
-                testas.xzbcdm(url,player);
-                if(timestamp>60*120){
-                    flg=false;
+                testas.xzbcdm(url, player);
+                if (timestamp > 60 * 120) {
+                    flg = false;
                 }
             }
         }

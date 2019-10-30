@@ -39,6 +39,7 @@ public class MainController {
     RegisterValidateServiceImpl registerValidateService;
     @Autowired
     RedisTemplate redisTemplate;
+
     @RequestMapping(value = {"/", "index"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String index(Model model) {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
@@ -49,9 +50,10 @@ public class MainController {
         model.addAttribute("dsj", ysbs1.getList());
         model.addAttribute("zy", ysbs2.getList());
         model.addAttribute("dm", ysbs3.getList());
-        model.addAttribute("gg",redisTemplate.opsForValue().get("gg"));
+        model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         return "index";
     }
+
     @RequestMapping(value = {"/sy"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     String indexApi(HttpServletRequest request) {
@@ -60,23 +62,25 @@ public class MainController {
         PageInfo ysbs1 = ysService.getYs("电视剧", 1, 12);
         PageInfo ysbs2 = ysService.getYs("综艺", 1, 12);
         PageInfo ysbs3 = ysService.getYs("动漫", 1, 12);
-        Map<String,Object> map = new HashMap<>(10);
-        map.put("dy",ysbs.getList());
-        map.put("dsj",ysbs1.getList());
-        map.put("zy",ysbs2.getList());
-        map.put("dm",ysbs3.getList());
-        map.put("gg",redisTemplate.opsForValue().get("gg"));
+        Map<String, Object> map = new HashMap<>(10);
+        map.put("dy", ysbs.getList());
+        map.put("dsj", ysbs1.getList());
+        map.put("zy", ysbs2.getList());
+        map.put("dm", ysbs3.getList());
+        map.put("gg", redisTemplate.opsForValue().get("gg"));
         return JSON.toJSONString(map);
     }
+
     @RequestMapping(value = {"/iflogin"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     String ifLogin(HttpServletRequest request) {
-        if(request.getSession().getAttribute(User.DEFAULT_USER)!=null) {
+        if (request.getSession().getAttribute(User.DEFAULT_USER) != null) {
             return "yes";
-        }else {
+        } else {
             return "no";
         }
     }
+
     @RequestMapping(value = "/adminlogin", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String adminLogi() {
         return "adminlogin";
@@ -84,7 +88,7 @@ public class MainController {
 
     @RequestMapping(value = "/adminlogin", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     String adminLogiApi(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
-        if (userService.yzUser(user,request,response)) {
+        if (userService.yzUser(user, request, response)) {
             return "redirect:admin";
         }
         model.addAttribute("message", "账号或密码错误");
@@ -103,34 +107,37 @@ public class MainController {
 
     @RequestMapping(value = "/reg", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     String regApi(User user, Model model, String yzm) {
-        userService.reg(user,model,yzm);
+        userService.reg(user, model, yzm);
         return "reg";
     }
+
     @RequestMapping(value = "/regapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     String regAppApi(User user, Model model, String yzm) {
 
-        return userService.regapp(user,yzm);
+        return userService.regapp(user, yzm);
     }
 
     @RequestMapping(value = "/login", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     String loginApi(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
-        if (userService.yzUser(user,request,response)) {
+        if (userService.yzUser(user, request, response)) {
             return "redirect:/";
         }
         model.addAttribute("message", "账号或密码错误");
         return "login";
     }
+
     @RequestMapping(value = "/loginapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     String loginAppApi(User user, HttpServletRequest request, HttpServletResponse response) {
 
-        if (userService.yzUser(user,request,response)) {
+        if (userService.yzUser(user, request, response)) {
             user.setPassword(null);
             return JSON.toJSONString(userService.getUser(user));
         }
         return "err";
     }
+
     @RequestMapping(value = "/logout", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     String logout(HttpServletRequest request) {
         request.getSession().removeAttribute("user");

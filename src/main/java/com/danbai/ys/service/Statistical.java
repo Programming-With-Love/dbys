@@ -14,6 +14,7 @@ public interface Statistical {
 
     /**
      * 查询今日ip是否访问过
+     *
      * @param ip
      * @return
      */
@@ -21,24 +22,28 @@ public interface Statistical {
 
     /**
      * 增加今日访问ip
+     *
      * @param ip
      */
     void addIp(String ip);
 
     /**
      * 获取总访问量
+     *
      * @return
      */
     int getAccess();
 
     /**
      * 获取今日访问量
+     *
      * @return
      */
     int getDayAccess();
 
     /**
      * 获取近30天访问
+     *
      * @return
      */
     List get30DayAccess();

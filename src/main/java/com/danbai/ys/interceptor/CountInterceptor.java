@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CountInterceptor implements HandlerInterceptor {
     @Autowired
     StatisticalImpl statistical;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 

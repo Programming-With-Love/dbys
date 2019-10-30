@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
  */
 @Service
 public class YsServiceImpl implements YsService {
-    static final String OKTAGIDS="oktagids";
+    static final String OKTAGIDS = "oktagids";
     @Autowired
     YsbMapper ysbMapper;
     @Autowired
@@ -47,6 +47,7 @@ public class YsServiceImpl implements YsService {
     static String DMTYPE = "2";
     static String PAY_TYPE = "payType";
     static int MIN_DM = 100;
+
     @Override
     public List<Ysb> page(int page, int pagenum) {
         PageHelper.offsetPage(page, pagenum);
@@ -117,10 +118,12 @@ public class YsServiceImpl implements YsService {
         Example example = new Example(Ysb.class);
         switch (lx) {
             case "电影":
-                example.createCriteria().orLike("lx", "%动作片%").orLike("lx", "%喜剧片%").orLike("lx", "%爱情片%").orLike("lx", "%科幻片%");
+                example.createCriteria().orLike("lx", "%动作片%").orLike("lx", "%喜剧片%").orLike("lx", "%爱情片%").orLike("lx"
+                        , "%科幻片%");
                 break;
             case "电视剧":
-                example.createCriteria().orLike("lx", "%国产剧%").orLike("lx", "%韩国剧%").orLike("lx", "%欧美剧%").orLike("lx", "%海外剧%");
+                example.createCriteria().orLike("lx", "%国产剧%").orLike("lx", "%韩国剧%").orLike("lx", "%欧美剧%").orLike("lx"
+                        , "%海外剧%");
                 break;
             case "综艺":
                 example.createCriteria().andLike("lx", "%综艺%");
@@ -148,7 +151,8 @@ public class YsServiceImpl implements YsService {
         VideoTime videoTime2 = videoTimeMapper.selectOne(videoTime1);
         if (videoTime2 != null) {
             Example example = new Example(VideoTime.class);
-            example.createCriteria().andEqualTo("username", videoTime2.getUsername()).andEqualTo("ysid", videoTime2.getYsid());
+            example.createCriteria().andEqualTo("username", videoTime2.getUsername()).andEqualTo("ysid",
+                    videoTime2.getYsid());
             int i = videoTimeMapper.deleteByExample(example);
         }
         videoTimeMapper.insert(videoTime);
@@ -207,14 +211,14 @@ public class YsServiceImpl implements YsService {
     }
 
     @Override
-    public String getYsDanMu(String pm, int jid,String ysid) {
-        String rr = (String) redisTemplate.opsForValue().get(pm+jid);
+    public String getYsDanMu(String pm, int jid, String ysid) {
+        String rr = (String) redisTemplate.opsForValue().get(pm + jid);
         if (rr != null) {
             Query query = new Query(Criteria.where("player").is(ysid));
-            if(redisTemplate.opsForSet().isMember(OKTAGIDS,rr)){
-                if(mongoTemplate.count(query, Dan.class)<MIN_DM){
-                    String json="{tagid:"+rr+",player:\""+ysid+ "\"}";
-                    redisTemplate.opsForSet().add("tagids",json);
+            if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
+                if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
+                    String json = "{tagid:" + rr + ",player:\"" + ysid + "\"}";
+                    redisTemplate.opsForSet().add("tagids", json);
                     return rr;
                 }
                 return null;
@@ -240,7 +244,8 @@ public class YsServiceImpl implements YsService {
         }
         //截取id
         String id = str.substring(9, str.length() - 1);
-        content = HtmlUtils.getHtmlContent("http://s.video.qq.com/get_playsource?plat=2&type=4&range=1&otype=json&id=" + id);
+        content = HtmlUtils.getHtmlContent("http://s.video.qq.com/get_playsource?plat=2&type=4&range=1&otype=json&id" +
+                "=" + id);
         String json = content.substring(13, content.length() - 1);
         JSONObject jsonObject = JSONObject.parseObject(json);
         jsonObject = jsonObject.getJSONObject("PlaylistItem");
@@ -249,13 +254,14 @@ public class YsServiceImpl implements YsService {
         }
         //解析为数组
         JSONArray jsonArray = jsonObject.getJSONArray("videoPlayList");
-        urlStr = "http://bullet.video.qq.com/fcgi-bin/target/regist?otype=json&vid=" + jsonArray.getJSONObject(jsonArray.size()-jid-1).getString("id");
+        urlStr =
+                "http://bullet.video.qq.com/fcgi-bin/target/regist?otype=json&vid=" + jsonArray.getJSONObject(jsonArray.size() - jid - 1).getString("id");
         content = HtmlUtils.getHtmlContent(urlStr);
         json = content.substring(13, content.length() - 1);
         jsonObject = JSONObject.parseObject(json);
-        String tagid=jsonObject.getString("targetid");
-        redisTemplate.opsForValue().set(pm+jid, tagid, 30, TimeUnit.DAYS);
-        redisTemplate.opsForSet().add("tagids","{tagid:"+tagid+",player:\""+ysid+"\"}");
+        String tagid = jsonObject.getString("targetid");
+        redisTemplate.opsForValue().set(pm + jid, tagid, 30, TimeUnit.DAYS);
+        redisTemplate.opsForSet().add("tagids", "{tagid:" + tagid + ",player:\"" + ysid + "\"}");
         return tagid;
     }
 

@@ -19,10 +19,11 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/admin/**");
         registry.addInterceptor(SpringUtil.getBean(CountInterceptor.class)).addPathPatterns("/**");
     }
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://m.dbys.vip","file://")
+                .allowedOrigins("http://m.dbys.vip", "file://")
                 .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
                 .maxAge(3600)
                 .allowCredentials(true);

@@ -14,6 +14,7 @@ public interface RegisterValidateService {
 
     /**
      * 根据邮箱获取验证码
+     *
      * @param email 邮箱
      * @return String
      */
@@ -21,6 +22,7 @@ public interface RegisterValidateService {
 
     /**
      * 删除验证码
+     *
      * @param email 邮箱
      */
     void deleteVerificationCode(String email);

@@ -40,6 +40,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     // 以下两种redisTemplate自由根据场景选择
+
     /**
      * redis
      */
@@ -62,6 +63,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         template.afterPropertiesSet();
         return template;
     }
+
     /**
      * redis
      */

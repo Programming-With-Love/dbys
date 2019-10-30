@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
+
 /**
- *
  * @author danbai
  * @date 2019/10/13
  */
@@ -18,10 +18,11 @@ import java.util.Map;
 public class UtilsController {
     @Autowired
     RegisterValidateServiceImpl registerValidateService;
-    @RequestMapping(value = "/getvalidate",produces = "text/plain;charset=UTF-8",method= RequestMethod.GET)
+
+    @RequestMapping(value = "/getvalidate", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
-    public String getValidate(String username,String email){
-        if(username==null){
+    public String getValidate(String username, String email) {
+        if (username == null) {
             return "err";
         }
         registerValidateService.senValidate(email);

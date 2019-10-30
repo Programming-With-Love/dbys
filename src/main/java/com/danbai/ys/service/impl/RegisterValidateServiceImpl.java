@@ -32,6 +32,7 @@ public class RegisterValidateServiceImpl implements RegisterValidateService {
     RedisTemplate redisTemplate;
     @Autowired
     EmailUtil emailUtil;
+
     @Override
     public void senValidate(String email) {
         Random r = new Random();
@@ -39,9 +40,9 @@ public class RegisterValidateServiceImpl implements RegisterValidateService {
         for (int i = 0; i < MAXINT; i++) {
             yzm += String.valueOf(r.nextInt(10));
         }
-        String content = "欢迎注册淡白影视,您的验证码是:" + yzm+",有效时间4分钟";
-        emailUtil.sendEmail("淡白影视注册邮件",content,email);
-        redisTemplate.opsForValue().set(email,yzm,4, TimeUnit.MINUTES);
+        String content = "欢迎注册淡白影视,您的验证码是:" + yzm + ",有效时间4分钟";
+        emailUtil.sendEmail("淡白影视注册邮件", content, email);
+        redisTemplate.opsForValue().set(email, yzm, 4, TimeUnit.MINUTES);
     }
 
     @Override

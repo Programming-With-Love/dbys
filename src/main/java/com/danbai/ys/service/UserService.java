@@ -53,8 +53,9 @@ public interface UserService {
 
     /**
      * 验证user是否正确
-     * @param user 待验证user
-     * @param request 请求
+     *
+     * @param user     待验证user
+     * @param request  请求
      * @param response 返回
      * @return boolean
      */
@@ -62,17 +63,19 @@ public interface UserService {
 
     /**
      * 注册
-     * @param user 用户信息
+     *
+     * @param user  用户信息
      * @param model 视图返回
-     * @param yzm 验证码
+     * @param yzm   验证码
      */
     void reg(User user, Model model, String yzm);
 
     /**
      * app注册
+     *
      * @param user 用户信息
-     * @param yzm 验证码
+     * @param yzm  验证码
      * @return String
      */
-    String regapp(User user,String yzm);
+    String regapp(User user, String yzm);
 }

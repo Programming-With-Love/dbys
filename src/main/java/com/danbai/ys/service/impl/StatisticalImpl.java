@@ -31,12 +31,13 @@ public class StatisticalImpl implements Statistical {
     public boolean isIpInTheDatabase(String ip) {
         return redisTemplate.opsForSet().isMember(DateUtils.getDay(), ip);
     }
+
     @Override
     public void addIp(String ip) {
         redisTemplate.opsForSet().add(DateUtils.getDay(), ip);
         redisTemplate.opsForValue().increment(DateUtils.getDay() + "-Access");
-        redisTemplate.expire(DateUtils.getDay(),30,TimeUnit.DAYS);
-        redisTemplate.expire(DateUtils.getDay() + "-Access",30,TimeUnit.DAYS);
+        redisTemplate.expire(DateUtils.getDay(), 30, TimeUnit.DAYS);
+        redisTemplate.expire(DateUtils.getDay() + "-Access", 30, TimeUnit.DAYS);
     }
 
     @Override
@@ -51,19 +52,19 @@ public class StatisticalImpl implements Statistical {
 
     @Override
     public List get30DayAccess() {
-        List<Acces> list=new ArrayList<>();
-        Date date=new Date();
-        int yue=29;
-        for (int i=yue;i>=0;i--){
+        List<Acces> list = new ArrayList<>();
+        Date date = new Date();
+        int yue = 29;
+        for (int i = yue; i >= 0; i--) {
             try {
                 Date rdate = DateUtils.dateAdd(date, -i, false);
                 String s = DateUtils.dateFormat(rdate, DateUtils.DATE_PATTERN);
                 Integer a = (Integer) redisTemplate.opsForValue().get(s + "-Access");
                 Acces acces;
-                if(a!=null){
-                    acces= new Acces(s,a);
+                if (a != null) {
+                    acces = new Acces(s, a);
                 } else {
-                    acces = new Acces(s,0);
+                    acces = new Acces(s, 0);
                 }
                 list.add(acces);
             } catch (ParseException e) {

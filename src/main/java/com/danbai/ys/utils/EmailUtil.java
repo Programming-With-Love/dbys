@@ -22,6 +22,7 @@ public class EmailUtil {
     private static final String PWD = "hjj225";
 
     private static JavaMailSenderImpl javaMailSender;
+
     static {
         javaMailSender = new JavaMailSenderImpl();
         javaMailSender.setProtocol(PROTOCOL);
@@ -42,6 +43,7 @@ public class EmailUtil {
         properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         javaMailSender.setJavaMailProperties(properties);
     }
+
     @Async
     public void sendEmail(final String title, final String content, final String toMail) {
 

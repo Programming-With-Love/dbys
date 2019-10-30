@@ -10,6 +10,7 @@ public class ResultUtil {
     public static <T> BaseResult successOk() {
         return commonResult(1, 200, "请求成功", "ok");
     }
+
     public static <T> BaseResult<T> success(T data) {
         return commonResult(1, 200, "请求成功", data);
     }

@@ -43,17 +43,17 @@ public class AdminController {
     String adminIndex(Model model) {
         model.addAttribute("yssize", ysService.contYs());
         model.addAttribute("usersize", userService.contUser());
-        model.addAttribute("totalAccess",statistical.getAccess());
-        model.addAttribute("dayAccess",statistical.getDayAccess());
+        model.addAttribute("totalAccess", statistical.getAccess());
+        model.addAttribute("dayAccess", statistical.getDayAccess());
         List<Acces> dayAccess = statistical.get30DayAccess();
-        List<String> times=new ArrayList<>();
-        List<Integer> is=new ArrayList<>();
-        for (Acces a:dayAccess) {
+        List<String> times = new ArrayList<>();
+        List<Integer> is = new ArrayList<>();
+        for (Acces a : dayAccess) {
             times.add(a.getName());
             is.add(a.getCount());
         }
-        model.addAttribute("times",JSON.toJSONString(times));
-        model.addAttribute("is",JSON.toJSONString(is));
+        model.addAttribute("times", JSON.toJSONString(times));
+        model.addAttribute("is", JSON.toJSONString(is));
         return "admin/index_v1";
     }
 
@@ -64,7 +64,8 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/getysb", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
-    String adminGetysb(@RequestParam("rows") Integer rows, @RequestParam("page") Integer page, String searchString, String searchField) {
+    String adminGetysb(@RequestParam("rows") Integer rows, @RequestParam("page") Integer page, String searchString,
+                       String searchField) {
         JSONObject re = new JSONObject();
         if (searchString == null) {
             searchString = "";

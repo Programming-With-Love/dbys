@@ -21,8 +21,9 @@ import static java.lang.System.currentTimeMillis;
 public class Dmas {
     @Autowired
     MongoTemplate mongoTemplate;
+
     @Async
-    public void xzbcdm(String url, String player){
+    public void xzbcdm(String url, String player) {
         String json = HtmlUtils.getHtmlContentNp(url);
         JSONObject jsonObject = JSON.parseObject(json);
         JSONArray comments = jsonObject.getJSONArray("comments");

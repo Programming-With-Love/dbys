@@ -18,13 +18,15 @@ import java.util.concurrent.TimeUnit;
 public class HtmlUtils {
     /**
      * 获取url网页的源代码
+     *
      * @param urlStr 链接
      * @return 网页源代码
      */
-    private static String ip=null;
-    private static int port=0;
+    private static String ip = null;
+    private static int port = 0;
+
     public static String getHtmlContent(String urlStr) {
-        if (ip==null){
+        if (ip == null) {
             upipdl();
         }
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -44,7 +46,8 @@ public class HtmlUtils {
         upipdl();
         return getHtmlContent(urlStr);
     }
-    public static void upipdl(){
+
+    public static void upipdl() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .build();
         Request request = new Request.Builder()
@@ -53,15 +56,16 @@ public class HtmlUtils {
         try {
             Response response = okHttpClient.newCall(request).execute();
             JSONObject jsonObject = JSONObject.parseObject(response.body().string());
-            String proxy=jsonObject.getString("proxy");
+            String proxy = jsonObject.getString("proxy");
             String[] temp1;
             temp1 = proxy.split(":");
-            ip=temp1[0];
-            port= Integer.parseInt(temp1[1]);
+            ip = temp1[0];
+            port = Integer.parseInt(temp1[1]);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public static String getHtmlContentNp(String urlStr) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .build();
