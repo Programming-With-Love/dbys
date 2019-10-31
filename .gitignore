@@ -3,7 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-
+# JRebel
+rebel.xml
 ### STS ###
 .apt_generated
 .classpath

@@ -25,7 +25,7 @@ public class Scheduler {
     @Autowired
     private Dmas as;
 
-    @Scheduled(fixedDelay = 600000)
+    @Scheduled(fixedDelay = 60000)
     @Async
     public void cronJobSchedule() {
         Set tagids = redisTemplate.opsForSet().members("tagids");
@@ -34,9 +34,7 @@ public class Scheduler {
         for (Object s : das) {
             JSONObject jsonObject = JSON.parseObject(String.valueOf(s));
             String tagid = jsonObject.getString("tagid");
-            redisTemplate.opsForSet().add("oktagids", tagid);
             String player = (jsonObject.getString("player"));
-            redisTemplate.delete("danmaku" + player);
             int timestamp = 0;
             boolean flg = true;
             while (flg) {
@@ -47,6 +45,8 @@ public class Scheduler {
                     flg = false;
                 }
             }
+            redisTemplate.opsForSet().add("oktagids", tagid);
+            redisTemplate.delete("danmaku" + player);
         }
     }
 }

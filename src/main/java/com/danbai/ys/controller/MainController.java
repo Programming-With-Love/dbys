@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.entity.Ysb;
-import com.danbai.ys.service.impl.RegisterValidateServiceImpl;
-import com.danbai.ys.service.impl.StatisticalImpl;
-import com.danbai.ys.service.impl.UserServiceImpl;
-import com.danbai.ys.service.impl.YsServiceImpl;
+import com.danbai.ys.service.impl.*;
 import com.danbai.ys.utils.IpUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +36,13 @@ public class MainController {
     RegisterValidateServiceImpl registerValidateService;
     @Autowired
     RedisTemplate redisTemplate;
-
+    @Autowired
+    AdminServiceImpl adminService;
+    @ModelAttribute
+    public void bif(Model model) {
+        model.addAttribute("gg",redisTemplate.opsForValue().get("gg"));
+        model.addAttribute("ylink",adminService.getYlink());
+    }
     @RequestMapping(value = {"/", "index"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String index(Model model) {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
@@ -50,7 +53,6 @@ public class MainController {
         model.addAttribute("dsj", ysbs1.getList());
         model.addAttribute("zy", ysbs2.getList());
         model.addAttribute("dm", ysbs3.getList());
-        model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         return "index";
     }
 
@@ -67,7 +69,6 @@ public class MainController {
         map.put("dsj", ysbs1.getList());
         map.put("zy", ysbs2.getList());
         map.put("dm", ysbs3.getList());
-        map.put("gg", redisTemplate.opsForValue().get("gg"));
         return JSON.toJSONString(map);
     }
 

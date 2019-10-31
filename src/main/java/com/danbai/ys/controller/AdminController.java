@@ -5,12 +5,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.Acces;
 import com.danbai.ys.entity.Ysb;
-import com.danbai.ys.service.Statistical;
+import com.danbai.ys.service.impl.AdminServiceImpl;
 import com.danbai.ys.service.impl.StatisticalImpl;
 import com.danbai.ys.service.impl.UserServiceImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +29,15 @@ import java.util.List;
 @Controller
 public class AdminController {
     @Autowired
+    RedisTemplate redisTemplate;
+    @Autowired
     YsServiceImpl ysService;
     @Autowired
     UserServiceImpl userService;
     @Autowired
     StatisticalImpl statistical;
+    @Autowired
+    AdminServiceImpl adminService;
 
     @RequestMapping(value = "/admin", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String admin(Model model) {
@@ -117,5 +122,11 @@ public class AdminController {
             default:
         }
         return re.toJSONString();
+    }
+    @RequestMapping(value = "/admin/config", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    String adminConfig(Model model) {
+        model.addAttribute("gg",redisTemplate.opsForValue().get("gg"));
+        model.addAttribute("ylink",JSON.toJSONString(adminService.getYlink()));
+        return "admin/config";
     }
 }

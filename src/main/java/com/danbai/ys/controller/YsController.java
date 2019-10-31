@@ -6,6 +6,7 @@ import com.danbai.ys.entity.Ji;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
+import com.danbai.ys.service.impl.AdminServiceImpl;
 import com.danbai.ys.service.impl.StatisticalImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.danbai.ys.utils.IpUtils;
@@ -31,10 +32,15 @@ public class YsController {
     YsServiceImpl ysService;
     @Autowired
     RedisTemplate redisTemplate;
-
+    @Autowired
+    AdminServiceImpl adminService;
+    @ModelAttribute
+    public void bif(Model model) {
+        model.addAttribute("gg",redisTemplate.opsForValue().get("gg"));
+        model.addAttribute("ylink",adminService.getYlink());
+    }
     @RequestMapping(value = "/ys", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String ys(int id, Model model, HttpServletRequest request) {
-        model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         Ysb ysb = ysService.selectYsById(id);
         model.addAttribute("ys", ysb);
         String tagpm=ysb.getPm()+ysb.getDy()+ysb.getLx();
@@ -99,7 +105,6 @@ public class YsController {
 
     @RequestMapping(value = "/type/dy", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String dy(int page, Model model) {
-        model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         PageInfo page1 = ysService.getYs("电影", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
@@ -109,7 +114,6 @@ public class YsController {
 
     @RequestMapping(value = "/type/dsj", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String dsj(int page, Model model) {
-        model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         PageInfo page1 = ysService.getYs("电视剧", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
@@ -119,7 +123,6 @@ public class YsController {
 
     @RequestMapping(value = "/type/dm", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String dm(int page, Model model) {
-        model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         PageInfo page1 = ysService.getYs("动漫", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
@@ -129,7 +132,6 @@ public class YsController {
 
     @RequestMapping(value = "/type/zy", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String zy(int page, Model model) {
-        model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         PageInfo page1 = ysService.getYs("综艺", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
@@ -139,7 +141,6 @@ public class YsController {
 
     @RequestMapping(value = "/search", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String search(String gjc, Model model) {
-        model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         if ("".equals(gjc)) {
             return "/index";
         }
@@ -150,19 +151,16 @@ public class YsController {
 
     @RequestMapping(value = "/ys/time", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
-    String ysTimeApi(VideoTime videoTime, HttpServletRequest request) {
-        String user = "user";
-
-        User u = (User) request.getSession().getAttribute("user");
-        if (user == null) {
-            return "";
+    void ysTimeApi(VideoTime videoTime, HttpServletRequest request) {
+        User u = (User) request.getSession().getAttribute(User.DEFAULT_USER);
+        if (u == null) {
+            return;
         }
         videoTime.setUsername(u.getUsername());
-        if (user.equals(videoTime.getUsername())) {
-            return "ok";
+        if (User.DEFAULT_USER.equals(videoTime.getUsername())) {
+            return;
         }
         ysService.addYsTime(videoTime);
-        return "ok";
     }
 
     @RequestMapping(value = "/ys/gettime", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)

@@ -60,12 +60,14 @@
         </div>
     </nav>
     <div class="gg" style="width: 960px;margin: 0px auto">
-        <script id="w2898_10238">(function () {var zy = document.createElement("script");var flowExchange = window.location.protocol.split(":")[0];var http = flowExchange === "https"?"https":"http";zy.src = http+"://exchange.2898.com/index/flowexchange/getGoods?id=10238&sign=1b2f9a896b19b501561821e8e9efc3c2";var s = document.getElementsByTagName("script");for(var i=0;i< s.length;i++){if(s[i].id){if(s[i].id == "w2898_10238"){s[i].parentNode.insertBefore(zy, s[i]);continue;}}}})();</script>
-        <script id="w2898_10239">(function () {var zy = document.createElement("script");var flowExchange = window.location.protocol.split(":")[0];var http = flowExchange === "https"?"https":"http";zy.src = http+"://exchange.2898.com/index/flowexchange/getGoods?id=10239&sign=49cb77a28bf673dc8e2f13514358766b";var s = document.getElementsByTagName("script");for(var i=0;i< s.length;i++){if(s[i].id){if(s[i].id == "w2898_10239"){s[i].parentNode.insertBefore(zy, s[i]);continue;}}}})();</script>
-       </div>
+        </div>
 </div>
 
 <footer class="footer" th:fragment="foot">
+    友情链接:
+    <span th:each="l:${ylink}">
+<a th:href="${l.url}" target="_blank" th:text="${l.name}"></a>|
+    </span>
     <p>免责声明：本网站所有内容都是靠程序在互联网上自动搜集而来，仅供测试和学习交流。<br/>目前正在逐步删除和规避程序自动搜索采集到的不提供分享的版权影视。</p>
     <p>若侵犯了您的权益，请即时发邮件通知站长 万分感谢！</p>
     <p>db225@qq.com</p>
