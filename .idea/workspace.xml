@@ -4,22 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a87420e7-7e0a-450a-a81f-05143288bb53" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/Ys.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/BaseResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/EmailUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/ResultUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/YsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/YsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/RegisterValidateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/RegisterValidateServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/SendEmail.java" beforeDir="false" />
-    </list>
+    <list default="true" id="a87420e7-7e0a-450a-a81f-05143288bb53" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -43,30 +28,7 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ys" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ys" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ys" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="ys: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="ys" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="ys: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="user: table" type="285a2a93:MysqlImplModel$Table" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="DefaultGradleProjectSettings">
@@ -84,50 +46,85 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="241" column="24" selection-start-line="241" selection-start-column="24" selection-end-line="241" selection-end-column="24" />
+            <state relative-caret-position="199">
+              <caret line="254" column="62" selection-start-line="254" selection-start-column="62" selection-end-line="254" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#9416#9417#0" expanded="true" />
+                <element signature="e#9460#9461#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/async/Dmas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/IpUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/HtmlUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1178">
+              <caret line="71" column="47" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/ys/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1767">
+              <caret line="93" column="154" selection-start-line="93" selection-start-column="154" selection-end-line="93" selection-end-column="154" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/RegisterValidateServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="171" column="25" selection-start-line="171" selection-start-column="25" selection-end-line="171" selection-end-column="25" />
+            <state relative-caret-position="532">
+              <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/ResultUtil.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-              <folding>
-                <element signature="e#251#252#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/VideoTime.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1368">
-              <caret line="88" column="7" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/DateUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5282">
-              <caret line="281" selection-start-line="281" selection-end-line="281" />
+            <state relative-caret-position="399">
+              <caret line="42" column="36" selection-end-line="120" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,75 +133,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/BaseResult.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/YsApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="18" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="18" />
-              <folding>
-                <element signature="e#244#245#0" expanded="true" />
-                <element signature="e#271#272#0" expanded="true" />
-                <element signature="e#312#313#0" expanded="true" />
-                <element signature="e#344#345#0" expanded="true" />
-                <element signature="e#378#379#0" expanded="true" />
-                <element signature="e#407#408#0" expanded="true" />
-                <element signature="e#452#453#0" expanded="true" />
-                <element signature="e#488#489#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#544#545#0" expanded="true" />
-                <element signature="e#582#583#0" expanded="true" />
-                <element signature="e#612#613#0" expanded="true" />
-                <element signature="e#638#639#0" expanded="true" />
-                <element signature="e#665#666#0" expanded="true" />
-                <element signature="e#700#701#0" expanded="true" />
-                <element signature="e#732#733#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="247">
+              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/scheduler/Scheduler.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/Ys.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+            <state relative-caret-position="779">
+              <caret line="49" column="56" selection-start-line="49" selection-start-column="56" selection-end-line="49" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1128#1129#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/CountInterceptor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/StatisticalImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#806#807#0" expanded="true" />
-                <element signature="e#887#888#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/RegisterValidateService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -250,57 +195,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/config/AsyncConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/scheduler/DemoScheduler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/Dan.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/error/404.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/DataUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/Acces.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/Statistical.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/IpUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/admin/index_v1.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/person.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/async/Dmas.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/error/500.html" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/src/test/java/com/danbai/ys/YsApplicationTests.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/type/dm.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/type/dsj.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/type/dy.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/type/zy.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/ys/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/adminlogin.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/include/include.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/StatisticalImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/LoginInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/CountInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/RestfulController/RestfulUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/RestfulController/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/RestfulController/v1/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/CommonResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/BaseResult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/ResultUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/RestfulController/v1/Ys.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/SendEmail.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/async/Dmas.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/config/RedisConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/YsService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/UtilsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/CountInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/LoginInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/RegisterValidateService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/EmailUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/Statistical.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/YsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/RegisterValidateServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/StatisticalImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/DateUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/HtmlUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/EmailUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/IpUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/ResultUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/YsApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/Ys.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/DateUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/scheduler/Scheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/ys/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -325,11 +270,6 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="ys" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="ys" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
-        </path>
       </expand>
       <select />
     </treeState>
@@ -338,17 +278,17 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="514" />
-    <option name="y" value="42" />
+    <option name="x" value="187" />
+    <option name="y" value="44" />
     <option name="width" value="1403" />
-    <option name="height" value="857" />
+    <option name="height" value="840" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -382,11 +322,73 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ys" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ys" type="462c0819:PsiDirectoryNode" />
+              <item name="scheduler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ys" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ys" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ys" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="ys" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -403,7 +405,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates/error" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JSP/diancan" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -419,13 +421,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\HJJ\OneDrive\java\dbys\src\main\resources\static" />
-      <recent name="D:\HJJ\OneDrive\java\ys\src\main\resources\templates" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\HJJ\OneDrive\java\dbys\src\main\resources\templates\error" />
       <recent name="D:\HJJ\OneDrive\java\ys\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\HJJ\OneDrive\java\dbys\src\main\resources\static" />
+      <recent name="D:\HJJ\OneDrive\java\ys\src\main\resources\templates" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -1059,6 +1061,13 @@
       <workItem from="1572395981266" duration="5257000" />
       <workItem from="1572406560233" duration="791000" />
       <workItem from="1572408907027" duration="669000" />
+      <workItem from="1572417119339" duration="4883000" />
+      <workItem from="1572427360237" duration="1283000" />
+      <workItem from="1572429634771" duration="2681000" />
+      <workItem from="1572435416598" duration="4060000" />
+      <workItem from="1572441532121" duration="23000" />
+      <workItem from="1572482048988" duration="138000" />
+      <workItem from="1572482244863" duration="1403000" />
     </task>
     <task id="LOCAL-00001" summary="新增影视页面">
       <created>1566958495571</created>
@@ -1228,7 +1237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571998536089</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="代码整理">
+      <created>1572417409948</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1572417409948</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1264,7 +1280,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="393738000" />
+    <option name="totallyTimeSpent" value="408209000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1276,10 +1292,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="514" y="42" width="1403" height="857" extended-state="0" />
+    <frame x="187" y="44" width="1403" height="840" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49753696" visible="true" weight="0.33581534" />
+      <window_info id="JRebel" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49753696" visible="true" weight="0.36708862" />
       <window_info id="Structure" order="1" sideWeight="0.50246304" side_tool="true" weight="0.19989339" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1287,17 +1304,19 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.50246304" side_tool="true" weight="0.19989339" />
       <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="JRebel Console" side_tool="true" />
+      <window_info anchor="bottom" id="JRebel Executor" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32939914" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49143708" weight="0.3153527" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49292627" weight="0.32152975" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3973363" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.4951601" weight="0.39534885" />
+      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.4944155" weight="0.39235127" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49590468" weight="0.32196453" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.3251073" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5040953" side_tool="true" weight="0.42561448" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50558454" side_tool="true" weight="0.3937677" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3197425" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.31298557" />
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.32469305" />
@@ -1306,20 +1325,21 @@
       <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.49776787" weight="0.32832617" />
       <window_info anchor="bottom" id="Database Console" order="17" weight="0.24356224" />
       <window_info anchor="bottom" id="Database Changes" order="18" weight="0.32729626" />
+      <window_info anchor="right" id="JRebel Setup Guide" weight="0.3298585" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24944155" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" sideWeight="0.4984127" weight="0.3976546" />
+      <window_info anchor="right" id="Maven" order="3" sideWeight="0.4984127" weight="0.39761728" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="SciView" order="6" sideWeight="0.4968254" weight="0.32942432" />
-      <window_info anchor="right" id="Database" order="7" weight="0.15405117" />
+      <window_info anchor="right" id="SciView" order="6" sideWeight="0.4968254" weight="0.32911393" />
+      <window_info anchor="right" id="Database" order="7" weight="0.15338793" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="Bean Validation" order="10" weight="0.32942432" />
+      <window_info anchor="right" id="Bean Validation" order="10" weight="0.32911393" />
       <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.3298585" />
       <window_info anchor="right" id="Mybatis datasource" order="12" side_tool="true" />
-      <window_info anchor="right" id="Word Book" order="13" sideWeight="0.5031746" side_tool="true" weight="0.32942432" />
+      <window_info anchor="right" id="Word Book" order="13" sideWeight="0.5031746" side_tool="true" weight="0.32911393" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1378,7 +1398,8 @@
     <MESSAGE value="怎讲访问统计图表,修复验证码邮件发送问题" />
     <MESSAGE value="修改接口" />
     <MESSAGE value="构建" />
-    <option name="LAST_COMMIT_MESSAGE" value="构建" />
+    <MESSAGE value="代码整理" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码整理" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1388,69 +1409,6 @@
     <SUITE FILE_PATH="coverage/ys$YsApplication.ic" NAME="YsApplication Coverage Results" MODIFIED="1566471699636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/banner.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/danbai/ys/YsApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.project" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/hedimgupdate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/type/dm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/ys/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="69" selection-start-line="10" selection-start-column="69" selection-end-line="10" selection-end-column="69" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/adminlogin.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1499,61 +1457,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/MyMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2071">
-          <caret line="126" column="46" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1387">
-          <caret line="77" column="1" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/LoginInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="95" column="33" selection-start-line="95" selection-start-column="33" selection-end-line="95" selection-end-column="33" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/RedisConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/RestfulController/v1/User.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/CommonResult.java" />
@@ -1579,10 +1489,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/SendEmail.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/AdminController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/AsyncConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="25" column="58" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="27" column="29" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/RedisConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+          <caret line="34" column="22" selection-end-line="75" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1591,124 +1515,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/UtilsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="19" />
+        <state relative-caret-position="437">
+          <caret line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/YsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1938">
-          <caret line="108" column="19" selection-start-line="108" selection-start-column="15" selection-end-line="108" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/RegisterValidateServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="42" column="54" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/HtmlUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/async/Dmas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/EmailUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="44" column="10" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/YsApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-          <folding>
-            <element signature="e#545#546#0" expanded="true" />
-            <element signature="e#609#610#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/Ys.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/Acces.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="26" column="25" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="42" column="47" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/ResultUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-          <folding>
-            <element signature="e#251#252#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/VideoTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="88" column="7" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/DateUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5282">
-          <caret line="281" selection-start-line="281" selection-end-line="281" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="28" column="24" selection-end-line="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/BaseResult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="18" />
+        <state relative-caret-position="418">
+          <caret line="22" column="5" selection-end-line="48" />
           <folding>
             <element signature="e#244#245#0" expanded="true" />
             <element signature="e#271#272#0" expanded="true" />
@@ -1732,18 +1554,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/CountInterceptor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        <state relative-caret-position="450">
+          <caret line="27" column="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/LoginInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="27" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/RegisterValidateService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="7" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/Statistical.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="28" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="67" column="16" selection-end-line="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/YsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="98" column="6" selection-end-line="138" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/StatisticalImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+        <state relative-caret-position="437">
+          <caret line="39" column="39" selection-end-line="76" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#806#807#0" expanded="true" />
@@ -1752,27 +1612,151 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/RegisterValidateService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+        <state relative-caret-position="545">
+          <caret line="121" column="9" selection-end-line="164" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/scheduler/Scheduler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/DateUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        <state relative-caret-position="469">
+          <caret line="289" column="23" selection-end-line="447" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/EmailUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="241" column="24" selection-start-line="241" selection-start-column="24" selection-end-line="241" selection-end-column="24" />
+        <state relative-caret-position="488">
+          <caret line="36" column="51" selection-end-line="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/ResultUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="29" column="30" selection-end-line="34" />
+          <folding>
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#251#252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/SpringUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="28" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/MyMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/VideoTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="100" column="15" selection-start-line="100" selection-start-column="11" selection-end-line="100" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/Dan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-163">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2508">
+          <caret line="163" column="21" selection-start-line="163" selection-start-column="21" selection-end-line="163" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/person.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1273">
+          <caret line="67" column="40" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="87" selection-start-line="1" selection-start-column="70" selection-end-line="1" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/banner.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/scheduler/Scheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="30" column="65" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/IpUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/HtmlUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1178">
+          <caret line="71" column="47" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/ys/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1767">
+          <caret line="93" column="154" selection-start-line="93" selection-start-column="154" selection-end-line="93" selection-end-column="154" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/RegisterValidateServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1781,8 +1765,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="171" column="25" selection-start-line="171" selection-start-column="25" selection-end-line="171" selection-end-column="25" />
+        <state relative-caret-position="532">
+          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="42" column="36" selection-end-line="120" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/YsApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/Ys.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="49" column="56" selection-start-line="49" selection-start-column="56" selection-end-line="49" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="254" column="62" selection-start-line="254" selection-start-column="62" selection-end-line="254" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9416#9417#0" expanded="true" />
+            <element signature="e#9460#9461#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/async/Dmas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

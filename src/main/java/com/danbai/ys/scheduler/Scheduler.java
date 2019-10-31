@@ -23,9 +23,9 @@ public class Scheduler {
     @Autowired
     RedisTemplate redisTemplate;
     @Autowired
-    private Dmas testas;
+    private Dmas as;
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 600000)
     @Async
     public void cronJobSchedule() {
         Set tagids = redisTemplate.opsForSet().members("tagids");
@@ -42,7 +42,7 @@ public class Scheduler {
             while (flg) {
                 String url = "http://mfm.video.qq.com/danmu?otype=json&target_id=" + tagid + "&timestamp=" + timestamp;
                 timestamp += 30;
-                testas.xzbcdm(url, player);
+                as.xzbcdm(url, player);
                 if (timestamp > 60 * 120) {
                     flg = false;
                 }

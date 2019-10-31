@@ -37,6 +37,8 @@ public class YsController {
         model.addAttribute("gg", redisTemplate.opsForValue().get("gg"));
         Ysb ysb = ysService.selectYsById(id);
         model.addAttribute("ys", ysb);
+        String tagpm=ysb.getPm()+ysb.getDy()+ysb.getLx();
+        model.addAttribute("tagpm",tagpm.replaceAll(" ",""));
         List<Ji> list;
         String kong = "[]";
         if (kong.equals(ysb.getGkdz())) {

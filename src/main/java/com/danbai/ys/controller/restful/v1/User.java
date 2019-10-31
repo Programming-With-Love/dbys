@@ -22,28 +22,24 @@ public class User {
     UserService userService;
     @Autowired
     YsService ysService;
-
     /**
      * 获取当前用户信息
-     *
      * @param request 请求
      * @return BaseResult
      */
     @GetMapping("/user")
-    public BaseResult thisUser(HttpServletRequest request) {
+    public BaseResult thisUser(HttpServletRequest request){
         return ResultUtil.success(request.getSession().getAttribute("user"));
     }
-
     /**
      * 获取当前用户信息观看历史
-     *
      * @param request 请求
      * @return BaseResult
      */
     @GetMapping("/user/gkls")
-    public BaseResult thisUserGkls(HttpServletRequest request) {
-        com.danbai.ys.entity.User user = (com.danbai.ys.entity.User) request.getSession().getAttribute("user");
-        if (user != null) {
+    public BaseResult thisUserGkls(HttpServletRequest request){
+        com.danbai.ys.entity.User user = (com.danbai.ys.entity.User)request.getSession().getAttribute("user");
+        if(user!=null){
             return ResultUtil.success(ysService.getGkls(user.getUsername()));
         }
         return ResultUtil.error("未登陆");

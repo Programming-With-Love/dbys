@@ -6,7 +6,10 @@ server:
 spring:
   mvc:
     favicon:
-      enabled=false:
+      enabled: false
+  jackson:
+    time: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
   data:
     mongodb:
       uri: mongodb://danmu:danmu@39.108.110.44:27017/dm

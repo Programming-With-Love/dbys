@@ -214,8 +214,8 @@ public class YsServiceImpl implements YsService {
     public String getYsDanMu(String pm, int jid, String ysid) {
         String rr = (String) redisTemplate.opsForValue().get(pm + jid);
         if (rr != null) {
-            Query query = new Query(Criteria.where("player").is(ysid));
             if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
+                Query query = new Query(Criteria.where("player").is(ysid));
                 if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
                     String json = "{tagid:" + rr + ",player:\"" + ysid + "\"}";
                     redisTemplate.opsForSet().add("tagids", json);
@@ -223,6 +223,7 @@ public class YsServiceImpl implements YsService {
                 }
                 return null;
             }
+            return rr;
         }
         String encodePm = "";
         try {
@@ -243,13 +244,17 @@ public class YsServiceImpl implements YsService {
             str = matcher.group(0);
         }
         //截取id
+        if(str==""){
+            return null;
+        }
         String id = str.substring(9, str.length() - 1);
         content = HtmlUtils.getHtmlContent("http://s.video.qq.com/get_playsource?plat=2&type=4&range=1&otype=json&id" +
                 "=" + id);
         String json = content.substring(13, content.length() - 1);
         JSONObject jsonObject = JSONObject.parseObject(json);
         jsonObject = jsonObject.getJSONObject("PlaylistItem");
-        if (jsonObject == null || !(jsonObject.getString(PAY_TYPE).equals(DMTYPE))) {
+        if (jsonObject == null) {
+            System.out.println("kong");
             return null;
         }
         //解析为数组

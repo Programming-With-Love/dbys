@@ -271,7 +271,7 @@
         $.ajax({
             type: "GET",
             url: '/ys/gettagid',
-            data: {pm: "[[${ys.pm}+${ys.dy}+${ys.lx}]]", id: id, ysid: ysid},
+            data: {pm: "[[${tagpm}]]", id: id, ysid: ysid},
             success: function (data) {
                 if (data != "") {
                     tagid = data;
