@@ -2,14 +2,9 @@ package com.danbai.ys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.danbai.ys.entity.Ji;
-import com.danbai.ys.entity.User;
-import com.danbai.ys.entity.VideoTime;
-import com.danbai.ys.entity.Ysb;
+import com.danbai.ys.entity.*;
 import com.danbai.ys.service.impl.AdminServiceImpl;
-import com.danbai.ys.service.impl.StatisticalImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
-import com.danbai.ys.utils.IpUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -34,17 +29,20 @@ public class YsController {
     RedisTemplate redisTemplate;
     @Autowired
     AdminServiceImpl adminService;
+
     @ModelAttribute
     public void bif(Model model) {
-        model.addAttribute("gg",redisTemplate.opsForValue().get("gg"));
-        model.addAttribute("ylink",adminService.getYlink());
+        model.addAttribute(Config.GG, adminService.getConfig(Config.GG));
+        model.addAttribute(Config.YLINK, adminService.getYlink());
+        model.addAttribute(Config.AD, adminService.getConfig(Config.AD));
     }
+
     @RequestMapping(value = "/ys", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String ys(int id, Model model, HttpServletRequest request) {
         Ysb ysb = ysService.selectYsById(id);
         model.addAttribute("ys", ysb);
-        String tagpm=ysb.getPm()+ysb.getDy()+ysb.getLx();
-        model.addAttribute("tagpm",tagpm.replaceAll(" ",""));
+        String tagpm = ysb.getPm() + ysb.getDy() + ysb.getLx();
+        model.addAttribute("tagpm", tagpm.replaceAll(" ", ""));
         List<Ji> list;
         String kong = "[]";
         if (kong.equals(ysb.getGkdz())) {

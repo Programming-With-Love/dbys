@@ -1,23 +1,19 @@
 package com.danbai.ys.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.danbai.ys.entity.Config;
 import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.User;
-import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.impl.*;
-import com.danbai.ys.utils.IpUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,11 +34,14 @@ public class MainController {
     RedisTemplate redisTemplate;
     @Autowired
     AdminServiceImpl adminService;
+
     @ModelAttribute
     public void bif(Model model) {
-        model.addAttribute("gg",redisTemplate.opsForValue().get("gg"));
-        model.addAttribute("ylink",adminService.getYlink());
+        model.addAttribute(Config.GG, adminService.getConfig(Config.GG));
+        model.addAttribute(Config.YLINK, adminService.getYlink());
+        model.addAttribute(Config.AD, adminService.getConfig(Config.AD));
     }
+
     @RequestMapping(value = {"/", "index"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String index(Model model) {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);

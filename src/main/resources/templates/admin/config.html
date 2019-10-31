@@ -35,6 +35,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">广告</label>
+                            <div class="col-sm-10">
+                                <textarea rows="3" name="ad" cols="40" th:text="${ad}"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-primary" type="button" onclick="tj()">保存内容</button>
                             </div>
@@ -407,13 +413,34 @@
 <script src="http://cdn.p00q.cn:81/hAdmin/js/plugins/toastr/toastr.min.js"></script>
 
 <script>
+
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        var $radio = $('input[type=radio],input[type=checkbox]',this);
+        $.each($radio,function(){
+            if(!o.hasOwnProperty(this.name)){
+                o[this.name] = '';
+            }
+        });
+        return o;
+    };
         function tj() {
-            $.ajax({            //几个参数需要注意一下
-                type: "POST",//方法类型
-                dataType: "json",//预期服务器返回的数据类型
-                url: "/api/v1/admin/config",//url
-                data: $('#config').serialize(),
-                success: function (result) {
+            $.ajax({
+                type: "POST",
+                url: "/api/v1/admin/config",
+                data: {data:JSON.stringify($('#config').serializeObject())},
+                success: function () {
                     toastr.options = {
                         "closeButton": true,
                         "debug": false,

@@ -18,6 +18,7 @@ public class Ylink {
         this.name = name;
         this.url = url;
     }
+
     public String getName() {
         return name;
     }

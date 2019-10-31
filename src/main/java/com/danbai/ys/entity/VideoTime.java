@@ -3,6 +3,7 @@ package com.danbai.ys.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+
 /**
  * @author danbai
  */

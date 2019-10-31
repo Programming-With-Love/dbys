@@ -4,13 +4,9 @@ import com.danbai.ys.service.RegisterValidateService;
 import com.danbai.ys.utils.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 

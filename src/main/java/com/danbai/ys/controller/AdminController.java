@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.Acces;
+import com.danbai.ys.entity.Config;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.impl.AdminServiceImpl;
 import com.danbai.ys.service.impl.StatisticalImpl;
@@ -123,10 +124,13 @@ public class AdminController {
         }
         return re.toJSONString();
     }
+
     @RequestMapping(value = "/admin/config", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String adminConfig(Model model) {
-        model.addAttribute("gg",redisTemplate.opsForValue().get("gg"));
-        model.addAttribute("ylink",JSON.toJSONString(adminService.getYlink()));
+        List<Config> config = adminService.getConfig();
+        for (Config c : config) {
+            model.addAttribute(c.getItem(), c.getValue());
+        }
         return "admin/config";
     }
 }

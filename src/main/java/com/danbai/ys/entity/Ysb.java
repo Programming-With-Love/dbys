@@ -2,10 +2,11 @@ package com.danbai.ys.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 /**
  * @author danbai
  */
-public class Ysb implements Serializable{
+public class Ysb implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -64,7 +65,7 @@ public class Ysb implements Serializable{
     }
 
     /**
-     * @param pf  评分
+     * @param pf 评分
      */
     public void setPf(Float pf) {
         this.pf = pf;

@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="container" style="padding-top:15px;padding-bottom:15px;padding-right:0;">
-        <div th:text="${gg}">
+        <div th:utext="${gg}">
 
         </div>
         <div class="pull-right">
@@ -59,8 +59,7 @@
             </div>
         </div>
     </nav>
-    <div class="gg" style="width: 960px;margin: 0px auto">
-        </div>
+    <div class="gg" style="margin: 0px auto; font-size: 2rem" th:utext="${ad}"></div>
 </div>
 
 <footer class="footer" th:fragment="foot">

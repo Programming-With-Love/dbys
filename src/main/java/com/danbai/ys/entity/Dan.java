@@ -18,9 +18,11 @@ public class Dan {
     private String ip;
     private String referer;
     private long date;
+
     public void setPlayer(String player) {
         this.player = player;
     }
+
     public String getPlayer() {
         return player;
     }
@@ -28,6 +30,7 @@ public class Dan {
     public void setAuthor(String author) {
         this.author = author;
     }
+
     public String getAuthor() {
         return author;
     }
@@ -35,6 +38,7 @@ public class Dan {
     public void setTime(double time) {
         this.time = time;
     }
+
     public double getTime() {
         return time;
     }
@@ -42,6 +46,7 @@ public class Dan {
     public void setText(String text) {
         this.text = text;
     }
+
     public String getText() {
         return text;
     }
@@ -49,6 +54,7 @@ public class Dan {
     public void setColor(long color) {
         this.color = color;
     }
+
     public long getColor() {
         return color;
     }
@@ -56,6 +62,7 @@ public class Dan {
     public void setType(int type) {
         this.type = type;
     }
+
     public int getType() {
         return type;
     }
@@ -63,6 +70,7 @@ public class Dan {
     public void setIp(String ip) {
         this.ip = ip;
     }
+
     public String getIp() {
         return ip;
     }
@@ -70,6 +78,7 @@ public class Dan {
     public void setReferer(String referer) {
         this.referer = referer;
     }
+
     public String getReferer() {
         return referer;
     }
@@ -77,6 +86,7 @@ public class Dan {
     public void setDate(long date) {
         this.date = date;
     }
+
     public long getDate() {
         return date;
     }

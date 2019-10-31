@@ -1,9 +1,10 @@
 package com.danbai.ys.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.danbai.ys.entity.Config;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.entity.Ylink;
-import com.danbai.ys.mapper.YlinkMapper;
+import com.danbai.ys.mapper.ConfigMapper;
 import com.danbai.ys.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,17 +20,14 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
     @Autowired
-    RedisTemplate redisTemplate;
+    ConfigMapper configMapper;
     @Autowired
-    YlinkMapper ylinkMapper;
+    RedisTemplate redisTemplate;
+
     @Override
-    public void updatagg(String gg) {
-        redisTemplate.opsForValue().set("gg",gg);
-    }
-    @Override
-    public boolean isAdmin(HttpServletRequest request){
-        User user = (User)request.getSession().getAttribute("user");
-        if(user!=null&user.getUserType()==User.ADMIN){
+    public boolean isAdmin(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute(User.DEFAULT_USER);
+        if (user != null & user.getUserType() == User.ADMIN) {
             return true;
         }
         return false;
@@ -37,15 +35,35 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Ylink> getYlink() {
-        return ylinkMapper.selectAll();
+        return JSON.parseArray(configMapper.selectOne(new Config(Config.YLINK)).getValue(), Ylink.class);
     }
 
     @Override
     public void updataYlink(String json) {
-        List<Ylink> ylinks = JSON.parseArray(json, Ylink.class);
-        ylinkMapper.deleteAll();
-        if(ylinks.size()>0){
-            ylinkMapper.insertList(ylinks);
+        Config ylink = new Config("ylink", json);
+        configMapper.updateByPrimaryKey(ylink);
+    }
+
+    @Override
+    public List<Config> getConfig() {
+        return configMapper.selectAll();
+    }
+
+    @Override
+    public void updataAllConfig(List<Config> list) {
+        configMapper.deleteAll();
+        for (Config c : list) {
+            configMapper.insert(c);
         }
+    }
+
+    @Override
+    public String getConfig(String name) {
+        return configMapper.selectOne(new Config(name)).getValue();
+    }
+
+    @Override
+    public void updataConfig(String name, String value) {
+        configMapper.updateByPrimaryKey(new Config(name, value));
     }
 }

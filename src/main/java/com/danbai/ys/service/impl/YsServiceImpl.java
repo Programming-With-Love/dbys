@@ -214,7 +214,7 @@ public class YsServiceImpl implements YsService {
     @Override
     public String getYsDanMu(String pm, int jid, String ysid) {
         String rr = (String) redisTemplate.opsForValue().get(pm + jid);
-        if (rr != null&rr.equals(KONG)) {
+        if (rr != null & rr.equals(KONG)) {
             if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
                 Query query = new Query(Criteria.where("player").is(ysid));
                 if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
@@ -245,7 +245,7 @@ public class YsServiceImpl implements YsService {
             str = matcher.group(0);
         }
         //截取id
-        if(str==""){
+        if (str == "") {
             return null;
         }
         String id = str.substring(9, str.length() - 1);
