@@ -3,6 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+#config
+/**/jdbc.properties
 # JRebel
 rebel.xml
 ### STS ###
