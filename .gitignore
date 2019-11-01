@@ -3,8 +3,6 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-#config
-**/jdbc.properties
 # JRebel
 rebel.xml
 ### STS ###
@@ -15,7 +13,8 @@ rebel.xml
 .settings
 .springBeans
 .sts4-cache
-
+**/jdbc.properties
+**/application.yml
 ### IntelliJ IDEA ###
 .idea
 *.iws

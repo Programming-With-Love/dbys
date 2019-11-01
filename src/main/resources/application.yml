@@ -12,15 +12,15 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   data:
     mongodb:
-      uri: mongodb://***:***@127.0.0.1:27017/dm
+      uri: mongodb://danmu:danmu@39.108.110.44:27017/dm
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
   datasource:
     druid:
-      url: jdbc:mysql://***:3306/ys?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-      username: ****
-      password: ****
+      url: jdbc:mysql://39.108.110.44:3306/ys?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      username: ys
+      password: hjj225
       initial-size: 1
       min-idle: 1
       max-active: 20
@@ -29,7 +29,7 @@ spring:
   redis:
     database: 0
     host: 39.108.110.44
-    password: ****
+    password: danbai225
     port: 6379
     timeout: 1000
 mybatis:
