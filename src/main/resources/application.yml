@@ -29,7 +29,7 @@ spring:
   redis:
     database: 0
     host: 39.108.110.44
-    password: *
+    password: **
     port: 6379
     timeout: 1000
 mybatis:
