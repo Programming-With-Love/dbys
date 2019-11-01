@@ -135,4 +135,10 @@ public interface YsService {
      * @return List
      */
     List<Ysb> getAll();
+
+    /**
+     * 去除首页不需要的数据
+     * @return
+     */
+    List<Ysb> qcsy(List<Ysb> list);
 }

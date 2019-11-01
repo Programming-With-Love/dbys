@@ -48,7 +48,7 @@ public class Ys {
      */
     @GetMapping("/ys/search/{gjc}")
     public BaseResult search(@PathVariable String gjc) {
-        return ResultUtil.success(ysService.selectYsByPm(gjc));
+        return ResultUtil.success(ysService.qcsy(ysService.selectYsByPm(gjc)));
     }
 
 }

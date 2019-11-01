@@ -64,10 +64,10 @@ public class MainController {
         PageInfo ysbs2 = ysService.getYs("综艺", 1, 12);
         PageInfo ysbs3 = ysService.getYs("动漫", 1, 12);
         Map<String, Object> map = new HashMap<>(10);
-        map.put(Ysb.DY, ysbs.getList());
-        map.put(Ysb.DSJ, ysbs1.getList());
-        map.put(Ysb.ZY, ysbs2.getList());
-        map.put(Ysb.DM, ysbs3.getList());
+        map.put(Ysb.DY, ysService.qcsy(ysbs.getList()));
+        map.put(Ysb.DSJ, ysService.qcsy(ysbs1.getList()));
+        map.put(Ysb.ZY, ysService.qcsy(ysbs2.getList()));
+        map.put(Ysb.DM, ysService.qcsy(ysbs3.getList()));
         map.put(Config.GG, adminService.getConfig(Config.GG));
         return JSON.toJSONString(map);
     }

@@ -275,4 +275,17 @@ public class YsServiceImpl implements YsService {
     public List<Ysb> getAll() {
         return ysbMapper.selectAll();
     }
+
+    @Override
+    public List<Ysb> qcsy(List<Ysb> list) {
+        List<Ysb> tmp=new ArrayList<>();
+        //清除掉不需要的数据
+        for (Ysb y:list) {
+            y.setGkdz("");
+            y.setXzdz("");
+            y.setJs("");
+            tmp.add(y);
+        }
+        return tmp;
+    }
 }

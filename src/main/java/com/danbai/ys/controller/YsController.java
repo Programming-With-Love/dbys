@@ -94,7 +94,7 @@ public class YsController {
     String getTypeYsApi(String type, int page) {
         PageInfo page1 = ysService.getYs(type, page, 24);
         Map<String, Object> map = new HashMap<>(10);
-        map.put("list", page1.getList());
+        map.put("list", ysService.qcsy(page1.getList()));
         map.put("zys", page1.getPages());
         map.put("page", page);
         map.put("total", page1.getTotal());

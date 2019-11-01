@@ -1,5 +1,6 @@
 package com.danbai.ys.scheduler;
 
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.async.Dmas;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
-
 /**
  * @author danbai
  * @date 2019-10-16 18:33
@@ -24,9 +24,8 @@ public class Scheduler {
     RedisTemplate redisTemplate;
     @Autowired
     private Dmas as;
-
-    @Scheduled(fixedDelay = 60000)
     @Async
+    @Scheduled(fixedDelay = 60000)
     public void cronJobSchedule() {
         Set tagids = redisTemplate.opsForSet().members("tagids");
         redisTemplate.delete("tagids");
