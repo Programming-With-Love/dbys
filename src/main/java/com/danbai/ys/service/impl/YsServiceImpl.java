@@ -214,7 +214,7 @@ public class YsServiceImpl implements YsService {
     @Override
     public String getYsDanMu(String pm, int jid, String ysid) {
         String rr = (String) redisTemplate.opsForValue().get(pm + jid);
-        if (rr != null & rr.equals(KONG)) {
+        if (rr != null && rr.equals(KONG)) {
             if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
                 Query query = new Query(Criteria.where("player").is(ysid));
                 if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
@@ -255,7 +255,6 @@ public class YsServiceImpl implements YsService {
         JSONObject jsonObject = JSONObject.parseObject(json);
         jsonObject = jsonObject.getJSONObject("PlaylistItem");
         if (jsonObject == null) {
-            System.out.println("kong");
             return null;
         }
         //解析为数组
