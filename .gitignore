@@ -13,14 +13,13 @@ rebel.xml
 .settings
 .springBeans
 .sts4-cache
-
 **/application.yml
+**/jdbc.properties
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
-
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -31,4 +30,3 @@ build/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/jdbc.properties
