@@ -40,7 +40,6 @@ public class RegisterValidateServiceImpl implements RegisterValidateService {
         emailUtil.sendEmail("淡白影视注册邮件", content, email);
         redisTemplate.opsForValue().set(email, yzm, 4, TimeUnit.MINUTES);
     }
-
     @Override
     public String getVerificationCode(String email) {
         return (String) redisTemplate.opsForValue().get(email);
@@ -50,14 +49,4 @@ public class RegisterValidateServiceImpl implements RegisterValidateService {
     public void deleteVerificationCode(String email) {
         redisTemplate.delete(email);
     }
-    /**
-     * @方法名: sendEmail<br>
-     * @描述: 发送邮件<br>
-     * @创建者: lidongyang<br>
-     * @修改时间: 2017年12月20日 下午3:59:15<br>
-     * @param title
-     * @param content
-     * @param toMail 多个用英文格式逗号分隔
-     */
-
 }

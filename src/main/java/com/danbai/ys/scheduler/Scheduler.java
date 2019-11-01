@@ -25,7 +25,7 @@ public class Scheduler {
     @Autowired
     private Dmas as;
 
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 6000000)
     @Async
     public void cronJobSchedule() {
         Set tagids = redisTemplate.opsForSet().members("tagids");

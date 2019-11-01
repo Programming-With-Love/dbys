@@ -7,6 +7,10 @@ import java.io.Serializable;
  * @author danbai
  */
 public class Ysb implements Serializable {
+    public static String DY="dy";
+    public static String DSJ="dsj";
+    public static String DM="dm";
+    public static String ZY="zy";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

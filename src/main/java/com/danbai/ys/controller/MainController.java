@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.danbai.ys.entity.Config;
 import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.User;
+import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.impl.*;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,16 +59,16 @@ public class MainController {
     @RequestMapping(value = {"/sy"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     String indexApi(HttpServletRequest request) {
-
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
         PageInfo ysbs1 = ysService.getYs("电视剧", 1, 12);
         PageInfo ysbs2 = ysService.getYs("综艺", 1, 12);
         PageInfo ysbs3 = ysService.getYs("动漫", 1, 12);
         Map<String, Object> map = new HashMap<>(10);
-        map.put("dy", ysbs.getList());
-        map.put("dsj", ysbs1.getList());
-        map.put("zy", ysbs2.getList());
-        map.put("dm", ysbs3.getList());
+        map.put(Ysb.DY, ysbs.getList());
+        map.put(Ysb.DSJ, ysbs1.getList());
+        map.put(Ysb.ZY, ysbs2.getList());
+        map.put(Ysb.DM, ysbs3.getList());
+        map.put(Config.GG, adminService.getConfig(Config.GG));
         return JSON.toJSONString(map);
     }
 
@@ -114,7 +115,6 @@ public class MainController {
     @RequestMapping(value = "/regapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     String regAppApi(User user, Model model, String yzm) {
-
         return userService.regapp(user, yzm);
     }
 
