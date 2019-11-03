@@ -11,6 +11,7 @@ public class Ysb implements Serializable {
     public static String DSJ="dsj";
     public static String DM="dm";
     public static String ZY="zy";
+    public static String TJ="tj";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

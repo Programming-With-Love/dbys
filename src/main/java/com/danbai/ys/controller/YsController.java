@@ -42,7 +42,7 @@ public class YsController {
         Ysb ysb = ysService.selectYsById(id);
         model.addAttribute("ys", ysb);
         String tagpm = ysb.getPm() + ysb.getDy() + ysb.getLx();
-        model.addAttribute("tagpm", tagpm.replaceAll(" ", ""));
+        model.addAttribute("tagpm", tagpm);
         List<Ji> list;
         String kong = "[]";
         if (kong.equals(ysb.getGkdz())) {
@@ -172,8 +172,7 @@ public class YsController {
 
     @RequestMapping(value = "/ys/gettagid", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
-    String ysGetTagIdApi(@RequestParam(value = "pm", required = true) String pm, @RequestParam(value = "id",
-            required = true) int id, @RequestParam(value = "ysid", required = true) String ysid) {
-        return ysService.getYsDanMu(pm, id, ysid);
+    String ysGetTagIdApi(@RequestParam(value = "pm", required = true) String pm,@RequestParam(value = "ysid", required = true) String ysid) {
+        return ysService.getYsDanMu(pm, ysid);
     }
 }

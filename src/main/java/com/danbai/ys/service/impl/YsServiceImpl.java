@@ -1,14 +1,11 @@
 package com.danbai.ys.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.*;
 import com.danbai.ys.mapper.VideoTimeMapper;
 import com.danbai.ys.mapper.YsbMapper;
 import com.danbai.ys.service.YsService;
 import com.danbai.ys.utils.DateUtils;
-import com.danbai.ys.utils.HtmlUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +16,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 /**
@@ -44,11 +37,10 @@ public class YsServiceImpl implements YsService {
     RedisTemplate redisTemplate;
     @Autowired
     MongoTemplate mongoTemplate;
-    static String DMTYPE = "2";
-    static String PAY_TYPE = "payType";
+    static String NULL = "null";
     static String KONG = "";
     static int MIN_DM = 100;
-
+    static int MAXTJ =8;
     @Override
     public List<Ysb> page(int page, int pagenum) {
         PageHelper.offsetPage(page, pagenum);
@@ -212,62 +204,24 @@ public class YsServiceImpl implements YsService {
     }
 
     @Override
-    public String getYsDanMu(String pm, int jid, String ysid) {
-        String rr = (String) redisTemplate.opsForValue().get(pm + jid);
-        if (rr != null && rr.equals(KONG)) {
+    public String getYsDanMu(String pm ,String ysid) {
+        String rr = String.valueOf(redisTemplate.opsForValue().get(pm + ysid));
+        if(rr==NULL){
+            return null;
+        }
+        if (rr != null && !rr.equals(KONG)) {
             if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
                 Query query = new Query(Criteria.where("player").is(ysid));
                 if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
-                    String json = "{tagid:" + rr + ",player:\"" + ysid + "\"}";
-                    redisTemplate.opsForSet().add("tagids", json);
                     return rr;
                 }
                 return null;
             }
+            String json = "{tagid:" + rr + ",player:\"" + ysid + "\"}";
+            redisTemplate.opsForSet().add("tagids", json);
             return rr;
         }
-        String encodePm = "";
-        try {
-            //对片面转码
-            encodePm = URLEncoder.encode(pm, "utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        //获取搜索结果
-        String urlStr = "http://v.qq.com/x/search/?q=" + encodePm;
-        String content = HtmlUtils.getHtmlContent(urlStr);
-        //匹配影视id
-        String regEx = "data-id=\"(.*?)\"";
-        Pattern pattern = Pattern.compile(regEx);
-        Matcher matcher = pattern.matcher(content);
-        String str = "";
-        if (matcher.find()) {
-            str = matcher.group(0);
-        }
-        //截取id
-        if (str == "") {
-            return null;
-        }
-        String id = str.substring(9, str.length() - 1);
-        content = HtmlUtils.getHtmlContent("http://s.video.qq.com/get_playsource?plat=2&type=4&range=1&otype=json&id" +
-                "=" + id);
-        String json = content.substring(13, content.length() - 1);
-        JSONObject jsonObject = JSONObject.parseObject(json);
-        jsonObject = jsonObject.getJSONObject("PlaylistItem");
-        if (jsonObject == null) {
-            return null;
-        }
-        //解析为数组
-        JSONArray jsonArray = jsonObject.getJSONArray("videoPlayList");
-        urlStr =
-                "http://bullet.video.qq.com/fcgi-bin/target/regist?otype=json&vid=" + jsonArray.getJSONObject(jsonArray.size() - jid - 1).getString("id");
-        content = HtmlUtils.getHtmlContent(urlStr);
-        json = content.substring(13, content.length() - 1);
-        jsonObject = JSONObject.parseObject(json);
-        String tagid = jsonObject.getString("targetid");
-        redisTemplate.opsForValue().set(pm + jid, tagid, 30, TimeUnit.DAYS);
-        redisTemplate.opsForSet().add("tagids", "{tagid:" + tagid + ",player:\"" + ysid + "\"}");
-        return tagid;
+        return null;
     }
 
     @Override
@@ -286,5 +240,24 @@ public class YsServiceImpl implements YsService {
             tmp.add(y);
         }
         return tmp;
+    }
+
+    @Override
+    public List<Ysb> tuijian() {
+        Example example = new Example(Ysb.class);
+        try {
+            example.createCriteria().andGreaterThan("gxtime",DateUtils.dateAdd(null,-30,true)).andGreaterThan("pf",8);
+            List<Ysb> ysbs = ysbMapper.selectByExample(example);
+            ArrayList<Ysb> rys = new ArrayList<>();
+            for(int i=0;i<MAXTJ;i++){
+                int j=(int)(Math.random()*(ysbs.size()-1));
+                rys.add(ysbs.get(j));
+                ysbs.remove(j);
+            }
+            return rys;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

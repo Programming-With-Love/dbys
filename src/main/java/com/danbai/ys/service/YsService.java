@@ -123,11 +123,10 @@ public interface YsService {
      * 获取腾讯弹幕连接
      *
      * @param pm   片名
-     * @param jid  集id
      * @param ysid 弹幕id
-     * @return
+     * @return String
      */
-    String getYsDanMu(String pm, int jid, String ysid);
+    String getYsDanMu(String pm, String ysid);
 
     /**
      * 获取所有影视
@@ -141,4 +140,9 @@ public interface YsService {
      * @return
      */
     List<Ysb> qcsy(List<Ysb> list);
+    /**
+     * 获取推荐
+     * @return
+     */
+    List<Ysb> tuijian();
 }

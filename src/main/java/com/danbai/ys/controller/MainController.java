@@ -68,6 +68,7 @@ public class MainController {
         map.put(Ysb.DSJ, ysService.qcsy(ysbs1.getList()));
         map.put(Ysb.ZY, ysService.qcsy(ysbs2.getList()));
         map.put(Ysb.DM, ysService.qcsy(ysbs3.getList()));
+        map.put(Ysb.TJ, ysService.qcsy(ysService.tuijian()));
         map.put(Config.GG, adminService.getConfig(Config.GG));
         return JSON.toJSONString(map);
     }

@@ -7,12 +7,12 @@
     <meta name="Keywords" content="淡白影视,淡白电影,淡白电视剧,淡白综艺,在线观看电影,免vip弹幕影视,弹幕影视,最新电影,最新电影观看,2019最新电影观看网站"/>
     <meta name="Description" content="淡白影视是一个在线免vip观看影视的网站,还能观看发送弹幕."/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="icon" href="http://cdn.p00q.cn:81/favicon.ico">
-    <link rel="stylesheet" href="http://cdn.p00q.cn:81/ys/css/bootstrap.min.css">
-    <script src="http://cdn.p00q.cn:81/ys/js/jquery.min.js"></script>
-    <script src="http://cdn.p00q.cn:81/ys/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="http://cdn.p00q.cn:81/ys/css/bootadd.css">
-    <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="http://cdn.p00q.cn:81/ys/css/css2.css">
+    <link rel="icon" href="https://cdn.p00q.cn/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.p00q.cn/ys/css/bootstrap.min.css">
+    <script src="https://cdn.p00q.cn/ys/js/jquery.min.js"></script>
+    <script src="https://cdn.p00q.cn/ys/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="https://cdn.p00q.cn/ys/css/bootadd.css">
+    <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="https://cdn.p00q.cn/ys/css/css2.css">
 </head>
 <body>
 <div style="background:#FFF" th:include="include/include :: dhl">
@@ -31,7 +31,7 @@
                 <div class="movie-item" th:inline="text">
                     <a style="position:relative;display:block;" target="_blank" th:href="'/ys?'+id+'='+(${ys.id})"
                        th:title="${ys.pm}">
-                        <img class="indexhot" th:src="${ys.tp}">
+                        <img class="indexhot" th:src="${ys.tp}" th:alt="${'淡白影视-'+ys.pm}">
                         <button class="hdtag">[[${ys.zt}]]</button>
                     </a>
                     <div class="meta">
