@@ -44,7 +44,7 @@ public interface YsService {
      * @return List<Ysb>
      */
     List<Ysb> selectYsByPm(String pm);
-
+    List<Ysb> selectYsByGjc(String gjc);
     /**
      * 根据影视id查询影视返回影视列表
      *

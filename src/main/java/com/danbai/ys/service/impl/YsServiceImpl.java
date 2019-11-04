@@ -37,6 +37,8 @@ public class YsServiceImpl implements YsService {
     RedisTemplate redisTemplate;
     @Autowired
     MongoTemplate mongoTemplate;
+    @Autowired
+    AdminServiceImpl adminService;
     static String NULL = "null";
     static String KONG = "";
     static int MIN_DM = 100;
@@ -69,6 +71,13 @@ public class YsServiceImpl implements YsService {
     public List<Ysb> selectYsByPm(String pm) {
         Example example = new Example(Ysb.class);
         example.createCriteria().andLike("pm", "%" + pm + "%");
+        return ysbMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Ysb> selectYsByGjc(String gjc) {
+        Example example = new Example(Ysb.class);
+        example.createCriteria().andLike("pm", "%" + gjc + "%").orLike("zy","%" + gjc + "%").orLike("dy","%" + gjc + "%");
         return ysbMapper.selectByExample(example);
     }
 
@@ -210,15 +219,18 @@ public class YsServiceImpl implements YsService {
             return null;
         }
         if (rr != null && !rr.equals(KONG)) {
-            if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
-                Query query = new Query(Criteria.where("player").is(ysid));
-                if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
-                    return rr;
+            if(adminService.getConfig("dmcache").equals(AdminServiceImpl.YES)) {
+                if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
+                    Query query = new Query(Criteria.where("player").is(ysid));
+                    if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
+                        return rr;
+                    }
+                    return null;
                 }
-                return null;
+                String json = "{tagid:" + rr + ",player:\"" + ysid + "\"}";
+                redisTemplate.opsForSet().add("tagids", json);
+                return rr;
             }
-            String json = "{tagid:" + rr + ",player:\"" + ysid + "\"}";
-            redisTemplate.opsForSet().add("tagids", json);
             return rr;
         }
         return null;

@@ -142,7 +142,7 @@ public class YsController {
         if ("".equals(gjc)) {
             return "/index";
         }
-        model.addAttribute("ysb", ysService.selectYsByPm(gjc));
+        model.addAttribute("ysb", ysService.selectYsByGjc(gjc));
         model.addAttribute("gjc", gjc);
         return "search";
     }

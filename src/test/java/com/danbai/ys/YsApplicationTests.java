@@ -32,4 +32,11 @@ public class YsApplicationTests {
         List<Ysb> tuijian = ysService.tuijian();
         System.out.println(tuijian.size());
     }
+    @Test
+    public void sou(){
+        List<Ysb> ysbs = ysService.selectYsByGjc("胡歌");
+        for (Ysb ysb:ysbs) {
+            System.out.println(ysb.getPm());
+        }
+    }
 }

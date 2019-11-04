@@ -19,6 +19,8 @@ import java.util.List;
  */
 @Service
 public class AdminServiceImpl implements AdminService {
+    static String YES="yes";
+    static String NO="no";
     @Autowired
     ConfigMapper configMapper;
     @Autowired
