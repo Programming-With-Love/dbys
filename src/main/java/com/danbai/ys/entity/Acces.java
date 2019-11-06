@@ -1,6 +1,6 @@
 package com.danbai.ys.entity;
 
-/**
+/**统计类
  * @author danbai
  * @date 2019-10-18 12:30
  */

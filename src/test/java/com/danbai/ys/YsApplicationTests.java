@@ -2,13 +2,13 @@ package com.danbai.ys;
 
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.impl.YsServiceImpl;
+import com.danbai.ys.utils.HtmlUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.List;
 
 
@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2019/10/13
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = YsApplication.class)
+@SpringBootTest(classes = YsApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class YsApplicationTests {
     @Autowired
     RedisTemplate redisTemplate;
@@ -38,5 +38,10 @@ public class YsApplicationTests {
         for (Ysb ysb:ysbs) {
             System.out.println(ysb.getPm());
         }
+    }
+    @Test
+    public void get(){
+
+        System.out.println(ysService.getAllTv().get(5).getId());
     }
 }

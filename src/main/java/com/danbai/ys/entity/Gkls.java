@@ -3,7 +3,7 @@ package com.danbai.ys.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
+/**观看历史类
  * @author danbai
  * @date 2019/10/13
  */

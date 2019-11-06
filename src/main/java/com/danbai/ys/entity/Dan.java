@@ -2,7 +2,7 @@ package com.danbai.ys.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
+/**弹幕类
  * @author danbai
  * @date 2019-10-16 22:21
  */

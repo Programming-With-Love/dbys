@@ -31,7 +31,6 @@ public class Ys {
 
     /**
      * 根据id获取影视
-     *
      * @param id 影视id
      * @return BaseResult
      */
@@ -50,5 +49,8 @@ public class Ys {
     public BaseResult search(@PathVariable String gjc) {
         return ResultUtil.success(ysService.qcsy(ysService.selectYsByGjc(gjc)));
     }
-
+    @GetMapping("/ys/tv")
+    public BaseResult tv(){
+        return ResultUtil.success(ysService.getAllTv());
+    }
 }

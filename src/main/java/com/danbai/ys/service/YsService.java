@@ -1,6 +1,7 @@
 package com.danbai.ys.service;
 
 import com.danbai.ys.entity.Gkls;
+import com.danbai.ys.entity.Tvb;
 import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
 import com.github.pagehelper.PageInfo;
@@ -44,6 +45,12 @@ public interface YsService {
      * @return List<Ysb>
      */
     List<Ysb> selectYsByPm(String pm);
+
+    /**
+     * 搜索影视根据关键词
+     * @param gjc
+     * @return
+     */
     List<Ysb> selectYsByGjc(String gjc);
     /**
      * 根据影视id查询影视返回影视列表
@@ -137,6 +144,7 @@ public interface YsService {
 
     /**
      * 去除首页不需要的数据
+     * @param list 需要除去的list
      * @return
      */
     List<Ysb> qcsy(List<Ysb> list);
@@ -145,4 +153,9 @@ public interface YsService {
      * @return
      */
     List<Ysb> tuijian();
+    /**
+     * 获取所有频道
+     * @return  list
+     */
+    List<Tvb> getAllTv();
 }

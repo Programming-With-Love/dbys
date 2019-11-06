@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-/**
+/**观看时间类
  * @author danbai
  */
 @Table(name = "video_time")

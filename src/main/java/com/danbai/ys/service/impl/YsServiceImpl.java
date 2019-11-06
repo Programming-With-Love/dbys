@@ -2,6 +2,7 @@ package com.danbai.ys.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.danbai.ys.entity.*;
+import com.danbai.ys.mapper.TvbMapper;
 import com.danbai.ys.mapper.VideoTimeMapper;
 import com.danbai.ys.mapper.YsbMapper;
 import com.danbai.ys.service.YsService;
@@ -29,6 +30,8 @@ import java.util.List;
 @Service
 public class YsServiceImpl implements YsService {
     static final String OKTAGIDS = "oktagids";
+    @Autowired
+    TvbMapper tvbMapper;
     @Autowired
     YsbMapper ysbMapper;
     @Autowired
@@ -219,7 +222,7 @@ public class YsServiceImpl implements YsService {
             return null;
         }
         if (rr != null && !rr.equals(KONG)) {
-            if(adminService.getConfig("dmcache").equals(AdminServiceImpl.YES)) {
+            if(adminService.getConfig(Config.DMCACHE).equals(AdminServiceImpl.YES)) {
                 if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
                     Query query = new Query(Criteria.where("player").is(ysid));
                     if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
@@ -271,5 +274,10 @@ public class YsServiceImpl implements YsService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Tvb> getAllTv() {
+        return tvbMapper.selectAll();
     }
 }

@@ -7,8 +7,11 @@ import okhttp3.Response;
 import org.springframework.scheduling.annotation.Async;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -79,5 +82,37 @@ public class HtmlUtils {
             System.out.println(e);
         }
         return getHtmlContent(urlStr);
+    }
+    public static String getUrlfile(String strUrl)
+    {
+        InputStream in = null;
+        OutputStream out = null;
+        String strdata = "";
+        try
+        {
+            URL url = new URL(strUrl);
+            // 创建 URL
+            in = url.openStream();
+            // 打开到这个URL的流
+            out = System.out;
+            // 复制字节到输出流
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = in.read(buffer)) != -1)
+            {
+                String reads = new String(buffer, 0, bytesRead, "UTF-8");
+                strdata = strdata + reads;
+                out.write(buffer, 0, bytesRead);
+            }
+            in.close();
+            out.close();
+            return strdata;
+        }
+        catch (Exception e)
+        {
+            System.err.println(e);
+            System.err.println("Usage: java GetURL <URL> [<filename>]");
+            return strdata;
+        }
     }
 }

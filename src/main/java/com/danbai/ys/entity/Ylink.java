@@ -1,6 +1,6 @@
 package com.danbai.ys.entity;
 
-/**
+/**友链类
  * @author danbai
  * @date 2019-10-31 15:53
  */

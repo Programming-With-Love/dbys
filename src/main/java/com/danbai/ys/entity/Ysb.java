@@ -3,7 +3,7 @@ package com.danbai.ys.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
+/**影视类
  * @author danbai
  */
 public class Ysb implements Serializable {

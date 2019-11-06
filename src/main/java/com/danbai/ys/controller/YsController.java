@@ -3,16 +3,26 @@ package com.danbai.ys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.*;
+import com.danbai.ys.service.YsService;
 import com.danbai.ys.service.impl.AdminServiceImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
+import com.danbai.ys.utils.HtmlUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -118,7 +128,11 @@ public class YsController {
         model.addAttribute("page", page);
         return "type/dsj";
     }
-
+    @RequestMapping(value = "/type/tv", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    String dsj(Model model) {
+        model.addAttribute("tvs",ysService.getAllTv());
+        return "type/tv";
+    }
     @RequestMapping(value = "/type/dm", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String dm(int page, Model model) {
         PageInfo page1 = ysService.getYs("动漫", page, 24);
