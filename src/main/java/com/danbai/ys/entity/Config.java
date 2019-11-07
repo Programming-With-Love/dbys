@@ -14,6 +14,8 @@ public class Config {
     public static String GG = "gg";
     public static String AD = "ad";
     public static String DMCACHE = "dmcache";
+    public static String HEAD = "head";
+    public static String FOOTER = "footer";
     public Config(String item, String value) {
         this.item = item;
         this.value = value;

@@ -8,7 +8,6 @@ import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.impl.*;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,17 +29,12 @@ public class MainController {
     @Autowired
     UserServiceImpl userService;
     @Autowired
-    RegisterValidateServiceImpl registerValidateService;
-    @Autowired
-    RedisTemplate redisTemplate;
-    @Autowired
     AdminServiceImpl adminService;
-
+    @Autowired
+    CommImpl comm;
     @ModelAttribute
     public void bif(Model model) {
-        model.addAttribute(Config.GG, adminService.getConfig(Config.GG));
-        model.addAttribute(Config.YLINK, adminService.getYlink());
-        model.addAttribute(Config.AD, adminService.getConfig(Config.AD));
+        model.addAllAttributes(comm.getAllComm());
     }
 
     @RequestMapping(value = {"/", "index"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
