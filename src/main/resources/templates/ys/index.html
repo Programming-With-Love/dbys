@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdn.p00q.cn/ys/css/bootstrap.min.css">
     <script src="https://cdn.p00q.cn/ys/js/jquery.min.js"></script>
     <script src="https://cdn.p00q.cn/ys/js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/hls.js/0.12.4/hls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cdnbye@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-dplayer@latest"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
     <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="https://cdn.p00q.cn/ys/css/bootadd.css">
     <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="https://cdn.p00q.cn/ys/css/css2.css">
@@ -128,7 +128,7 @@
     var jiname = "[[${jiname}]]";
     var timeout = true; //启动及关闭按钮
     var dmtimeout = true;
-    var jii = 0;
+    var jii=0;
     const dp = new DPlayer({
         container: document.getElementById('dplayer'),
         logo: 'https://cdn.p00q.cn/ys/img/logo.png',
@@ -176,14 +176,15 @@
         timeout = true;
     });
     dp.on('ended', function () {
-        var nexitji = $(".dslist-group").children().eq(jii + 1).children().eq(0);
+        getjii()
+        var nexitji = $(".dslist-group").children().eq( jii+ 1).children().eq(0);
+        jii++;
         if (nexitji.html != null) {
-            jii += 1;
-            gettagid(jii);
             $("#jxs").text(nexitji.text());
             jiname = nexitji.text();
             timeout = false;
-            ysid = id + nexitji.html();
+            ysid = id + jiname;
+            gettagid();
             dp.switchVideo({
                 url: nexitji.attr("value"),
                 pic: 'https://cdn.p00q.cn/ys/img/tip.png'
@@ -193,7 +194,7 @@
                 user: username
             });
             dp.notice("自动播放下一集!");
-            dp.seek(gettime());
+            //dp.seek(gettime());
             dp.play();
             timeout = true;
         }
@@ -281,6 +282,14 @@
         })
     }
 
+    function getjii() {
+        $(".dslist-group").children().each(function(i,n){
+            var obj = $(n)
+            if(obj.children().eq(0).html()==jiname){
+                this.jii=i;
+            }
+        });
+    }
     function getdm(id, time) {
         $.getJSON("https://mfm.video.qq.com/danmu?otype=json&target_id=" + id + "&timestamp=" + time, function (json) {
             ds = []

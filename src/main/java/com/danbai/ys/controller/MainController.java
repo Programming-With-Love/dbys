@@ -49,7 +49,6 @@ public class MainController {
         model.addAttribute("dm", ysbs3.getList());
         return "index";
     }
-
     @RequestMapping(value = {"/sy"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     String indexApi(HttpServletRequest request) {

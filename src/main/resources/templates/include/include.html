@@ -77,7 +77,7 @@
     <div class="gg" style="margin: 0px auto; font-size: 2rem" th:utext="${ad}"></div>
 </div>
 
-<footer class="footer" th:fragment="foot" >>
+<footer class="footer" th:fragment="foot" >
     友情链接:
     <span th:each="l:${ylink}">
 <a th:href="${l.url}" target="_blank" th:text="${l.name}"></a>|

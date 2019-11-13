@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdn.p00q.cn/ys/css/bootstrap.min.css">
     <script src="https://cdn.p00q.cn/ys/js/jquery.min.js"></script>
     <script src="https://cdn.p00q.cn/ys/js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/hls.js/0.12.4/hls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cdnbye@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-dplayer@latest"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
     <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="https://cdn.p00q.cn/ys/css/bootadd.css">
     <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="https://cdn.p00q.cn/ys/css/css2.css">
@@ -73,6 +73,10 @@
                 pic: 'https://cdn.p00q.cn/ys/img/tip.png',
                 url: pd.attr("yuan"),
                 type: 'hls'
+            },hlsjsConfig: {
+                p2pConfig: {
+                    live: true,
+                }
             },
             contextmenu: [
                 {

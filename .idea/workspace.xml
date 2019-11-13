@@ -5,23 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a87420e7-7e0a-450a-a81f-05143288bb53" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/Comm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/CommImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/config.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/config.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/include/include.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/include/include.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/reg.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/reg.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/type/dm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/type/dm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/type/dsj.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/type/dsj.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/type/dy.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/type/dy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/type/tv.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/type/tv.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/type/zy.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/type/zy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/ys/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/ys/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -81,11 +68,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/Comm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+            <state relative-caret-position="133">
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/include/include.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1653">
+              <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/AsyncConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/ys/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="111" column="29" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="29" />
+            </state>
+          </provider>
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/danbai/ys/YsApplicationTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="566">
+              <caret line="44" column="62" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/type/tv.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1482">
+              <caret line="78" column="17" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -116,6 +195,7 @@
       <find>81</find>
       <find>淡白影视'+</find>
       <find>red</find>
+      <find>jii</find>
     </findStrings>
     <replaceStrings>
       <replace>http://cdn.p00q.cn:81</replace>
@@ -162,7 +242,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/config/WebsocketAutoConfig.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/danbai/ys/test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/Ys.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/danbai/ys/YsApplicationTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/entity/Tvb.java" />
@@ -179,15 +258,16 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/reg.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/admin/config.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/include/include.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/type/tv.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/commInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/CommInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/CommImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/ys/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/Comm.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/include/include.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/type/tv.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/ys/index.html" />
       </list>
     </option>
   </component>
@@ -228,8 +308,7 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="302" />
-    <option name="y" value="27" />
+    <option name="x" value="342" />
     <option name="width" value="1403" />
     <option name="height" value="1057" />
   </component>
@@ -239,7 +318,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,11 +326,67 @@
               <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
               <item name="dbys" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ys" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dbys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dbys" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ys" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1007,7 +1142,11 @@
       <workItem from="1573024055026" duration="1808000" />
       <workItem from="1573027538486" duration="918000" />
       <workItem from="1573087392171" duration="43000" />
-      <workItem from="1573087940864" duration="5994000" />
+      <workItem from="1573087940864" duration="6111000" />
+      <workItem from="1573094818406" duration="75000" />
+      <workItem from="1573363208312" duration="1241000" />
+      <workItem from="1573378333274" duration="2355000" />
+      <workItem from="1573566348982" duration="2019000" />
     </task>
     <task id="LOCAL-00001" summary="新增影视页面">
       <created>1566958495571</created>
@@ -1296,7 +1435,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573026358888</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="整理代码,小功能增加">
+      <created>1573094038296</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1573094038296</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1332,7 +1478,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="503756000" />
+    <option name="totallyTimeSpent" value="509563000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1347,8 +1493,8 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49475262" visible="true" weight="0.21162046" />
-      <window_info id="Structure" order="1" sideWeight="0.50246304" side_tool="true" weight="0.19989339" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49462366" visible="true" weight="0.2238806" />
+      <window_info id="Structure" order="1" sideWeight="0.50537634" side_tool="true" weight="0.2238806" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -1358,11 +1504,11 @@
       <window_info id="JRebel" order="8" sideWeight="0.503937" side_tool="true" weight="0.21518987" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32939914" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49590468" weight="0.25135428" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4973939" weight="0.28218883" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49590468" weight="0.248104" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4973939" weight="0.27896994" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.4944155" weight="0.20064378" />
+      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.4944155" visible="true" weight="0.20171674" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49590468" weight="0.32196453" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.3251073" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
@@ -1372,12 +1518,12 @@
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.3243626" />
       <window_info anchor="bottom" id="REST Client" order="14" sideWeight="0.49590468" weight="0.42561448" />
       <window_info anchor="bottom" id="Sequence" order="15" />
-      <window_info active="true" anchor="bottom" id="Inspection Results" order="16" sideWeight="0.49776787" visible="true" weight="0.32725322" />
+      <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.49776787" weight="0.32725322" />
       <window_info anchor="bottom" id="Database Console" order="17" weight="0.24356224" />
       <window_info anchor="bottom" id="Database Changes" order="18" weight="0.32719395" />
       <window_info anchor="bottom" id="JRebel Executor" order="19" weight="0.3286119" />
       <window_info anchor="bottom" id="JRebel Console" order="20" sideWeight="0.5042644" side_tool="true" weight="0.24356224" />
-      <window_info anchor="bottom" id="Problems" order="21" weight="0.32936078" />
+      <window_info anchor="bottom" id="Problems" order="21" weight="0.32832617" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24944155" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1459,7 +1605,8 @@
     <MESSAGE value="更新" />
     <MESSAGE value="py上传" />
     <MESSAGE value="直播功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="直播功能" />
+    <MESSAGE value="整理代码,小功能增加" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理代码,小功能增加" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1523,16 +1670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/async/AsyncDmAllSend.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
@@ -1585,16 +1722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="534">
           <caret line="280" column="24" selection-start-line="280" selection-start-column="15" selection-end-line="280" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/danbai/ys/YsApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="44" column="62" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1681,14 +1808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2109">
-          <caret line="111" column="29" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="29" />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/type/dy.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -1744,16 +1863,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/adminlogin.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/AsyncConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin/config.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -1775,16 +1884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/include/include.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-870">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/type/zy.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -1792,13 +1891,6 @@
           <folding>
             <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/type/tv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1816,16 +1908,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/CommInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/interceptor/CommInterceptor.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/RegisterValidateService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -1876,21 +1959,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/Comm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/include/include.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1653">
+          <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/AsyncConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-795">
-          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        <state relative-caret-position="608">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
           <folding>
-            <element signature="e#1143#1144#0" expanded="true" />
-            <element signature="e#1165#1166#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/type/tv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1482">
+          <caret line="78" column="17" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/config/MyWebAppConfigurer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/ys/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+        <state relative-caret-position="171">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1898,10 +2024,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/danbai/ys/service/Comm.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        <state relative-caret-position="369">
+          <caret line="111" column="29" selection-start-line="111" selection-start-column="29" selection-end-line="111" selection-end-column="29" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/danbai/ys/YsApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="44" column="62" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
