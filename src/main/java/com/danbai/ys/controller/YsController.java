@@ -147,7 +147,11 @@ public class YsController {
         if ("".equals(gjc)) {
             return "/index";
         }
-        model.addAttribute("ysb", ysService.selectYsByGjc(gjc));
+        if(gjc.length()>1){
+            model.addAttribute("ysb", ysService.selectYsByGjc(gjc));
+        }else {
+            model.addAttribute("ysb", ysService.selectYsByPm(gjc));
+        }
         model.addAttribute("gjc", gjc);
         return "search";
     }

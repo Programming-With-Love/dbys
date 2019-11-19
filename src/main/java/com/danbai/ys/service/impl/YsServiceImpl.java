@@ -158,7 +158,7 @@ public class YsServiceImpl implements YsService {
             Example example = new Example(VideoTime.class);
             example.createCriteria().andEqualTo("username", videoTime2.getUsername()).andEqualTo("ysid",
                     videoTime2.getYsid());
-            int i = videoTimeMapper.deleteByExample(example);
+             videoTimeMapper.deleteByExample(example);
         }
         videoTimeMapper.insert(videoTime);
     }
@@ -180,17 +180,19 @@ public class YsServiceImpl implements YsService {
         List<VideoTime> select = videoTimeMapper.selectByExample(example);
         List<Gkls> list = new ArrayList<>();
         for (VideoTime v : select) {
-            Gkls gkls = new Gkls();
-            Ysb ysb = selectYsById(v.getYsid());
-            if (ysb != null) {
-                gkls.setPm(ysb.getPm());
-                gkls.setYsimg(ysb.getTp());
+            if((v.getTime()>30)){
+                Gkls gkls = new Gkls();
+                Ysb ysb = selectYsById(v.getYsid());
+                if (ysb != null) {
+                    gkls.setPm(ysb.getPm());
+                    gkls.setYsimg(ysb.getTp());
+                }
+                gkls.setJi(v.getYsjiname());
+                gkls.setTime(DateUtils.secondToTime(v.getTime().longValue()));
+                gkls.setGktime(v.getGktime());
+                gkls.setId(v.getYsid());
+                list.add(gkls);
             }
-            gkls.setJi(v.getYsjiname());
-            gkls.setTime(DateUtils.secondToTime(v.getTime().longValue()));
-            gkls.setGktime(v.getGktime());
-            gkls.setId(v.getYsid());
-            list.add(gkls);
         }
         return list;
     }

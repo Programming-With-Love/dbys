@@ -22,9 +22,9 @@ POOL = PooledDB(
 	# ping MySQL服务端，检查是否服务可用。# 如：0 = None = never, 1 = default = whenever it is requested, 2 = when a cursor is created, 4 = when a query is executed, 7 = always
 	host='127.0.0.1',
 	port=3306,
-	user='123',
-	password='123',
-	database='ys',
+	user='ys',
+	password='***',
+	database='**',
 	charset='utf8'
 )
 class Ji:
@@ -49,24 +49,18 @@ def getHtml(url):
 	global proxy
 	try:
 		html = requests.get(url,headers=header,timeout=5)
-		# 使用代理访问
 		return html
 	except Exception as e:
-		get_proxy()
 		print(e)
 		run(url)
 def main():
-	#get_proxy()
-	conn = POOL.connection()
-	cursor = conn.cursor()
-	#获取最大id
-	cursor.execute('SELECT MAX( id )FROM ysb')
-	maxid=cursor.fetchone()[0]
-	conn.close()
+	r=getHtml("http://www.okzy.co/?m=vod-index-pg-1.html")
+	selector=etree.HTML(r.text)
+	list=selector.xpath("//span[@class=\"xing_vb4\"]/a/@href")
 	#创建线程池
 	pool = ThreadPool(20)
-	for num in range(30000,maxid+200):
-		url="http://www.okzyw.com/?m=vod-detail-id-{}.html".format(num)
+	for s in list:
+		url="http://www.okzyw.com"+s
 		try:
 			pool.apply_async(run, args=(url,))
 		except Exception as e:

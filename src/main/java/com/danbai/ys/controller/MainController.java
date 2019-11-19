@@ -165,11 +165,11 @@ public class MainController {
             return "login";
         }
         List<Gkls> gkls = ysService.getGkls(user.getUsername());
+        model.addAttribute("gks", gkls.size());
         if (gkls.size() > Gkls.MAX) {
             gkls = gkls.subList(0, 30);
         }
         model.addAttribute("gkls", gkls);
-        model.addAttribute("gks", gkls.size());
         return "person";
     }
 }

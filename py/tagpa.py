@@ -19,11 +19,11 @@ POOL = PooledDB(
 	setsession=[],	# 开始会话前执行的命令列表。如：["set datestyle to ...", "set time zone ..."]
 	ping=0,
 	# ping MySQL服务端，检查是否服务可用。# 如：0 = None = never, 1 = default = whenever it is requested, 2 = when a cursor is created, 4 = when a query is executed, 7 = always
-	host='127.0.0.1',
+	host='39.108.110.44',
 	port=3306,
 	user='ys',
-	password='123',
-	database='123',
+	password='***',
+	database='ys',
 	charset='utf8'
 )
 proxys=[]
@@ -34,13 +34,15 @@ def get_proxy():
 	r=requests.get("http://ip.jiangxianli.com/")
 	if(r.status_code==200):
 		selector=etree.HTML(r.text)
-		proxys=proxys+selector.xpath("//button[@class=\"btn btn-sm btn-copy\"]/@data-url")
+		proxys=proxys+selector.xpath('//button[@class="layui-btn layui-btn-sm btn-copy"]/@data-url')
 #获取页面html
 def getHtml(url):
 	global proxys
 	p=proxys[random.randint(0,len(proxys)-1)]
 	try:
-		html = requests.get(url,proxies={'http':p},headers=header,timeout=5)
+		pp=p.replace("http://","")
+		pp=pp.replace("https://","")
+		html = requests.get(url,proxies={'http':pp},headers=header,timeout=5)
 		if html!=None:
 			return html.text
 	except Exception:
@@ -49,15 +51,14 @@ def getHtml(url):
 			get_proxy()
 		return getHtml(url)
 def main():
+	global proxys
 	get_proxy()
 	conn = POOL.connection()
 	cursor = conn.cursor()
-	cursor.execute('SELECT MAX( id )FROM ysb')
-	maxid=cursor.fetchone()[0]
-	cursor.execute('SELECT id,pm,dy,lx,gkdz,xzdz FROM `ysb` WHERE id >'+str(maxid-5000))
+	cursor.execute("SELECT id,pm,dy,lx,gkdz,xzdz FROM `ysb` ORDER BY `gxtime` DESC LIMIT 30")
 	data = cursor.fetchall()
-	rpool = redis.ConnectionPool(host='127.0.0.1', port=6379,db=0,password='123')
-	pool = ThreadPool(100)
+	rpool = redis.ConnectionPool(host='39.108.110.44', port=6379,db=0,password='***')
+	pool = ThreadPool(30)
 	for ys in data:
 		try:
 			r = redis.Redis(connection_pool=rpool)

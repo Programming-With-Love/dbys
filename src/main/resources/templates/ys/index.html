@@ -261,6 +261,7 @@
     }
 
     $(document).ready(function () {
+        getjii()
         gettagid();
         dmdsq();
         if (username != "user") {
@@ -283,10 +284,11 @@
     }
 
     function getjii() {
+        console.log("1111")
         $(".dslist-group").children().each(function(i,n){
             var obj = $(n)
             if(obj.children().eq(0).html()==jiname){
-                this.jii=i;
+                jii=i;
             }
         });
     }
