@@ -144,8 +144,8 @@ public class YsController {
 
     @RequestMapping(value = "/search", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     String search(String gjc, Model model) {
-        if ("".equals(gjc)) {
-            return "/index";
+        if (gjc.length()==0) {
+            return "redirect:/";
         }
         if(gjc.length()>1){
             model.addAttribute("ysb", ysService.selectYsByGjc(gjc));

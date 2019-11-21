@@ -6,6 +6,7 @@ import com.danbai.ys.entity.Gkls;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.impl.*;
+import com.danbai.ys.utils.SiteMapUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,8 @@ public class MainController {
     AdminServiceImpl adminService;
     @Autowired
     CommImpl comm;
+    @Autowired
+    SiteMapUtils siteMapUtils;
     @ModelAttribute
     public void bif(Model model) {
         model.addAllAttributes(comm.getAllComm());
@@ -171,5 +174,10 @@ public class MainController {
         }
         model.addAttribute("gkls", gkls);
         return "person";
+    }
+    @GetMapping(value = "/sitemap.xml",produces = {"application/xml"})
+    @ResponseBody
+    public String getSiteMap() {
+       return siteMapUtils.getSiteMap();
     }
 }

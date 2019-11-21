@@ -22,10 +22,6 @@ public class App {
     RedisTemplate redisTemplate;
     @GetMapping("/update")
     public BaseResult thisUser() {
-        String appupdate = (String) redisTemplate.opsForValue().get("appupdate");
-        if(appupdate!=null){
-            return ResultUtil.success(JSONObject.parseObject(appupdate, UpdateInfo.class));
-        }
-        return ResultUtil.success(new UpdateInfo());
+        return ResultUtil.success(JSONObject.parseObject((String) redisTemplate.opsForValue().get("appupdate"), UpdateInfo.class));
     }
 }

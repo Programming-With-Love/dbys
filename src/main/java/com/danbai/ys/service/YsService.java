@@ -158,4 +158,10 @@ public interface YsService {
      * @return  list
      */
     List<Tvb> getAllTv();
+    /**
+     * 获取最近更新的影视
+     * @param num 影视数量
+     * @return  list
+     */
+    List<Ysb> getNewYsb(int num);
 }

@@ -9,6 +9,7 @@ import com.danbai.ys.service.YsService;
 import com.danbai.ys.utils.DateUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -281,5 +282,12 @@ public class YsServiceImpl implements YsService {
     @Override
     public List<Tvb> getAllTv() {
         return tvbMapper.selectAll();
+    }
+
+    @Override
+    public List<Ysb> getNewYsb(int num) {
+        Example example = new Example(Ysb.class);
+        example.setOrderByClause("gxtime DESC limit 0,"+num);
+        return ysbMapper.selectByExample(example);
     }
 }

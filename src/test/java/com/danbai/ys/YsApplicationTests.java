@@ -3,6 +3,7 @@ package com.danbai.ys;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.danbai.ys.utils.HtmlUtils;
+import com.danbai.ys.utils.SiteMapUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class YsApplicationTests {
     RedisTemplate redisTemplate;
     @Autowired
     YsServiceImpl ysService;
+    @Autowired
+    SiteMapUtils siteMapUtils;
     @Test
     public void test() {
         System.out.println(redisTemplate.opsForValue().get("gg"));
@@ -41,7 +44,11 @@ public class YsApplicationTests {
     }
     @Test
     public void get(){
-
         System.out.println(ysService.getAllTv().get(5).getId());
+    }
+    @Test
+    public void getsite(){
+
+        System.out.println(siteMapUtils.getSiteMap());
     }
 }

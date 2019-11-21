@@ -23,7 +23,7 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://m.dbys.vip", "https://dbys.vip","null")
+                .allowedOrigins("http://m.dbys.vip", "https://dbys.vip","null","https://m.dbys.vip")
                 .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
                 .maxAge(3600)
                 .allowCredentials(true);
