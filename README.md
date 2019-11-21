@@ -13,10 +13,6 @@
 
 [线上地址](https://dbys.vip)
 
-如果你对这个项目感兴趣,欢迎加入! --- >
-
-<img src="http://img.p00q.cn:222/2019/11/21/311ec7efba02b.jpg" alt="db" width="200">
-
 ## 功能特性
 
 + 免VIP在线观看影视(资源来源网络)

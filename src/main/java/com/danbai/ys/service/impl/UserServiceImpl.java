@@ -1,10 +1,12 @@
 package com.danbai.ys.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.danbai.ys.entity.Token;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.mapper.UserMapper;
 import com.danbai.ys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author danbai
@@ -27,7 +31,8 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
     @Autowired
     RegisterValidateServiceImpl registerValidateService;
-
+    @Autowired
+    RedisTemplate redisTemplate;
     @Override
     public User getUser(User user) {
         return userMapper.selectOne(user);
@@ -161,4 +166,44 @@ public class UserServiceImpl implements UserService {
         return JSON.toJSONString(map);
     }
 
+    @Override
+    public Token createToken(String username) {
+        String tokenid= UUID.randomUUID().toString().replace ("-", "");
+        Token token=new Token(username,tokenid);
+        redisTemplate.opsForValue().set(Token.TOKEN+username,token,7,TimeUnit.DAYS);
+        return token;
+    }
+
+    @Override
+    public boolean checkToken(Token token) {
+        if (token == null|token.getUsername()==null|token.getToken()==null|token.getUsername().length()<1|token.getToken().length()<1) {
+            return false;
+        }
+        Token rtoken = (Token) redisTemplate.opsForValue().get(Token.TOKEN+token.getUsername());
+        if(rtoken.getToken().equals(token.getToken())){
+            // 如果验证成功，说明此用户进行了一次有效操作，延长 token 的过期时间
+            redisTemplate.expire(Token.TOKEN+token.getUsername (),7, TimeUnit.DAYS);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void deleteToken(String username) {
+        redisTemplate.delete(Token.TOKEN+username);
+    }
+
+    @Override
+    public Token login(User user) {
+        if (user != null) {
+            User user1 = new User();
+            user1.setUsername(user.getUsername());
+            User user2 = getUser(user1);
+            if (user2 != null) {
+                if (DigestUtils.md5DigestAsHex(user.getPassword().getBytes()).equals(user2.getPassword())) {
+                    return createToken(user.getUsername());                }
+            }
+        }
+        return null;
+    }
 }

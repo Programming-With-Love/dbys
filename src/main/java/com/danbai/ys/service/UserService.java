@@ -1,5 +1,6 @@
 package com.danbai.ys.service;
 
+import com.danbai.ys.entity.Token;
 import com.danbai.ys.entity.User;
 import org.springframework.ui.Model;
 
@@ -78,4 +79,30 @@ public interface UserService {
      * @return String
      */
     String regapp(User user, String yzm);
+    /**
+     * 关联用户和token
+     * @param username 用户名
+     * @return
+     */
+    Token createToken(String username);
+
+    /**
+     * 检测token有效性
+     * @param token
+     * @return
+     */
+    boolean checkToken(Token token);
+
+    /**
+     * 删除token
+     * @param username
+     */
+    void deleteToken (String username);
+
+    /**
+     * token登陆
+     * @param user
+     * @return
+     */
+    Token login(User user);
 }

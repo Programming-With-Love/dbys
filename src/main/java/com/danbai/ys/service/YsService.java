@@ -1,9 +1,6 @@
 package com.danbai.ys.service;
 
-import com.danbai.ys.entity.Gkls;
-import com.danbai.ys.entity.Tvb;
-import com.danbai.ys.entity.VideoTime;
-import com.danbai.ys.entity.Ysb;
+import com.danbai.ys.entity.*;
 import com.github.pagehelper.PageInfo;
 
 import java.util.HashMap;
