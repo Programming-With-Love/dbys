@@ -9,6 +9,8 @@ import javax.persistence.*;
  */
 @Table(name = "video_time")
 public class VideoTime implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     /**
      * 用户名
      */

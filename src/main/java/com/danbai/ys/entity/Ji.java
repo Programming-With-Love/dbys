@@ -7,6 +7,8 @@ import java.io.Serializable;
  * @date 2019/10/13
  */
 public class Ji implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     String name;
     String url;
 

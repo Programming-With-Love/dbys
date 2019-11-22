@@ -18,7 +18,7 @@ spring:
     mode: LEGACYHTML5
   datasource:
     druid:
-      url: jdbc:mysql://39.108.110.44:3306/ys?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://185.207.153.189:3306/ys?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
       username: ys
       password: hjj225
       initial-size: 1
@@ -28,11 +28,12 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     database: 0
-    host: 39.108.110.44
-    password: danbai225
+    host: 185.207.153.189
     port: 6379
-    timeout: 3000
+    timeout: 10000
 mybatis:
   type-aliases-package: tk.mybatis.springboot.model
   mapper-locations: classpath:mapper/*.xml
+  configuration:
+    cache-enabled: true
 

@@ -7,6 +7,8 @@ import java.io.Serializable;
  * @author danbai
  */
 public class Ysb implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     public static String DY="dy";
     public static String DSJ="dsj";
     public static String DM="dm";

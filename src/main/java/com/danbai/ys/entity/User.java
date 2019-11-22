@@ -8,6 +8,8 @@ import java.io.Serializable;
  * @date 2019/10/13
  */
 public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     public static final int GENERAL = 2;
     public static final int ADMIN = 2;
     public static final int BAN = 0;

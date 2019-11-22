@@ -8,6 +8,8 @@ import java.util.Date;
  * @date 2019/10/13
  */
 public class Gkls implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     //最多显示30条历史记录
     /**
      * 最大历史记录

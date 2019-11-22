@@ -22,10 +22,15 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        //添加映射路径
         registry.addMapping("/**")
-                .allowedOrigins("http://m.dbys.vip", "https://dbys.vip","null","https://m.dbys.vip")
-                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
-                .maxAge(3600)
-                .allowCredentials(true);
+                //放行哪些原始域
+                .allowedOrigins("*")
+                //是否发送Cookie信息
+                .allowCredentials(true)
+                //放行哪些原始域(请求方式)
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                //放行哪些原始域(头部信息)
+                .allowedHeaders("*");
     }
 }
