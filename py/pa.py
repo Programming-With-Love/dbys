@@ -23,8 +23,8 @@ POOL = PooledDB(
 	host='127.0.0.1',
 	port=3306,
 	user='ys',
-	password='***',
-	database='**',
+	password='password',
+	database='ys',
 	charset='utf8'
 )
 class Ji:

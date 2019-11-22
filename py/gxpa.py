@@ -20,8 +20,8 @@ POOL = PooledDB(
 	# ping MySQL服务端，检查是否服务可用。# 如：0 = None = never, 1 = default = whenever it is requested, 2 = when a cursor is created, 4 = when a query is executed, 7 = always
 	host='127.0.0.1',
 	port=3306,
-	user='123',
-	password='123',
+	user='ys',
+	password='password',
 	database='ys',
 	charset='utf8'
 )
@@ -31,31 +31,12 @@ class Ji:
 	def __init__(self, name, url):
 		self.name = name
 		self.url = url
-
-proxys=[]
 header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36'}
-#获取代理
-def get_proxy():
-	global proxys
-	r=requests.get("http://ip.jiangxianli.com/")
-	if(r.status_code==200):
-		selector=etree.HTML(r.text)
-		proxys=proxys+selector.xpath("//button[@class=\"btn btn-sm btn-copy\"]/@data-url")
 #获取页面html
 def getHtml(url):
-	global proxys
-	p=proxys[random.randint(0,len(proxys)-1)]
-	try:
-		html = requests.get(url,proxies={'http':p},headers=header,timeout=5)
-		if html!=None:
-			return html.text
-	except Exception:
-		proxys.remove(p)
-		if len(proxys)<2:
-			get_proxy()
-		return getHtml(url)
+	html = requests.get(url,headers=header,timeout=5)
+	return html.text
 def main():
-	get_proxy()
 	list=[]
 	for i in range(1,5):
 		selector=etree.HTML(getHtml("http://www.zuidazy1.net/?m=vod-type-id-{}.html".format(i)))
