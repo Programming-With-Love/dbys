@@ -6,6 +6,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.mail.internet.InternetAddress;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 /**
@@ -19,7 +21,7 @@ public class EmailUtil {
     private static final String PROTOCOL = "smtp";
     private static final int PORT = 465;
     private static final String FROM = "danbaiyingshi@163.com";
-    private static final String PWD = "hjj225";
+    private static final String PWD = "**";
 
     private static JavaMailSenderImpl javaMailSender;
 
@@ -46,15 +48,18 @@ public class EmailUtil {
 
     @Async
     public void sendEmail(final String title, final String content, final String toMail) {
-
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom(FROM);
-        mailMessage.setSubject(title);
-        mailMessage.setText(content);
-
-        String[] toAddress = toMail.split(",");
-        mailMessage.setTo(toAddress);
-        //发送邮件
-        javaMailSender.send(mailMessage);
+        try {
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            String nick=javax.mail.internet.MimeUtility.encodeText("淡白影视");
+            mailMessage.setFrom(String.valueOf(new InternetAddress(nick+" <"+FROM+">")));
+            mailMessage.setSubject(title);
+            mailMessage.setText(content);
+            String[] toAddress = toMail.split(",");
+            mailMessage.setTo(toAddress);
+            //发送邮件
+            javaMailSender.send(mailMessage);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }

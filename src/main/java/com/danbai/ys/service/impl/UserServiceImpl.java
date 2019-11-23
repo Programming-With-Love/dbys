@@ -176,7 +176,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkToken(Token token) {
-        if (token == null|token.getUsername()==null|token.getToken()==null|token.getUsername().length()<1|token.getToken().length()<1) {
+        if (token == null||token.getUsername()==null||token.getToken()==null||token.getUsername().length()<1|token.getToken().length()<1) {
             return false;
         }
         Token rtoken = (Token) redisTemplate.opsForValue().get(Token.TOKEN+token.getUsername());
