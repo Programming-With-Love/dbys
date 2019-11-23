@@ -21,7 +21,7 @@ public class EmailUtil {
     private static final String PROTOCOL = "smtp";
     private static final int PORT = 465;
     private static final String FROM = "danbaiyingshi@163.com";
-    private static final String PWD = "**";
+    private static final String PWD = "hjj225";
 
     private static JavaMailSenderImpl javaMailSender;
 

@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
                 return;
             }
             String str = registerValidateService.getVerificationCode(user.getEmail());
-            if (str != null & str.equals(yzm)) {
+            if (str != null && str.equals(yzm)) {
                 registerValidateService.deleteVerificationCode(user.getEmail());
                 User user2 = new User();
                 user2.setUsername(user.getUsername());
@@ -137,7 +137,7 @@ public class UserServiceImpl implements UserService {
         }
         if (user != null) {
             String str = registerValidateService.getVerificationCode(user.getEmail());
-            if (str != null & str.equals(yzm)) {
+            if (str != null && str.equals(yzm)) {
                 registerValidateService.deleteVerificationCode(user.getEmail());
                 User user2 = new User();
                 user2.setUsername(user.getUsername());

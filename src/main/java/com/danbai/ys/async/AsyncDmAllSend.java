@@ -40,7 +40,7 @@ public class AsyncDmAllSend {
     @Async
     public void sendInfoNothis(String message,String dmid,TvDmSocket t) throws IOException {
         for (TvDmSocket item : TvDmSocket.webSocketSet) {
-            if(item.getDmid().equals(dmid)&item!=t){
+            if(item.getDmid().equals(dmid)&&item!=t){
                 try {
                     item.sendMessage(message);
                 } catch (IOException e) {

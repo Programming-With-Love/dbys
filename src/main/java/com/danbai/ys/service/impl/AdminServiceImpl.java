@@ -29,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean isAdmin(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute(User.DEFAULT_USER);
-        if (user != null & user.getUserType() == User.ADMIN) {
+        if (user != null && user.getUserType() == User.ADMIN) {
             return true;
         }
         return false;
