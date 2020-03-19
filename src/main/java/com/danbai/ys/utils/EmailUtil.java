@@ -17,11 +17,11 @@ import java.util.Properties;
 @Component
 @Service
 public class EmailUtil {
-    private static final String HOST = "smtp.163.com";
+    private static final String HOST = "smtpdm.aliyun.com";
     private static final String PROTOCOL = "smtp";
     private static final int PORT = 465;
-    private static final String FROM = "danbaiyingshi@163.com";
-    private static final String PWD = "hjj225";
+    private static final String FROM = "dbys@p00q.cn";
+    private static final String PWD = "";
 
     private static JavaMailSenderImpl javaMailSender;
 

@@ -1,16 +1,14 @@
 package com.danbai.ys.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-/**观看时间类
- * @author danbai
- */
 @Table(name = "video_time")
-public class VideoTime implements Serializable {
+public class VideoTime {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private static final long serialVersionUID = 1L;
     /**
      * 用户名
      */
@@ -29,6 +27,20 @@ public class VideoTime implements Serializable {
     private Float time;
 
     private Date gktime;
+
+    /**
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * 获取用户名
@@ -56,7 +68,7 @@ public class VideoTime implements Serializable {
     }
 
     /**
-     * @param ysid 影视id
+     * @param ysid
      */
     public void setYsid(Integer ysid) {
         this.ysid = ysid;
@@ -99,14 +111,14 @@ public class VideoTime implements Serializable {
     }
 
     /**
-     * @return gktime 观看时间
+     * @return gktime
      */
     public Date getGktime() {
         return gktime;
     }
 
     /**
-     * @param gktime 观看时间
+     * @param gktime
      */
     public void setGktime(Date gktime) {
         this.gktime = gktime;

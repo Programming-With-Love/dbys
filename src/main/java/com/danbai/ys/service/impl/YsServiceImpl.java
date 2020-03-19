@@ -153,14 +153,14 @@ public class YsServiceImpl implements YsService {
         VideoTime videoTime1 = new VideoTime();
         videoTime1.setUsername(videoTime.getUsername());
         videoTime1.setYsid(videoTime.getYsid());
+        videoTime1.setYsjiname(videoTime.getYsjiname());
         VideoTime videoTime2 = videoTimeMapper.selectOne(videoTime1);
         if (videoTime2 != null) {
-            Example example = new Example(VideoTime.class);
-            example.createCriteria().andEqualTo("username", videoTime2.getUsername()).andEqualTo("ysid",
-                    videoTime2.getYsid());
-             videoTimeMapper.deleteByExample(example);
+            videoTime.setId(videoTime2.getId());
+             videoTimeMapper.updateByPrimaryKey(videoTime);
+        }else {
+            videoTimeMapper.insert(videoTime);
         }
-        videoTimeMapper.insert(videoTime);
     }
 
     @Override

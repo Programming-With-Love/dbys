@@ -5,7 +5,6 @@
     <!--
       WARNING - @mbg.generated
     -->
-
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pf" jdbcType="REAL" property="pf" />
     <result column="pm" jdbcType="LONGVARCHAR" property="pm" />

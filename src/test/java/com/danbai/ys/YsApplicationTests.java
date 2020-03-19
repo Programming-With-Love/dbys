@@ -1,6 +1,10 @@
 package com.danbai.ys;
 
+import com.alibaba.fastjson.JSONObject;
+import com.danbai.ys.entity.UpdateInfo;
+import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
+import com.danbai.ys.mapper.VideoTimeMapper;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.danbai.ys.utils.HtmlUtils;
 import com.danbai.ys.utils.SiteMapUtils;
@@ -26,6 +30,8 @@ public class YsApplicationTests {
     YsServiceImpl ysService;
     @Autowired
     SiteMapUtils siteMapUtils;
+    @Autowired
+    VideoTimeMapper videoTimeMapper;
     @Test
     public void test() {
         System.out.println(redisTemplate.opsForValue().get("gg"));
@@ -50,5 +56,15 @@ public class YsApplicationTests {
     public void getsite(){
 
         System.out.println(siteMapUtils.getSiteMap());
+    }
+    @Test
+    public void appgx(){
+        UpdateInfo updateInfo = new UpdateInfo();
+        updateInfo.hasUpdate=false;
+        redisTemplate.opsForValue().set("appupdate", JSONObject.toJSONString(updateInfo));
+    }
+    @Test
+    public void gkls(){
+        ysService.getGkls("danbai");
     }
 }

@@ -78,9 +78,10 @@ public class UserServiceImpl implements UserService {
             user1.setUsername(user.getUsername());
             User user2 = getUser(user1);
             if (user2 != null) {
-                if (DigestUtils.md5DigestAsHex(user.getPassword().getBytes()).equals(user2.getPassword())) {
+                if (DigestUtils.md5DigestAsHex((user.getUsername()+user.getPassword()).getBytes()).equals(user2.getPassword())) {
                     HttpSession sessoin = request.getSession();
                     sessoin.setMaxInactiveInterval(60 * 60 * 24);
+                    user2.setPassword("password");
                     sessoin.setAttribute("user", user2);
                     Cookie cookie = new Cookie("JSESSIONID", sessoin.getId());
                     cookie.setMaxAge(60 * 60 * 24);
@@ -111,7 +112,7 @@ public class UserServiceImpl implements UserService {
                     return;
                 }
                 if (user1 == null) {
-                    user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+                    user.setPassword(DigestUtils.md5DigestAsHex((user.getUsername()+user.getPassword()).getBytes()));
                     user.setUserType(1);
                     user.setHeadurl("http://gravatar.com/avatar/" + user.getUsername() + "?s=256&d=identicon");
                     if (addUser(user)) {
@@ -148,7 +149,7 @@ public class UserServiceImpl implements UserService {
                     return JSON.toJSONString(map);
                 }
                 if (user1 == null) {
-                    user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+                    user.setPassword(DigestUtils.md5DigestAsHex((user.getUsername()+user.getPassword()).getBytes()));
                     user.setUserType(1);
                     user.setHeadurl("http://gravatar.com/avatar/" + user.getUsername() + "?s=256&d=identicon");
                     if (addUser(user)) {
@@ -200,7 +201,7 @@ public class UserServiceImpl implements UserService {
             user1.setUsername(user.getUsername());
             User user2 = getUser(user1);
             if (user2 != null) {
-                if (DigestUtils.md5DigestAsHex(user.getPassword().getBytes()).equals(user2.getPassword())) {
+                if (DigestUtils.md5DigestAsHex((user.getUsername()+user.getPassword()).getBytes()).equals(user2.getPassword())) {
                     return createToken(user.getUsername());                }
             }
         }

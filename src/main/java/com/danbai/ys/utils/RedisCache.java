@@ -98,12 +98,6 @@ public class RedisCache implements Cache {
      */
     @Override
     public void clear() {
-        RedisTemplate redisTemplate = getRedisTemplate();
-        redisTemplate.execute((RedisCallback) connection -> {
-            connection.flushDb();
-            return null;
-        });
-        logger.debug("Clear all the cached query result from redis");
     }
 
     /**

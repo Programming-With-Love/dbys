@@ -1,3 +1,4 @@
+
 package com.danbai.ys.entity;
 
 import javax.persistence.GeneratedValue;

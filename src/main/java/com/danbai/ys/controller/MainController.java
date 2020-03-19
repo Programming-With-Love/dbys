@@ -33,8 +33,6 @@ public class MainController {
     AdminServiceImpl adminService;
     @Autowired
     CommImpl comm;
-    @Autowired
-    SiteMapUtils siteMapUtils;
     @ModelAttribute
     public void bif(Model model) {
         model.addAllAttributes(comm.getAllComm());
@@ -124,6 +122,7 @@ public class MainController {
         return "login";
     }
 
+
     @RequestMapping(value = "/loginapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     String loginAppApi(User user, HttpServletRequest request, HttpServletResponse response) {
@@ -175,9 +174,12 @@ public class MainController {
         model.addAttribute("gkls", gkls);
         return "person";
     }
-    @GetMapping(value = "/sitemap.xml",produces = {"application/xml"})
-    @ResponseBody
-    public String getSiteMap() {
-       return siteMapUtils.getSiteMap();
+    @RequestMapping(value = "/yiqikan", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    String yiQiKan(HttpServletRequest request) {
+
+        if(request.getSession().getAttribute("user")==null){
+            return "redirect:/login";
+        }
+        return "yiqikan/index";
     }
 }

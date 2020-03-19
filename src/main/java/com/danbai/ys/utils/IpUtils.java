@@ -9,8 +9,8 @@ import java.util.Date;
  * @author danbai
  * @date 2019-10-14 15:50
  */
-public class IpUtils {
 
+public class IpUtils {
     private static final int MAXIP = 15;
     private static final String LOCALHOST = "127.0.0.1";
     private static final String UN = "unknown";

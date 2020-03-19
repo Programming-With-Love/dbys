@@ -1,4 +1,4 @@
-import json
+﻿import json
 import random
 import requests
 from lxml import etree
@@ -19,49 +19,51 @@ POOL = PooledDB(
 	setsession=[],	# 开始会话前执行的命令列表。如：["set datestyle to ...", "set time zone ..."]
 	ping=0,
 	# ping MySQL服务端，检查是否服务可用。# 如：0 = None = never, 1 = default = whenever it is requested, 2 = when a cursor is created, 4 = when a query is executed, 7 = always
-	host='127.0.0.1',
+	host='185.207.153.189',
 	port=3306,
 	user='ys',
-	password='password',
+	password='hjj225',
 	database='ys',
 	charset='utf8'
 )
 proxys=[]
 header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36'}
 #获取代理
-def get_proxy():
+def get_proxy(i):
 	global proxys
-	r=requests.get("http://ip.jiangxianli.com/")
-	if(r.status_code==200):
-		selector=etree.HTML(r.text)
-		proxys=proxys+selector.xpath('//button[@class="layui-btn layui-btn-sm btn-copy"]/@data-url')
+	for num in range(0,i):
+		r=requests.get("http://api.p00q.cn/proxy/get")
+		if(r.status_code==200):
+			rjson = r.text
+			rjsonp = json.loads(rjson)
+			dl=rjsonp.get('ip')+":"+rjsonp.get("port")
+			proxys.append(dl)
 #获取页面html
 def getHtml(url,p):
 	if p:
 		global proxys
-		p=proxys[random.randint(0,len(proxys)-1)]
 		try:
-			pp=p.replace("http://","")
-			pp=pp.replace("https://","")
-			html = requests.get(url,proxies={"http":pp},headers=header,timeout=5)
+			i=random.randint(0,len(proxys)-1)
+			html = requests.get(url,proxies={'http':proxys[i]},headers=header,timeout=5)
 			if html!=None:
 				return html.text
 		except Exception:
-			proxys.remove(p)
-			if len(proxys)<2:
-				get_proxy()
+			proxys.remove(proxys[i])
+			if len(proxys)<5:
+				get_proxy(10)
 			return getHtml(url,True)
 	else :
 		html = requests.get(url,headers=header,timeout=5)
 		return html.text
 def main():
 	global proxys
-	get_proxy()
+	get_proxy(10)
+	print(proxys)
 	conn = POOL.connection()
 	cursor = conn.cursor()
-	cursor.execute("SELECT id,pm,dy,lx,gkdz,xzdz FROM `ysb` ORDER BY `gxtime` DESC LIMIT 60")
+	cursor.execute("SELECT id,pm,dy,lx,gkdz,xzdz FROM `ysb` ORDER BY `gxtime` DESC LIMIT 1000")
 	data = cursor.fetchall()
-	rpool = redis.ConnectionPool(host='127.0.0.1', port=6379,db=0)
+	rpool = redis.ConnectionPool(host='185.207.153.189', port=6379,db=0,password='danbairedis225')
 	pool = ThreadPool(30)
 	for ys in data:
 		try:
@@ -84,7 +86,7 @@ def run(ys,r):
 	else:
 		tnum=int(tnum)
 	if tnum<len(jys):
-		fh=getHtml("http://v.qq.com/x/search/?q="+pm,False)
+		fh=getHtml("http://v.qq.com/x/search/?q="+pm,True)
 		ysid=re.compile("{id: '(.*)'; type: '2';}",re.M).findall(fh)[0]
 		fh=getHtml("http://s.video.qq.com/get_playsource?plat=2&type=4&range=1&otype=json&id="+ysid,True)
 		jsonj=json.loads(fh[13:-1])
@@ -92,7 +94,7 @@ def run(ys,r):
 		taglist=[]
 		if jsonj["PlaylistItem"]['payType']==2:
 			for i in range (0,len(jlist)):
-				tfh=getHtml("http://bullet.video.qq.com/fcgi-bin/target/regist?otype=json&vid="+jlist[i]['id'],False)
+				tfh=getHtml("http://bullet.video.qq.com/fcgi-bin/target/regist?otype=json&vid="+jlist[i]['id'],True)
 				tagid=json.loads(tfh[13:-1])['targetid']
 				taglist.append(tagid)
 			taglist.reverse()

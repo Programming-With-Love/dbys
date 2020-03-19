@@ -4,10 +4,9 @@ import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.utils.MyMapper;
 import com.danbai.ys.utils.RedisCache;
 import org.apache.ibatis.annotations.CacheNamespace;
+import org.springframework.stereotype.Repository;
 
-/**
- * @author danbai
- */
-@CacheNamespace(implementation = RedisCache.class)
+
+@Repository
 public interface VideoTimeMapper extends MyMapper<VideoTime> {
 }

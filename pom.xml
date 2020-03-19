@@ -87,6 +87,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.11</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -96,12 +101,6 @@
                 <configuration>
                     <mainClass>com.danbai.ys.YsApplication</mainClass>
                     <layout>ZIP</layout>
-                    <includes>
-                        <include>
-                            <groupId>nothing</groupId>
-                            <artifactId>nothing</artifactId>
-                        </include>
-                    </includes>
                 </configuration>
                 <executions>
                     <execution>

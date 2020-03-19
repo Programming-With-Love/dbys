@@ -18,7 +18,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
-        if (user == null || "".equals(user)) {
+        if (user == null ||user.getUserType()!=User.ADMIN) {
             request.getSession().setAttribute("message", "请先登陆管理员账号");
             response.sendRedirect("/adminlogin");
             return false;
