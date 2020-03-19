@@ -25,7 +25,7 @@
             <entry key="com.zeroturnaround.jrebel.remoting.DeleteUnindexedFiles" value="false" />
             <entry key="com.zeroturnaround.jrebel.remoting.ModuleRemoteServerSelection" value="off" />
             <entry key="jrebelEnabled" value="true" />
-            <entry key="lastExternalPluginCheckTime" value="1572497948302" />
+            <entry key="lastExternalPluginCheckTime" value="1583067692489" />
           </map>
         </option>
         <option name="masterModuleName" />
@@ -33,6 +33,7 @@
         <option name="remotingEnabled" value="false" />
         <option name="secure" value="true" />
         <option name="url" />
+        <option name="useRelativePathsInXml" value="false" />
         <option name="xmlDir" />
       </configuration>
     </facet>
@@ -179,5 +180,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-websocket:2.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-websocket:5.1.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.11" level="project" />
   </component>
 </module>
