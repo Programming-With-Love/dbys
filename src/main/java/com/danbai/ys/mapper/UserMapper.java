@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.CacheNamespace;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@CacheNamespace(implementation = RedisCache.class)
+
 public interface UserMapper extends MyMapper<User> {
 }

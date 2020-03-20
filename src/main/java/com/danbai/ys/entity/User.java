@@ -139,4 +139,16 @@ public class User implements Serializable {
     public void setHeadurl(String headurl) {
         this.headurl = headurl;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", userType=" + userType +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", headurl='" + headurl + '\'' +
+                '}';
+    }
 }

@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.async.CinemaSocketAsync;
 import com.danbai.ys.entity.CinemaRoom;
+import com.danbai.ys.utils.Md5;
 import com.danbai.ys.utils.SpringUtil;
 
 import io.agora.media.RtcTokenBuilder;
@@ -48,7 +49,7 @@ public class CinemaSocketManagement {
             RtcTokenBuilder token = new RtcTokenBuilder();
             int timestamp = (int)(System.currentTimeMillis() / 1000 + 3600);
             String result = token.buildTokenWithUid(RtcTokenBuilderSample.appId, RtcTokenBuilderSample.appCertificate,
-                    cinemaRoom.getName()+cinemaRoom.getId(), Integer.parseInt(socketId,16), RtcTokenBuilder.Role.Role_Publisher, timestamp);
+                    Md5.getMD5LowerCase(cinemaRoom.getName()+cinemaRoom.getId()), Integer.parseInt(socketId,16), RtcTokenBuilder.Role.Role_Publisher, timestamp);
             jsonObject.put("token",result);
             jsonObject.put("id",roomId);
             jsonObject.put("name",cinemaRoom.getName());

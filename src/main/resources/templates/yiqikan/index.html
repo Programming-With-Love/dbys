@@ -107,31 +107,15 @@
      </div>
     </div>
     <div class="tab-pane fade" id="yuyin">
-     <form id="form" class="row col l12 s12">
-      <div class="row container col l12 s12">
-       <div class="col" style="min-width: 433px; max-width: 443px">
-        <div class="card" style="margin-top: 0px; margin-bottom: 0px;">
-         <div class="row card-content" style="margin-bottom: 0px;">
-          <div class="row" style="margin: 0">
-           <div class="col s12">
-            <button class="btn btn-raised btn-primary waves-effect waves-light" id="join">加入</button>
-            <button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">断开</button>
-           </div>
-          </div>
-         </div>
-        </div>
-       </div>
-       <div class="col s7">
+     <button class="btn btn-raised btn-primary waves-effect waves-light" id="join">加入</button>
+   <button class="btn btn-raised btn-primary waves-effect waves-light" id="leave">断开</button>
         <div class="video-grid" id="video">
          <div class="video-view">
           <div id="local_stream" class="video-placeholder"></div>
           <div id="local_video_info" class="video-profile hide"></div>
           <div id="video_autoplay_local" class="autoplay-fallback hide"></div>
          </div>
-        </div>
-       </div>
-      </div>
-     </form>
+
     </div>
    </div>
   </div>
@@ -145,7 +129,7 @@
 <script src="https://cdn.jsdelivr.net/npm/p2p-dplayer@latest"></script>
 <script src="https://cdn.p00q.cn/ys/js/AgoraRTCSDK-3.0.1.js"></script>
 <script src="https://cdn.p00q.cn/ys/js/materialize.min.js"></script>
-
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
 <script th:inline="javascript">
  /*<![CDATA[*/
  var username = /*[[${session.user.username}]]*/ null;
@@ -274,7 +258,7 @@
  $("#ysSouBt").click(function () {
   gjc = $("#ysSouInput").val();
   $.ajax({
-   url: 'https://dbys.vip/api/v1/ys/search/' + gjc,
+   url: '../api/v1/ys/search/' + gjc,
    type: 'get',
    dataType: 'json',
    success: function (data) {
@@ -291,7 +275,7 @@
   $('#yss').hide();
   $('#jis').show();
   $.ajax({
-   url: 'https://dbys.vip/api/v1/ys/' + id,
+   url: '../api/v1/ys/' + id,
    type: 'get',
    dataType: 'json',
    success: function (data) {
@@ -353,7 +337,7 @@
    $("#fangjian").show();
    ws.send(toJsonStr({ type: "roomInfo" }));
    options.uid=data.uid;
-   options.channel=data.name+data.id;
+   options.channel=md5(data.name+data.id);
    options.token=data.token;
   } else {
    Notiflix.Notify.Failure('加入失败');
@@ -471,6 +455,7 @@
  var roomTimerId = setInterval(function () {
   if ($("#shouye").is(":hidden")) {
    ws.send(toJsonStr({ type: "roomInfo" }));
+
   }
  }, 5000);
 
@@ -488,16 +473,6 @@
   return true;
  }
 
- function serializeformData() {
-  var formData = $("#form").serializeArray();
-  var obj = {}
-  for (var item of formData) {
-   var key = item.name;
-   var val = item.value;
-   obj[key] = val;
-  }
-  return obj;
- }
 
  function addView (id, show) {
   if (!$("#" + id)[0]) {
@@ -528,50 +503,6 @@
   }
  }
 
- function getDevices (next) {
-  AgoraRTC.getDevices(function (items) {
-   items.filter(function (item) {
-    return ['audioinput', 'videoinput'].indexOf(item.kind) !== -1
-   })
-           .map(function (item) {
-            return {
-             name: item.label,
-             value: item.deviceId,
-             kind: item.kind,
-            }
-           });
-   var videos = [];
-   var audios = [];
-   for (var i = 0; i < items.length; i++) {
-    var item = items[i];
-    if ('videoinput' == item.kind) {
-     var name = item.label;
-     var value = item.deviceId;
-     if (!name) {
-      name = "camera-" + videos.length;
-     }
-     videos.push({
-      name: name,
-      value: value,
-      kind: item.kind
-     });
-    }
-    if ('audioinput' == item.kind) {
-     var name = item.label;
-     var value = item.deviceId;
-     if (!name) {
-      name = "microphone-" + audios.length;
-     }
-     audios.push({
-      name: name,
-      value: value,
-      kind: item.kind
-     });
-    }
-   }
-   next({videos: videos, audios: audios});
-  });
- }
 
  var rtc = {
   client: null,
@@ -750,7 +681,42 @@
 
   rtc.published = true
  }
+ function leave (rtc) {
+  if (!rtc.client) {
 
+   return;
+  }
+  if (!rtc.joined) {
+   return;
+  }
+  /**
+   * Leaves an AgoraRTC Channel
+   * This method enables a user to leave a channel.
+   **/
+  rtc.client.leave(function () {
+   // stop stream
+   rtc.localStream.stop();
+   // close stream
+   rtc.localStream.close();
+   while (rtc.remoteStreams.length > 0) {
+    var stream = rtc.remoteStreams.shift();
+    var id = stream.getId();
+    stream.stop();
+    removeView(id);
+   }
+   rtc.localStream = null;
+   rtc.remoteStreams = [];
+   rtc.client = null;
+   console.log("client leaves channel success");
+   rtc.published = false;
+   rtc.joined = false;
+   Toast.notice("leave success");
+  }, function (err) {
+   console.log("channel leave failed");
+   Toast.error("leave success");
+   console.error(err);
+  })
+ }
  $(function () {
 
   $("#join").on("click", function (e) {
@@ -759,11 +725,11 @@
    joinyuyin(rtc, options);
   })
 
-  $("#publish").on("click", function (e) {
-   console.log("publish")
+  $("#leave").on("click", function (e) {
+   console.log("leave")
    e.preventDefault();
-   publish(rtc);
-  });
+    leave(rtc);
+ })
  })
 </script>
 <style>
