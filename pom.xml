@@ -101,6 +101,12 @@
                 <configuration>
                     <mainClass>com.danbai.ys.YsApplication</mainClass>
                     <layout>ZIP</layout>
+                    <includes>
+                        <include>
+                            <groupId>nothing</groupId>
+                            <artifactId>nothing</artifactId>
+                        </include>
+                    </includes>
                 </configuration>
                 <executions>
                     <execution>

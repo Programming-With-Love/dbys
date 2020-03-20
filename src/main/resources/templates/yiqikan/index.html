@@ -129,7 +129,6 @@
 <script src="https://cdn.jsdelivr.net/npm/p2p-dplayer@latest"></script>
 <script src="https://cdn.p00q.cn/ys/js/AgoraRTCSDK-3.0.1.js"></script>
 <script src="https://cdn.p00q.cn/ys/js/materialize.min.js"></script>
-<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
 <script th:inline="javascript">
  /*<![CDATA[*/
  var username = /*[[${session.user.username}]]*/ null;
@@ -337,7 +336,7 @@
    $("#fangjian").show();
    ws.send(toJsonStr({ type: "roomInfo" }));
    options.uid=data.uid;
-   options.channel=md5(data.name+data.id);
+   options.channel=data.channel;
    options.token=data.token;
   } else {
    Notiflix.Notify.Failure('加入失败');
@@ -710,10 +709,10 @@
    console.log("client leaves channel success");
    rtc.published = false;
    rtc.joined = false;
-   Toast.notice("leave success");
+
   }, function (err) {
    console.log("channel leave failed");
-   Toast.error("leave success");
+
    console.error(err);
   })
  }

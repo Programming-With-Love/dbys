@@ -51,7 +51,8 @@ public class CinemaSocketManagement {
             String result = token.buildTokenWithUid(RtcTokenBuilderSample.appId, RtcTokenBuilderSample.appCertificate,
                     Md5.getMD5LowerCase(cinemaRoom.getName()+cinemaRoom.getId()), Integer.parseInt(socketId,16), RtcTokenBuilder.Role.Role_Publisher, timestamp);
             jsonObject.put("token",result);
-            jsonObject.put("id",roomId);
+            jsonObject.put("channel",Md5.getMD5LowerCase(cinemaRoom.getName()+cinemaRoom.getId()));
+            jsonObject.put("id",String.valueOf(cinemaRoom.getId()));
             jsonObject.put("name",cinemaRoom.getName());
             jsonObject.put("uid",Integer.parseInt(socketId,16));
         }
