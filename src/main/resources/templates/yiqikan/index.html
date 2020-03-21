@@ -128,15 +128,14 @@
 <script src="https://cdn.jsdelivr.net/npm/cdnbye@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/p2p-dplayer@latest"></script>
 <script src="https://cdn.p00q.cn/ys/js/AgoraRTCSDK-3.0.1.js"></script>
-<script src="https://cdn.p00q.cn/ys/js/materialize.min.js"></script>
+<script src="https://cdn.p00q.cn/ys/js/reconnecting-websocket.min.js"></script>
 <script th:inline="javascript">
  /*<![CDATA[*/
  var username = /*[[${session.user.username}]]*/ null;
  /*]]>*/
  fangzhu = null;
  ysurl = "";
- id = null;
-
+ wsurl="wss://dbys.vip/wss/cinema/socket/"+username;
  //播放器
  const dp = new DPlayer({
   autoplay: true,
@@ -190,10 +189,9 @@
   Notiflix.Loading.Init({
    clickToClose: true
   });
-
  });
 
- var ws = new WebSocket('wss://dbys.vip/wss/cinema/socket/' + username);
+ var ws = new ReconnectingWebSocket(wsurl);
  //回调、事件函数区
  ws.onopen = function (evt) {
   console.log('连接到服务器');
@@ -217,8 +215,11 @@
    case "sendTime": sendTime(json.time); break;
   }
  };
- ws.onclose = function (evt) {
+ ws.onclose = function () {
   console.log('断开了连接');
+  if(fangzhu!=null){
+   console.log(123)
+  }
  };
  //加入房间
  function joinbt(e) {
@@ -357,7 +358,16 @@
   $("#roomOnline").html('(' + data.online + ')');
   $(".user").remove();
   data.users.forEach(user => {
-   u = '<div class="user" uid="' + user.id + '">' + user.username + '</div>';
+   if(username==data.author&user.username!=username){
+    u='<div class="user" uid="' + user.id + '">' + user.username +'<button class="btn btn-success" type="button" onclick="transfer('+user.id+')">给他房主</button>'+'</div>';
+  }else{
+    if(user.username==data.author){
+     u = '<div class="user" uid="' + user.id + '">' + user.username + '👑</div>';
+    }else {
+     u = '<div class="user" uid="' + user.id + '">' + user.username + '</div>';
+    }
+
+  }
   $('#users').append(u);
  })
  }
@@ -373,14 +383,18 @@
           }
   );
  }
+ function transfer(id){
+  ws.send(toJsonStr({type:"transfer",id:id}));
+ }
  //退出房间
  $('.exitRoom').click(function(){
+  fangzhu=null;
+  ysurl=null;
   ws.send(toJsonStr({type:"exitRoom"}))
   $("#shouye").show();
   $("#fangjian").hide();
   publish(rtc);
   dp.pause();
-  ysurl="";
  })
  //url
  function sendUrl(url) {

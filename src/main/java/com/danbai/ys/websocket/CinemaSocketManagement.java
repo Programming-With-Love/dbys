@@ -214,4 +214,11 @@ public class CinemaSocketManagement {
             SpringUtil.getBean(CinemaSocketAsync.class).sendRoomMsgPassAuthor(room.getId(),sendMsg.toJSONString());
         }
     }
+    public static void transfer(String socketId,String transferId){
+        CinemaSocket cinemaSocket = CinemaSocket.POOL.get(socketId);
+        CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
+        if(room.getAuthorId().equals(socketId)){
+            CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId()).setAuthorId(transferId);
+        }
+    }
 }

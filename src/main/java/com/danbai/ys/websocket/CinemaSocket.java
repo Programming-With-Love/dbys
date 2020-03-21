@@ -38,6 +38,7 @@ public class CinemaSocket {
      * 房间池
      */
     public static ConcurrentHashMap<Integer, CinemaRoom> ROOM_POOL = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, Integer> DELETE_P00L =new ConcurrentHashMap<>();
     /**
      * 与某个客户端的连接会话，需要通过它来给客户端发送数据
      */
@@ -52,12 +53,21 @@ public class CinemaSocket {
     public void onOpen(Session session, @PathParam("username") String username) {
         this.session = session;
         this.username=username;
+        if(DELETE_P00L.containsKey(username)){
+            this.roomId=DELETE_P00L.get(username);
+        }
         //加入POOL中
         POOL.put(session.getId(),this);
+        //断线重连加房间
+        if(roomId!=0){
+            CinemaRoom room= ROOM_POOL.get(roomId);
+            if(room!=null){
+                ROOM_POOL.get(roomId).getSockets().add(session.getId());
+            }
+        }
         //在线数加1
         log.info("有新连接加入！当前在线人数为" + POOL.size());
         CinemaSocketManagement.info(session.getId());
-
     }
 
     /**
@@ -68,6 +78,7 @@ public class CinemaSocket {
         //从POOL中删除
         CinemaSocket cinemaSocket = POOL.get(session.getId());
         if(cinemaSocket!=null){
+            DELETE_P00L.put(cinemaSocket.getUsername(),cinemaSocket.roomId);
         if(cinemaSocket.roomId!=0){
             CinemaSocketManagement.exitRoom(session.getId());
         }
@@ -101,6 +112,7 @@ public class CinemaSocket {
                         case  "sendChat":CinemaSocketManagement.sendChat(id,jsonObject.getString("msg"));break;
                         case  "sendUrl":CinemaSocketManagement.sendUrl(id,jsonObject.getString("url"));break;
                         case  "sendTime":CinemaSocketManagement.sendTime(id,jsonObject.getDouble("time"));break;
+                        case "transfer":CinemaSocketManagement.transfer(id,jsonObject.getString("id"));break;
                         default:log.info(message);
                     }}
                 } catch (NullPointerException e) {
