@@ -4,8 +4,8 @@ import io.agora.media.RtcTokenBuilder;
 import io.agora.media.RtcTokenBuilder.Role;
 
 public class RtcTokenBuilderSample {
-    public static String appId = "02e8df44f24e4da5b2e17ef1d8b755bd";
-    public static String appCertificate = "c128d51ba98148d5bba2a65f82c83d35";
+    public static String appId = "7d72365eb983485397e3e3f9d460bdda";
+    public static String appCertificate = "2082341273";
     static String channelName = "7d72365eb983485397e3e3f9d460bdda";
     static String userAccount = "2082341273";
     static int uid = 2082341273;
