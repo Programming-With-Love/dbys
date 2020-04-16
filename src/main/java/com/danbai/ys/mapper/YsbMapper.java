@@ -6,6 +6,8 @@ import com.danbai.ys.utils.RedisCache;
 import org.apache.ibatis.annotations.CacheNamespace;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author danbai
  */
@@ -13,4 +15,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @CacheNamespace(implementation = RedisCache.class)
 public interface YsbMapper extends MyMapper<Ysb> {
+    List<Ysb> getByType(String type1, String type2, String region, String year, String sort);
 }

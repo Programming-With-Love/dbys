@@ -6,6 +6,9 @@ import com.danbai.ys.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 /**
  * rest 风格 api
@@ -55,5 +58,10 @@ public class Ys {
     @GetMapping("/ys/tv")
     public BaseResult tv(){
         return ResultUtil.success(ysService.getAllTv());
+    }
+    @GetMapping("ys/type")
+    public BaseResult type(String type1, String type2, String region,String year,String sort,@NotNull int page){
+
+        return ResultUtil.success(ysService.getByType(type1,type2,region,year,sort,page));
     }
 }

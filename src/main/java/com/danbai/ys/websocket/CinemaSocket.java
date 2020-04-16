@@ -55,6 +55,7 @@ public class CinemaSocket {
         this.username=username;
         if(DELETE_P00L.containsKey(username)){
             this.roomId=DELETE_P00L.get(username);
+            DELETE_P00L.remove(username);
         }
         //加入POOL中
         POOL.put(session.getId(),this);
@@ -79,9 +80,9 @@ public class CinemaSocket {
         CinemaSocket cinemaSocket = POOL.get(session.getId());
         if(cinemaSocket!=null){
             DELETE_P00L.put(cinemaSocket.getUsername(),cinemaSocket.roomId);
-        if(cinemaSocket.roomId!=0){
-            CinemaSocketManagement.exitRoom(session.getId());
-        }
+            if(cinemaSocket.roomId!=0){
+                CinemaSocketManagement.exitRoom(session.getId());
+            }
         }
         POOL.remove(session.getId());
         log.info("有一连接关闭！当前在线人数为" + POOL.size());
@@ -175,8 +176,9 @@ public class CinemaSocket {
     public void setSession(Session session) {
         this.session = session;
     }
-    @Scheduled(cron="0/5 * *  * * ? ")
+    @Scheduled(cron="0 */1 * * * ?")
     public void examine(){
+        DELETE_P00L.clear();
         //删除断开的链接
         POOL.forEach((id,e)->{
             if(!e.session.isOpen()){

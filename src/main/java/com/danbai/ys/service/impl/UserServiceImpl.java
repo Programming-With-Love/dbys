@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
                     user2.setPassword("password");
                     sessoin.setAttribute("user", user2);
                     Cookie cookie = new Cookie("JSESSIONID", sessoin.getId());
-                    cookie.setMaxAge(60 * 60 * 24);
+                    cookie.setMaxAge(60 * 60 * 24*7);
                     response.addCookie(cookie);
                     return true;
                 }
@@ -181,7 +181,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         Token rtoken = (Token) redisTemplate.opsForValue().get(Token.TOKEN+token.getUsername());
-        if(rtoken.getToken().equals(token.getToken())){
+        if(rtoken!=null&&rtoken.getToken().equals(token.getToken())){
             // 如果验证成功，说明此用户进行了一次有效操作，延长 token 的过期时间
             redisTemplate.expire(Token.TOKEN+token.getUsername (),7, TimeUnit.DAYS);
             return true;

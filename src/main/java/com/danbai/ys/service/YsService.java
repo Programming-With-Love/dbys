@@ -161,4 +161,15 @@ public interface YsService {
      * @return  list
      */
     List<Ysb> getNewYsb(int num);
+
+    /**
+     * 根据分类获取影视
+     * @param type1 影视类型1  电视剧、电影、动漫、综艺
+     * @param type2 影视类型2 爱情 恐怖 科幻
+     * @param region 地区 国产 韩国 欧美
+     * @param year 年份 2019
+     * @param sort 排序规则 热度 或 评分
+     * @return  list
+     */
+    List<Ysb> getByType(String type1,String type2,String region,String year,String sort,int page);
 }

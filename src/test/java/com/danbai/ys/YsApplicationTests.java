@@ -2,11 +2,14 @@ package com.danbai.ys;
 
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.UpdateInfo;
+import com.danbai.ys.entity.User;
 import com.danbai.ys.entity.VideoTime;
 import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.mapper.VideoTimeMapper;
+import com.danbai.ys.service.impl.UserServiceImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.danbai.ys.utils.HtmlUtils;
+import com.danbai.ys.utils.Md5;
 import com.danbai.ys.utils.SiteMapUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +35,8 @@ public class YsApplicationTests {
     SiteMapUtils siteMapUtils;
     @Autowired
     VideoTimeMapper videoTimeMapper;
+    @Autowired
+    UserServiceImpl userService;
     @Test
     public void test() {
         System.out.println(redisTemplate.opsForValue().get("gg"));
@@ -66,5 +71,16 @@ public class YsApplicationTests {
     @Test
     public void gkls(){
         ysService.getGkls("danbai");
+    }
+    @Test
+    public void user(){
+        System.out.println(Md5.getMD5LowerCase("是撒1"));
+    }
+    @Test
+    public void getYsByType(){
+        List<Ysb> byType = ysService.getByType("电影", "全部", "国产", "全部","评分",1);
+        byType.forEach(ysb -> {
+            System.out.println(ysb.getDy());
+        });
     }
 }

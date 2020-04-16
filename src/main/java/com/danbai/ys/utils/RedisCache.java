@@ -22,7 +22,7 @@ public class RedisCache implements Cache {
     private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private final String id;
     RedisTemplate redisTemplate;
-    private static final long EXPIRE_TIME_IN_MINUTES = 30;
+    private static final long EXPIRE_TIME_IN_MINUTES = 5;
     // redis过期时间
 
     public RedisCache(String id) {

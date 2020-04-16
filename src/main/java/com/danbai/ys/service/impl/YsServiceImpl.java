@@ -289,4 +289,12 @@ public class YsServiceImpl implements YsService {
         example.setOrderByClause("gxtime DESC limit 0,"+num);
         return ysbMapper.selectByExample(example);
     }
+
+    @Override
+    public List<Ysb> getByType(String type1, String type2, String region, String year, String sort,int page) {
+        PageHelper.startPage(page, 20).getPages();
+        List<Ysb> ysbs = ysbMapper.getByType(type1,type2,region,year,sort);
+        PageInfo pages = new PageInfo(ysbs);
+        return pages.getList();
+    }
 }
