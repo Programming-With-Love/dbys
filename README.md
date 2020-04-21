@@ -7,7 +7,7 @@
 一个基于SpringBoot+[Dplayer](https://github.com/MoePlayer/DPlayer)的弹幕影视项目
 以及它的[子项目](https://github.com/danbai225/dbyswebapp)基于Vue+Element-ui实现手机端
 以及它的[子项目](https://github.com/danbai225/dbysapp)安卓端
-
+以及它的[子项目](https://github.com/danbai225/dbys_flutter)Flutter实现
 ![](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.0.0-blue)
 ![](https://img.shields.io/badge/%E9%A1%B9%E7%9B%AE%E7%8A%B6%E6%80%81-%E7%BB%88%E6%AD%A2%E5%BC%80%E5%8F%91-brightgreen)
 
@@ -55,6 +55,4 @@
 
 ## 计划开发功能
 
-+ 影视增加评论、评分功能
-+ 弹幕管理
 + 淡白影视APP(半成品)
