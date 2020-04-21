@@ -27,7 +27,7 @@
 
 + Spring Boot
 + Mybits
-+ Redies
++ Redis
 + MongoDB
 + Docker
 

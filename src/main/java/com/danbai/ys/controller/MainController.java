@@ -109,7 +109,7 @@ public class MainController {
 
     @RequestMapping(value = "/regapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
-    String regAppApi(User user, Model model, String yzm) {
+    String regAppApi(User user, String yzm) {
         return userService.regapp(user, yzm);
     }
 

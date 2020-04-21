@@ -30,7 +30,7 @@
                 (`zt` LIKE '%H%' OR '%B%')
             </when>
             <when test="param1 == '电视剧'">
-                (`zt` LIKE '%完结%' OR '%集%')
+                (`zt` LIKE '%完结%' OR '%集%') AND (`lx` NOT LIKE '%动漫%')
             </when>
             <when test="param1 == '综艺'">
                 (`lx` LIKE '%综艺%')

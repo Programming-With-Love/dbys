@@ -34,6 +34,7 @@ public class Ys {
 
     /**
      * 根据id获取影视
+     *
      * @param id 影视id
      * @return BaseResult
      */
@@ -50,18 +51,22 @@ public class Ys {
      */
     @GetMapping("/ys/search/{gjc}")
     public BaseResult search(@PathVariable String gjc) {
-        if(gjc.length()>1){
+        if (gjc.length() > 1) {
             return ResultUtil.success(ysService.qcsy(ysService.selectYsByGjc(gjc)));
         }
         return ResultUtil.success(ysService.qcsy(ysService.selectYsByPm(gjc)));
     }
+
     @GetMapping("/ys/tv")
-    public BaseResult tv(){
+    public BaseResult tv() {
         return ResultUtil.success(ysService.getAllTv());
     }
-    @GetMapping("ys/type")
-    public BaseResult type(String type1, String type2, String region,String year,String sort,@NotNull int page){
 
-        return ResultUtil.success(ysService.getByType(type1,type2,region,year,sort,page));
+    @GetMapping("ys/type")
+    public BaseResult type(String type1, String type2, String region, String year, String sort, @NotNull int page) {
+        if (type2.indexOf("'") > -1 | region.indexOf("'") > -1 | year.indexOf("'") > -1) {
+            return ResultUtil.error("非法字符");
+        }
+        return ResultUtil.success(ysService.getByType(type1, type2, region, year, sort, page));
     }
 }
