@@ -173,7 +173,7 @@ public class CinemaSocketManagement {
         JSONArray users = new JSONArray();
         room.getSockets().forEach(id -> {
             JSONObject user = new JSONObject();
-            user.put("id", id);
+            user.put("id", Integer.parseInt(id,16));
             user.put("username", CinemaSocket.POOL.get(id).getUsername());
             users.add(user);
         });
@@ -186,7 +186,7 @@ public class CinemaSocketManagement {
         CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
         JSONObject sendMsg = new JSONObject();
         sendMsg.put("type","sendChat");
-        sendMsg.put("id",socketId);
+        sendMsg.put("id",Integer.parseInt(socketId,16));
         sendMsg.put("roomId",room.getId());
         sendMsg.put("username",cinemaSocket.getUsername());
         sendMsg.put("msg",msg);
@@ -218,7 +218,7 @@ public class CinemaSocketManagement {
         CinemaSocket cinemaSocket = CinemaSocket.POOL.get(socketId);
         CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
         if(room.getAuthorId().equals(socketId)){
-            CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId()).setAuthorId(transferId);
+            CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId()).setAuthorId(Integer.toHexString(Integer.valueOf(transferId)));
         }
     }
 }

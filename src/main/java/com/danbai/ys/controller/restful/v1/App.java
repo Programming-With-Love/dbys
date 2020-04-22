@@ -21,7 +21,11 @@ public class App {
     @Autowired
     RedisTemplate redisTemplate;
     @GetMapping("/update")
-    public BaseResult thisUser() {
+    public BaseResult update() {
         return ResultUtil.success(JSONObject.parseObject((String) redisTemplate.opsForValue().get("appupdate"), UpdateInfo.class));
+    }
+    @GetMapping("/update-flutter")
+    public JSONObject flutter() {
+        return JSONObject.parseObject((String) redisTemplate.opsForValue().get("flutterAPPUpdate"));
     }
 }

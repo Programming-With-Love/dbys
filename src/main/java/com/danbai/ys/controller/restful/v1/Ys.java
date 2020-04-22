@@ -1,6 +1,10 @@
 package com.danbai.ys.controller.restful.v1;
 
-import com.danbai.ys.entity.BaseResult;
+import com.alibaba.fastjson.JSON;
+import com.danbai.ys.entity.*;
+import com.danbai.ys.entity.User;
+import com.danbai.ys.service.UserService;
+import com.danbai.ys.service.YsService;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.danbai.ys.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -21,7 +27,8 @@ import javax.validation.constraints.NotNull;
 public class Ys {
     @Autowired
     YsServiceImpl ysService;
-
+    @Autowired
+    UserService userService;
     /**
      * 获取所有影视
      *
@@ -68,5 +75,29 @@ public class Ys {
             return ResultUtil.error("非法字符");
         }
         return ResultUtil.success(ysService.getByType(type1, type2, region, year, sort, page));
+    }
+    @PostMapping("/ys/time")
+    public void time(VideoTime videoTime, Token token) {
+        if(userService.checkToken(token)){
+            ysService.addYsTime(videoTime);
+        }
+    }
+    @GetMapping("/ysAndLs")
+    public BaseResult getys(int id,Token token){
+        Map<String, Object> map = new HashMap<>(5);
+        Ysb ys = ysService.selectYsById(id);
+        map.put("ys", ys);
+        if(userService.checkToken(token)){
+                HashMap ysLs = ysService.getYsLs(token.getUsername(), id);
+                if (ysLs != null) {
+                    map.put("gkls", ysLs);
+                    VideoTime videoTime = new VideoTime();
+                    videoTime.setUsername(token.getUsername());
+                    videoTime.setYsid(id);
+                    videoTime.setYsjiname((String) ysLs.get("jiname"));
+                    map.put("time", ysService.getYsTime(videoTime));
+                }
+        }
+        return ResultUtil.success(map);
     }
 }
