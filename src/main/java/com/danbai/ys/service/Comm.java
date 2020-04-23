@@ -1,5 +1,7 @@
 package com.danbai.ys.service;
 
+import com.danbai.ys.entity.Feedback;
+
 import java.util.HashMap;
 
 /**
@@ -11,4 +13,10 @@ public interface Comm {
      * @return
      */
     HashMap getAllComm();
+
+    /**
+     * 添加反馈
+     * @param feedback 反馈
+     */
+    void addFeedback(Feedback feedback);
 }

@@ -1,6 +1,8 @@
 package com.danbai.ys.service.impl;
 
 import com.danbai.ys.entity.Config;
+import com.danbai.ys.entity.Feedback;
+import com.danbai.ys.mapper.FeedbackMapper;
 import com.danbai.ys.service.Comm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import java.util.Map;
 public class CommImpl implements Comm {
     @Autowired
     AdminServiceImpl adminService;
+    @Autowired
+    FeedbackMapper feedbackMapper;
     @Override
     public HashMap getAllComm() {
         HashMap<String,Object> map = new HashMap(20);
@@ -25,5 +29,10 @@ public class CommImpl implements Comm {
         map.put(Config.FOOTER,adminService.getConfig(Config.FOOTER));
         map.put(Config.HEAD,adminService.getConfig(Config.HEAD));
         return map;
+    }
+
+    @Override
+    public void addFeedback(Feedback feedback) {
+        feedbackMapper.insert(feedback);
     }
 }

@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**
@@ -181,6 +182,41 @@ public class YsServiceImpl implements YsService {
         List<Gkls> list = new ArrayList<>();
         for (VideoTime v : select) {
             if((v.getTime()>30)){
+                Gkls gkls = new Gkls();
+                Ysb ysb = selectYsById(v.getYsid());
+                if (ysb != null) {
+                    gkls.setPm(ysb.getPm());
+                    gkls.setYsimg(ysb.getTp());
+                }
+                gkls.setJi(v.getYsjiname());
+                gkls.setTime(DateUtils.secondToTime(v.getTime().longValue()));
+                gkls.setGktime(v.getGktime());
+                gkls.setId(v.getYsid());
+                list.add(gkls);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Gkls> getGklsSole(String username) {
+        Example example = new Example(VideoTime.class);
+        example.createCriteria().andEqualTo("username", username);
+        example.orderBy("gktime").desc();
+        List<VideoTime> select = videoTimeMapper.selectByExample(example);
+        List<Gkls> list = new ArrayList<>();
+        for (VideoTime v : select) {
+            if((v.getTime()>30)){
+                AtomicBoolean in= new AtomicBoolean(false);
+                list.forEach(gkls -> {
+                    if(gkls.id==v.getYsid()){
+                        in.set(true);
+                        return;
+                    }
+                });
+                if(in.get()){
+                    continue;
+                }
                 Gkls gkls = new Gkls();
                 Ysb ysb = selectYsById(v.getYsid());
                 if (ysb != null) {

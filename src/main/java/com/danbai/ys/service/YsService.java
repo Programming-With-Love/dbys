@@ -113,7 +113,13 @@ public interface YsService {
      * @return List<Gkls>
      */
     List<Gkls> getGkls(String username);
-
+    /**
+     * 获取观看历史 不重复
+     *
+     * @param username 用户名
+     * @return List<Gkls>
+     */
+    List<Gkls> getGklsSole(String username);
     /**
      * 获取影视观看时间
      *

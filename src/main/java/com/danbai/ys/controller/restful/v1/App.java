@@ -2,11 +2,16 @@ package com.danbai.ys.controller.restful.v1;
 
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.BaseResult;
+import com.danbai.ys.entity.Feedback;
 import com.danbai.ys.entity.UpdateInfo;
+
+import com.danbai.ys.service.impl.AdminServiceImpl;
+import com.danbai.ys.service.impl.CommImpl;
 import com.danbai.ys.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class App {
     @Autowired
     RedisTemplate redisTemplate;
+    @Autowired
+    AdminServiceImpl adminService;
+    @Autowired
+    CommImpl comm;
     @GetMapping("/update")
     public BaseResult update() {
         return ResultUtil.success(JSONObject.parseObject((String) redisTemplate.opsForValue().get("appupdate"), UpdateInfo.class));
@@ -27,5 +36,15 @@ public class App {
     @GetMapping("/update-flutter")
     public JSONObject flutter() {
         return JSONObject.parseObject((String) redisTemplate.opsForValue().get("flutterAPPUpdate"));
+    }
+    @GetMapping("/gg")
+    public BaseResult gg() {
+        return ResultUtil.success(adminService.getConfig("appGG"));
+    }
+    @PostMapping("/feedback")
+    public BaseResult feedback(Feedback feedback){
+        feedback.setDispose(false);
+        comm.addFeedback(feedback);
+        return ResultUtil.successOk();
     }
 }

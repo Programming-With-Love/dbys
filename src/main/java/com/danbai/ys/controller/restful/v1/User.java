@@ -45,9 +45,13 @@ public class User {
      * @return BaseResult
      */
     @GetMapping("/user/gkls")
-    public BaseResult thisUserGkls(HttpServletRequest request,Token token) {
+    public BaseResult thisUserGkls(HttpServletRequest request,Token token,boolean sole) {
         if (userService.checkToken(token)){
-            return ResultUtil.success(ysService.getGkls(token.getUsername()));
+            if(sole){
+                return ResultUtil.success(ysService.getGklsSole(token.getUsername()));
+            }else {
+                return ResultUtil.success(ysService.getGkls(token.getUsername()));
+            }
         }
         com.danbai.ys.entity.User user = (com.danbai.ys.entity.User) request.getSession().getAttribute("user");
         if (user != null) {
@@ -60,7 +64,7 @@ public class User {
         return ResultUtil.success(userService.login(user));
     }
     @DeleteMapping("/token")
-    public BaseResult login(Token token){
+    public BaseResult exit(Token token){
         userService.deleteToken(token.getUsername());
         return ResultUtil.successOk();
     }
