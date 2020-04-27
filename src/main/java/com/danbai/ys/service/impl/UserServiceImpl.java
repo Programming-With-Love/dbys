@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 /**
  * @author danbai
@@ -98,6 +99,11 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             if (yzm == null) {
                 model.addAttribute("message", "验证码有误");
+                return;
+            }
+
+            if(!Pattern.matches("^[\u4e00-\u9fa5_a-zA-Z0-9]+$",user.getUsername())){
+                model.addAttribute("message", "用户名不能有符号");
                 return;
             }
             String str = registerValidateService.getVerificationCode(user.getEmail());
