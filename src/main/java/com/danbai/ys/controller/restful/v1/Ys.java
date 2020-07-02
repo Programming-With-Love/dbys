@@ -27,16 +27,6 @@ public class Ys {
     YsServiceImpl ysService;
     @Autowired
     UserService userService;
-    /**
-     * 获取所有影视
-     *
-     * @return BaseResult
-     */
-    @GetMapping("/ys")
-    @ApiOperation(value ="获取所有影视")
-    public BaseResult ys() {
-        return ResultUtil.success(ysService.getAll());
-    }
 
     /**
      * 根据id获取影视
@@ -80,7 +70,7 @@ public class Ys {
         return ResultUtil.success(ysService.getByType(type1, type2, region, year, sort, page));
     }
     @PostMapping("/ys/time")
-    @ApiOperation(value ="获取观看时间")
+    @ApiOperation(value ="观看时间更新api")
     public void time(VideoTime videoTime, Token token) {
         if(userService.checkToken(token)){
             ysService.addYsTime(videoTime);

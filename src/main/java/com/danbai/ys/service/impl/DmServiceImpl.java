@@ -51,19 +51,22 @@ public class DmServiceImpl implements DmService {
 
     @Override
     public PageResult<Dan> pageQuery(Query query, Integer pageSize, Integer pageNum, String lastId) {
-        //分页逻辑
+        //条件查询总条数
         long total = mongoTemplate.count(query, Dan.class);
+        //算页数
         final Integer pages = (int) Math.ceil(total / (double) pageSize);
         if (pageNum <= 0 || pageNum > pages) {
             pageNum = FIRST_PAGE_NUM;
         }
         final Criteria criteria = new Criteria();
         if (!StringUtils.isEmpty(lastId)) {
+            //有lastId的分页
             if (pageNum != FIRST_PAGE_NUM) {
                 criteria.and(ID).gt(new ObjectId(lastId));
             }
             query.limit(pageSize);
         } else {
+            //分页
             int skip = pageSize * (pageNum - 1);
             query.skip(skip).limit(pageSize);
         }
