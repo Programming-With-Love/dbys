@@ -8,10 +8,11 @@
 以及它的[子项目](https://github.com/danbai225/dbyswebapp)基于Vue+Element-ui实现手机端
 以及它的[子项目](https://github.com/danbai225/dbysapp)安卓端
 以及它的[子项目](https://github.com/danbai225/dbys_flutter)Flutter实现
-![](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.0.0-blue)
-![](https://img.shields.io/badge/%E9%A1%B9%E7%9B%AE%E7%8A%B6%E6%80%81-%E7%BB%88%E6%AD%A2%E5%BC%80%E5%8F%91-brightgreen)
+![](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.1-blue)
+![](https://img.shields.io/badge/完善维护-brightgreen)
 
 [线上地址](https://dbys.vip)
+[Api接口文档](https://dbys.vip/swagger-ui.html)
 
 ## 功能特性
 
@@ -26,16 +27,22 @@
 ## 项目所用到的
 
 + Spring Boot
-+ Mybits
++ tk-Mybits
 + Redis
 + MongoDB
-+ Docker
 
 ## 版本内容更新
 
+### 2020-7-2
+
++ 小bug的修复
++ 后台管理功能增加
++ api接口文档
++ sw日志
+
 ### 2020-3-20
 
-增加一起看功能
++ 增加一起看功能
 
 ### 2019-10-20
 
