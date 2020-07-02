@@ -9,6 +9,8 @@ import com.danbai.ys.service.YsService;
 import com.danbai.ys.utils.DateUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -30,6 +32,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @Service
 public class YsServiceImpl implements YsService {
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     static final String OKTAGIDS = "oktagids";
     @Autowired
     TvbMapper tvbMapper;
@@ -46,7 +49,8 @@ public class YsServiceImpl implements YsService {
     static String NULL = "null";
     static String KONG = "";
     static int MIN_DM = 100;
-    static int MAXTJ =8;
+    static int MAXTJ = 8;
+
     @Override
     public List<Ysb> page(int page, int pagenum) {
         PageHelper.offsetPage(page, pagenum);
@@ -81,7 +85,7 @@ public class YsServiceImpl implements YsService {
     @Override
     public List<Ysb> selectYsByGjc(String gjc) {
         Example example = new Example(Ysb.class);
-        example.createCriteria().andLike("pm", "%" + gjc + "%").orLike("zy","%" + gjc + "%").orLike("dy","%" + gjc + "%");
+        example.createCriteria().andLike("pm", "%" + gjc + "%").orLike("zy", "%" + gjc + "%").orLike("dy", "%" + gjc + "%");
         return ysbMapper.selectByExample(example);
     }
 
@@ -95,6 +99,7 @@ public class YsServiceImpl implements YsService {
     @Override
     public boolean addYs(Ysb ysb) {
         if (ysbMapper.insert(ysb) > 0) {
+            logger.info("增加了新的影视:" + ysb.getPm());
             return true;
         } else {
             return false;
@@ -113,6 +118,7 @@ public class YsServiceImpl implements YsService {
     public boolean delYs(Ysb ysb) {
 
         if (ysbMapper.delete(ysb) > 0) {
+            logger.info("影视被删除:" + JSON.toJSONString(ysb));
             return true;
         }
         return false;
@@ -158,8 +164,8 @@ public class YsServiceImpl implements YsService {
         VideoTime videoTime2 = videoTimeMapper.selectOne(videoTime1);
         if (videoTime2 != null) {
             videoTime.setId(videoTime2.getId());
-             videoTimeMapper.updateByPrimaryKey(videoTime);
-        }else {
+            videoTimeMapper.updateByPrimaryKey(videoTime);
+        } else {
             videoTimeMapper.insert(videoTime);
         }
     }
@@ -181,7 +187,7 @@ public class YsServiceImpl implements YsService {
         List<VideoTime> select = videoTimeMapper.selectByExample(example);
         List<Gkls> list = new ArrayList<>();
         for (VideoTime v : select) {
-            if((v.getTime()>30)){
+            if ((v.getTime() > 30)) {
                 Gkls gkls = new Gkls();
                 Ysb ysb = selectYsById(v.getYsid());
                 if (ysb != null) {
@@ -206,15 +212,15 @@ public class YsServiceImpl implements YsService {
         List<VideoTime> select = videoTimeMapper.selectByExample(example);
         List<Gkls> list = new ArrayList<>();
         for (VideoTime v : select) {
-            if((v.getTime()>30)){
-                AtomicBoolean in= new AtomicBoolean(false);
+            if ((v.getTime() > 30)) {
+                AtomicBoolean in = new AtomicBoolean(false);
                 list.forEach(gkls -> {
-                    if(gkls.id==v.getYsid()){
+                    if (gkls.id == v.getYsid()) {
                         in.set(true);
                         return;
                     }
                 });
-                if(in.get()){
+                if (in.get()) {
                     continue;
                 }
                 Gkls gkls = new Gkls();
@@ -254,13 +260,13 @@ public class YsServiceImpl implements YsService {
     }
 
     @Override
-    public String getYsDanMu(String pm ,String ysid) {
+    public String getYsDanMu(String pm, String ysid) {
         String rr = String.valueOf(redisTemplate.opsForValue().get(pm + ysid));
-        if(rr==NULL){
+        if (rr == NULL) {
             return null;
         }
         if (rr != null && !rr.equals(KONG)) {
-            if(adminService.getConfig(Config.DMCACHE).equals(AdminServiceImpl.YES)) {
+            if (adminService.getConfig(Config.DMCACHE).equals(AdminServiceImpl.YES)) {
                 if (redisTemplate.opsForSet().isMember(OKTAGIDS, rr)) {
                     Query query = new Query(Criteria.where("player").is(ysid));
                     if (mongoTemplate.count(query, Dan.class) < MIN_DM) {
@@ -284,9 +290,9 @@ public class YsServiceImpl implements YsService {
 
     @Override
     public List<Ysb> qcsy(List<Ysb> list) {
-        List<Ysb> tmp=new ArrayList<>();
+        List<Ysb> tmp = new ArrayList<>();
         //清除掉不需要的数据
-        for (Ysb y:list) {
+        for (Ysb y : list) {
             y.setGkdz("");
             y.setXzdz("");
             y.setJs("");
@@ -299,11 +305,11 @@ public class YsServiceImpl implements YsService {
     public List<Ysb> tuijian() {
         Example example = new Example(Ysb.class);
         try {
-            example.createCriteria().andGreaterThan("gxtime",DateUtils.dateAdd(null,-30,true)).andGreaterThan("pf",8);
+            example.createCriteria().andGreaterThan("gxtime", DateUtils.dateAdd(null, -30, true)).andGreaterThan("pf", 8);
             List<Ysb> ysbs = ysbMapper.selectByExample(example);
             ArrayList<Ysb> rys = new ArrayList<>();
-            for(int i=0;i<MAXTJ;i++){
-                int j=(int)(Math.random()*(ysbs.size()-1));
+            for (int i = 0; i < MAXTJ; i++) {
+                int j = (int) (Math.random() * (ysbs.size() - 1));
                 rys.add(ysbs.get(j));
                 ysbs.remove(j);
             }
@@ -322,14 +328,14 @@ public class YsServiceImpl implements YsService {
     @Override
     public List<Ysb> getNewYsb(int num) {
         Example example = new Example(Ysb.class);
-        example.setOrderByClause("gxtime DESC limit 0,"+num);
+        example.setOrderByClause("gxtime DESC limit 0," + num);
         return ysbMapper.selectByExample(example);
     }
 
     @Override
-    public List<Ysb> getByType(String type1, String type2, String region, String year, String sort,int page) {
+    public List<Ysb> getByType(String type1, String type2, String region, String year, String sort, int page) {
         PageHelper.startPage(page, 20).getPages();
-        List<Ysb> ysbs = ysbMapper.getByType(type1,type2,region,year,sort);
+        List<Ysb> ysbs = ysbMapper.getByType(type1, type2, region, year, sort);
         PageInfo pages = new PageInfo(ysbs);
         return pages.getList();
     }

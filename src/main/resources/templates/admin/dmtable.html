@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>弹幕表</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="https://cdn.p00q.cn/favicon.ico">
+    <link href="https://cdn.p00q.cn/hAdmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="https://cdn.p00q.cn/hAdmin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <!-- jqgrid-->
+    <link href="https://cdn.p00q.cn/hAdmin/css/plugins/jqgrid/ui.jqgrid.css?0820" rel="stylesheet">
+
+    <link href="https://cdn.p00q.cn/hAdmin/css/animate.css" rel="stylesheet">
+    <link href="https://cdn.p00q.cn/hAdmin/css/style.css?v=4.1.0" rel="stylesheet">
+
+    <style>
+        /* Additional style to fix warning dialog position */
+
+        #alertmod_table_list_2 {
+            top: 900px !important;
+        }
+    </style>
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                </div>
+                <div class="ibox-content">
+                    <div class="jqGrid_wrapper">
+                        <table id="table_list_2"></table>
+                        <div id="pager_list_2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="https://cdn.p00q.cn/hAdmin/js/jquery.min.js?v=2.1.4"></script>
+<script src="https://cdn.p00q.cn/hAdmin/js/bootstrap.min.js?v=3.3.6"></script>
+
+
+<!-- Peity -->
+<script src="https://cdn.p00q.cn/hAdmin/js/plugins/peity/jquery.peity.min.js"></script>
+
+<!-- jqGrid -->
+<script src="https://cdn.p00q.cn/hAdmin/js/plugins/jqgrid/i18n/grid.locale-cn.js?0820"></script>
+<script src="https://cdn.p00q.cn/hAdmin/js/plugins/jqgrid/jquery.jqGrid.min.js?0820"></script>
+
+<!-- 自定义js -->
+<script src="https://cdn.p00q.cn/hAdmin/js/content.js?v=1.0.0"></script>
+
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function () {
+
+        $.jgrid.defaults.styleUI = 'Bootstrap';
+        // Examle data for jqGrid
+        // Configuration for jqGrid Example 2
+        $("#table_list_2").jqGrid({
+            url: '/admin/getdmb',//请求数据的地址
+            editurl: "/admin/dmedit",
+            datatype: "json",
+            height: 700,
+            autowidth: true,
+            shrinkToFit: true,
+            rowNum: 20,
+            rowList: [10, 20, 30, 50],
+            colNames: ['序号', '发送者', '影视集', '类型', '内容', '颜色(10进制)', '来源', 'ip', '时间位置', '发送时间'],
+            colModel: [
+                {
+                    name: 'id',
+                    index: 'id',
+                    editable: false,
+                    width: 60,
+                    search: true,
+                    sortable: false,
+                    searchoptions: {
+                        sopt: ['eq']
+                    }
+                },
+                {
+                    name: 'author',
+                    index: 'author',
+                    editable: true,
+                    width: 50,
+                    search: true,
+                    sortable: false,
+                    searchoptions: {
+                        sopt: ['eq']
+                    }
+                },
+                {
+                    name: 'player',
+                    index: 'player',
+                    editable: true,
+                    width: 50,
+                    sortable: false,
+                    search: true,
+                    searchoptions: {
+                        sopt: ['eq']
+                    }
+                },
+                {
+                    name: 'type',
+                    index: 'type',
+                    editable: true,
+                    width: 20,
+                    search: false,
+                    sortable: false,
+                },
+                {
+                    name: 'text',
+                    index: 'text',
+                    editable: true,
+                    width: 100,
+                    sortable: false,
+                    search: false
+                },
+                {
+                    name: 'color',
+                    index: 'color',
+                    editable: true,
+                    width: 50,
+                    sortable: false,
+                    search: false
+                },
+                {
+                    name: 'referer',
+                    index: 'referer',
+                    editable: true,
+                    width: 60,
+                    sortable: false,
+                    search: false
+                },
+                {
+                    name: 'ip',
+                    index: 'ip',
+                    editable: true,
+                    width: 60,
+                    sortable: false,
+                    search: false
+                },
+                {
+                    name: 'time',
+                    index: 'time',
+                    editable: true,
+                    width: 60,
+                    sortable: false,
+                    search: false
+                },
+                {
+                    name: 'date',
+                    index: 'date',
+                    editable: true,
+                    formatter:function(cellvalue, options, rowObject){
+                        var da = new Date(cellvalue);
+                        var year = da.getFullYear()+'年';
+                        var month = da.getMonth()+1+'月';
+                        var date = da.getDate()+'日';
+                        var hours =da.getHours()+':';
+                        var minutes  =da.getMinutes()+':';
+                        var seconds = da.getSeconds()
+                        return year+month+date+hours+minutes+seconds;
+        },
+                    width: 80,
+                    sortable: false,
+                    search: false
+                }
+            ],
+            pager: "#pager_list_2",
+            viewrecords: true,
+            caption: "弹幕管理表",
+            add: true,
+            edit: true,
+            addtext: 'Add',
+            edittext: 'Edit',
+            hidegrid: false
+        });
+
+        // Add selection
+        $("#table_list_2").setSelection(4, true);
+
+
+        // Setup buttons
+        $("#table_list_2").jqGrid('navGrid', '#pager_list_2', {
+            edit: true,
+            add: true,
+            del: true,
+            search: true
+        }, {
+            height: 800,
+            reloadAfterSubmit: true
+        });
+
+        // Add responsive to jqGrid
+        $(window).bind('resize', function () {
+            var width = $('.jqGrid_wrapper').width();
+            $('#table_list_2').setGridWidth(width);
+        });
+    });
+</script>
+</body>
+
+</html>

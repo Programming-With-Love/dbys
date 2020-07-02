@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
 import static java.lang.System.currentTimeMillis;
 
 /**
@@ -20,6 +21,12 @@ public class Dmas {
     @Autowired
     MongoTemplate mongoTemplate;
 
+    /**
+     * 保存弹幕
+     *
+     * @param url
+     * @param player
+     */
     @Async
     public void xzbcdm(String url, String player) {
         String json = HtmlUtils.getHtmlContentNp(url);

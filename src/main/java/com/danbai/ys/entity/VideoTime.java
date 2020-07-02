@@ -1,10 +1,11 @@
 package com.danbai.ys.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "video_time")
-public class VideoTime {
+public class VideoTime implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

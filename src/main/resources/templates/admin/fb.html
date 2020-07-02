@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反馈处理</title>
+    <link rel="stylesheet" href="https://qidian.gtimg.com/lulu/pure/css/common/ui.css">
+</head>
+<style>
+    .left {
+        float: left;
+        width: 30%;
+        height: 325px;
+        border: 1px solid #9bdf70;
+        background: #f0fbeb;
+        overflow: scroll;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    
+    .right {
+        border: 1px solid #e3e197;
+        background: #ffffdd;
+        margin-left: 31%;
+        height: 325px;
+    }
+    
+    .title1 {
+        background: #EEE url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAHklEQVQImWNkYGBgYGD4//8/A5wF5SBYyAr+//8PAPOCFO0Q2zq7AAAAAElFTkSuQmCC) repeat;
+        text-shadow: 3px -3px black, 2px -2px white;
+        font-weight: bold;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+    
+    .complete {
+        border: 1px solid #bfd1eb;
+        background: #f3faff;
+        min-height: 300px;
+        margin-top: 2rem;
+    }
+    
+    .agenda {
+        margin: 3px 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .chuli {
+        width: 80%;
+        margin: 0 auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .okbt {
+        color: #01cf97;
+        display: block;
+        margin: 10px auto
+    }
+</style>
+
+<body>
+    <div class="left">
+        <h1 align="center" class="title1">待办项</h1>
+<div th:each="f:${flist}">
+    <div class="ui-button agenda" role="button" th:fid="${f.id}" th:text="${f.content}"></div>
+</div>
+
+
+
+    </div>
+
+    <div class="right">
+        <h1 align="center" class="title1">正在处理</h1>
+        <div class="ui-textarea chuli"><textarea class="cente" rows="8" readonly></textarea></div>
+        <button class="ui-button okbt" onclick="sendOk()">完成</button>
+    </div>
+    <div class="complete">
+        <h1 align="center" class="title1">已完成</h1>
+        <div th:each="f:${tlist}">
+            <div class="ui-button" role="button" th:text="${f.content}"></div>
+        </div>
+
+    </div>
+</body>
+<script src="https://qidian.gtimg.com/lulu/pure/js/common/all.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var id = 0;
+    $(function() {
+        if ($(".agenda").length > 0) {
+            id = $(".agenda").eq(0).attr("fid");
+            $(".cente").val($(".agenda").eq(0).text());
+        }
+    });
+    $(".agenda").click(function(e) {
+        id = $(this).attr("fid");
+        $(".cente").val($(this).text());
+    })
+
+    function sendOk() {
+        if(id!=0){
+        $(".cente").val("");
+        $(".agenda").each(function(index) {
+            if ($(this).attr("fid") == id) {
+                $(".complete").append('<div class="ui-button" role="button">' + $(this).text() + '</div>')
+                $(this).remove();
+            }
+        })
+        }
+        $.post("/admin/okfb",{id:id});
+    }
+</script>
+
+</html>

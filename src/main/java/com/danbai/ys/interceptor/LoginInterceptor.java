@@ -1,6 +1,8 @@
 package com.danbai.ys.interceptor;
 
 import com.danbai.ys.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

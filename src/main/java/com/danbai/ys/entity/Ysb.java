@@ -1,11 +1,16 @@
 package com.danbai.ys.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 /**影视类
  * @author danbai
  */
+
+@ApiModel(value = "影视实体类")
 public class Ysb implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -16,38 +21,39 @@ public class Ysb implements Serializable {
     public static String TJ="tj";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "id")
     private Integer id;
-
+    @ApiModelProperty(value = "评分")
     private Float pf;
-
+    @ApiModelProperty(value = "片名")
     private String pm;
-
+    @ApiModelProperty(value = "图片地址")
     private String tp;
-
+    @ApiModelProperty(value = "更新状态")
     private String zt;
-
+    @ApiModelProperty(value = "别名")
     private String bm;
-
+    @ApiModelProperty(value = "导演")
     private String dy;
-
+    @ApiModelProperty(value = "主演")
     private String zy;
-
+    @ApiModelProperty(value = "类型")
     private String lx;
-
+    @ApiModelProperty(value = "地区")
     private String dq;
-
+    @ApiModelProperty(value = "语言")
     private String yy;
-
+    @ApiModelProperty(value = "上映时间")
     private String sytime;
-
+    @ApiModelProperty(value = "片长")
     private String pctime;
-
+    @ApiModelProperty(value = "更新时间")
     private String gxtime;
-
+    @ApiModelProperty(value = "介绍")
     private String js;
-
+    @ApiModelProperty(value = "观看地址 json")
     private String gkdz;
-
+    @ApiModelProperty(value = "下载地址 json")
     private String xzdz;
 
     /**

@@ -2,13 +2,17 @@ package com.danbai.ys.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**弹幕类
+import java.io.Serializable;
+
+/**
+ * 弹幕类
+ *
  * @author danbai
  * @date 2019-10-16 22:21
  */
 @Document(collection = "dans")
-public class Dan {
-
+public class Dan implements Serializable {
+    private String id;
     private String player;
     private String author;
     private double time;
@@ -18,6 +22,14 @@ public class Dan {
     private String ip;
     private String referer;
     private long date;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public void setPlayer(String player) {
         this.player = player;
@@ -90,4 +102,6 @@ public class Dan {
     public long getDate() {
         return date;
     }
+
+
 }

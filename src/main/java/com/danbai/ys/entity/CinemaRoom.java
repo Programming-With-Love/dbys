@@ -16,6 +16,7 @@ public class CinemaRoom implements Serializable {
     private String authorId;
     private String url;
     private double time;
+
     public int getId() {
         return id;
     }

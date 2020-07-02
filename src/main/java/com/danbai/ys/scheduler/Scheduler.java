@@ -26,7 +26,7 @@ public class Scheduler {
     private Dmas as;
     @Async
     @Scheduled(fixedDelay = 60000)
-    public void cronJobSchedule() {
+    public void cronJobScheduleDm() {
         Set tagids = redisTemplate.opsForSet().members("tagids");
         redisTemplate.delete("tagids");
         Object[] das = tagids.toArray();

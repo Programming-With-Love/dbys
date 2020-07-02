@@ -1,10 +1,12 @@
 package com.danbai.ys.entity;
 
+import java.io.Serializable;
+
 /**友链类
  * @author danbai
  * @date 2019-10-31 15:53
  */
-public class Ylink {
+public class Ylink implements Serializable {
     /**
      * 友链名字
      */

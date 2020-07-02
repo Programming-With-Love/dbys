@@ -3,14 +3,11 @@ package com.danbai.ys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.danbai.ys.entity.Acces;
-import com.danbai.ys.entity.Config;
-import com.danbai.ys.entity.Ysb;
-import com.danbai.ys.service.impl.AdminServiceImpl;
-import com.danbai.ys.service.impl.StatisticalImpl;
-import com.danbai.ys.service.impl.UserServiceImpl;
-import com.danbai.ys.service.impl.YsServiceImpl;
+import com.danbai.ys.entity.*;
+import com.danbai.ys.service.impl.*;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -28,6 +25,7 @@ import java.util.List;
  * @date 2019/10/13
  */
 @Controller
+@Api(tags = "管理api")
 public class AdminController {
     @Autowired
     RedisTemplate redisTemplate;
@@ -39,13 +37,19 @@ public class AdminController {
     StatisticalImpl statistical;
     @Autowired
     AdminServiceImpl adminService;
+    @Autowired
+    DmServiceImpl dmService;
+    @Autowired
+    CommImpl comm;
 
     @RequestMapping(value = "/admin", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
-    String admin(Model model) {
+    @ApiOperation(value = "管理视图框架首页")
+    String admin() {
         return "admin/index";
     }
 
     @RequestMapping(value = "/admin/index_v1", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "管理视图首页")
     String adminIndex(Model model) {
         model.addAttribute("yssize", ysService.contYs());
         model.addAttribute("usersize", userService.contUser());
@@ -64,12 +68,38 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/ystable", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
-    String adminYstable(Model model) {
+    @ApiOperation(value = "影视表视图")
+    String adminYstable() {
         return "admin/ystable";
+    }
+
+    @RequestMapping(value = "/admin/dmtable", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "弹幕表视图")
+    String adminDmtable() {
+        return "admin/dmtable";
+    }
+
+    @RequestMapping(value = "/admin/feedback", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "反馈处理视图")
+    String adminFeedback(Model model) {
+        List<Feedback> allFeedback = comm.getAllFeedback();
+        List tList = new ArrayList();
+        List fList = new ArrayList();
+        allFeedback.forEach(b -> {
+            if (b.getDispose()) {
+                tList.add(b);
+            } else {
+                fList.add(b);
+            }
+            model.addAttribute("tlist", tList);
+            model.addAttribute("flist", fList);
+        });
+        return "admin/fb";
     }
 
     @RequestMapping(value = "/admin/getysb", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
+    @ApiOperation(value = "获取影视表api")
     String adminGetysb(@RequestParam("rows") Integer rows, @RequestParam("page") Integer page, String searchString,
                        String searchField) {
         JSONObject re = new JSONObject();
@@ -84,7 +114,7 @@ public class AdminController {
             JSONArray array = JSONArray.parseArray(JSON.toJSONString(p.getList()));
             re.put("rows", array);
             re.put("page", p.getPageNum());
-            re.put("total", p.getPageSize());
+            re.put("total", p.getPages());
             re.put("records", ysService.contYs());
 
         } else {
@@ -107,6 +137,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/ysedit", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
+    @ApiOperation(value = "影视编辑api")
     String adminYsedit(Ysb ysb, @RequestParam(value = "oper", required = false) String oper) {
         JSONObject re = new JSONObject();
         //noinspection AlibabaSwitchStatement,AlibabaSwitchStatement
@@ -126,11 +157,77 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/config", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "配置视图")
     String adminConfig(Model model) {
         List<Config> config = adminService.getConfig();
         for (Config c : config) {
             model.addAttribute(c.getItem(), c.getValue());
         }
         return "admin/config";
+    }
+
+    @RequestMapping(value = "/admin/getdmb", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "获取弹幕表api")
+    String adminGetDmb(@RequestParam("rows") Integer rows, @RequestParam("page") Integer page, String searchString,
+                       String searchField) {
+        JSONObject re = new JSONObject();
+        if (searchString == null) {
+            searchString = "";
+        }
+        if (searchField == null) {
+            searchField = "";
+        }
+        PageResult<Dan> dmList = null;
+        if ("".equals(searchString) && "".equals(searchField)) {
+            dmList = dmService.getDmList(rows, page);
+        } else {
+            switch (searchField) {
+                case "id":
+                    dmList = dmService.getDmListById(searchString, rows, page);
+                    break;
+                case "author":
+                    dmList = dmService.getDmListByYsUsername(searchString, rows, page);
+                    break;
+                case "player":
+                    dmList = dmService.getDmListByYsJi(searchString, rows, page);
+                    break;
+                default:
+                    dmList = dmService.getDmList(rows, page);
+            }
+        }
+        JSONArray array = JSONArray.parseArray(JSON.toJSONString(dmList.getList()));
+        re.put("rows", array);
+        re.put("page", page);
+        re.put("total", dmList.getPages());
+        re.put("records", dmList.getTotal());
+        return re.toJSONString();
+    }
+
+    @RequestMapping(value = "/admin/dmedit", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "弹幕编辑api")
+    String adminDmedit(Dan dan, @RequestParam(value = "oper", required = false) String oper) {
+        JSONObject re = new JSONObject();
+        switch (oper) {
+            case "add":
+                dmService.addDm(dan);
+                break;
+            case "edit":
+                dmService.updateDm(dan);
+                break;
+            case "del":
+                dmService.delDm(dan);
+                break;
+            default:
+        }
+        return re.toJSONString();
+    }
+
+    @RequestMapping(value = "/admin/okfb", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "完成反馈处理")
+    void adminGetDmb(Integer id) {
+        comm.okFeedback(id);
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-04-29 11:44:46
+-- 生成日期： 2020-07-02 10:38:58
 -- 服务器版本： 5.5.62-log
 -- PHP 版本： 7.3.9
 
@@ -39,12 +39,12 @@ CREATE TABLE `config` (
 
 INSERT INTO `config` (`Item`, `value`) VALUES
 ('ad', ''),
-('appGG', '欢迎使用淡白影视,如遇问题下方反馈.'),
+('appGG', '欢迎使用淡白影视.'),
 ('dmcache', 'no'),
-('footer', '<script> (function(){     var bp = document.createElement(\'script\');     var curProtocol = window.location.protocol.split(\':\')[0];     if (curProtocol === \'https\') {         bp.src = \'https://zz.bdstatic.com/linksubmit/push.js\';     }     else {         bp.src = \'http://push.zhanzhang.baidu.com/push.js\';     }     var s = document.getElementsByTagName(\"script\")[0];     s.parentNode.insertBefore(bp, s); })(); </script> <!-- Global site tag (gtag.js) - Google Analytics --> <script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-125430775-2\"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag(\'js\', new Date());    gtag(\'config\', \'UA-125430775-2\'); \r\n</script>\r\n\r\n '),
-('gg', '欢迎使用淡白影视!<a href=\"http://cdn.p00q.cn/ys/app/%E6%B7%A1%E7%99%BD%E5%BD%B1%E8%A7%86V1.0.4.apk\">app下载</a>\r\n<a href=\"https://github.com/Programming-With-Love/dbys\">本网站开源地址</a> <span style=\"color:red\">切勿相信片中广告</span>'),
+('footer', '<script>\r\n(function(){\r\n    var bp = document.createElement(\'script\');\r\n    var curProtocol = window.location.protocol.split(\':\')[0];\r\n    if (curProtocol === \'https\') {\r\n        bp.src = \'https://zz.bdstatic.com/linksubmit/push.js\';\r\n    }\r\n    else {\r\n        bp.src = \'http://push.zhanzhang.baidu.com/push.js\';\r\n    }\r\n    var s = document.getElementsByTagName(\"script\")[0];\r\n    s.parentNode.insertBefore(bp, s);\r\n})();\r\n</script>\r\n'),
+('gg', '欢迎使用淡白影视!<a href=\"http://cdn.p00q.cn/ys/app/%E6%B7%A1%E7%99%BD%E5%BD%B1%E8%A7%86Flutter.apk\">app下载</a>\r\n<a href=\"https://github.com/Programming-With-Love/dbys\">本网站开源地址</a> '),
 ('head', ''),
-('ylink', '[\r\n{name:\"淡白的博客\",url:\"https://p00q.cn\"},{name:\"MVCAT\",url:\"http://www.mvcat.com\"},\r\n{name:\"站点地图\",url:\"https://dbys.vip/sitemap.xml\"},\r\n{name:\"低价香港vps\",url:\"https://my.hostkvm.com/aff.php?aff=807\"},{name:\"临时云\",url:\"http://tempyun.com\"},{name:\"V聚焦\",url:\"http://www.vjujiao.com\"},{name:\"LOL坑逼网\",url:\"http://lolkb.top\"},{name:\"樱花动漫\",url:\"https://www.52xnet.cn\"},{name:\"舔狗日记\",url:\"http://tiangou.p00q.cn/\"},{name:\"广告联盟\",url:\"http://www.i8gg.com/cf.aspx?103\"}\r\n]');
+('ylink', '[\r\n{name:\"淡白的博客\",url:\"https://p00q.cn\"},{name:\"MVCAT\",url:\"http://www.mvcat.com\"},\r\n{name:\"站点地图\",url:\"https://dbys.vip/sitemap.xml\"},{name:\"临时云\",url:\"http://tempyun.com\"},{name:\"V聚焦\",url:\"http://www.vjujiao.com\"},{name:\"LOL坑逼网\",url:\"http://lolkb.top\"},{name:\"樱花动漫\",url:\"https://www.52xnet.cn\"},{name:\"舔狗日记\",url:\"http://tiangou.p00q.cn/\"},{name:\"在线H5壁纸\",url:\"http://wallpaper.p00q.cn\"}\r\n]');
 
 -- --------------------------------------------------------
 
@@ -160,23 +160,20 @@ ALTER TABLE `tvb`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD KEY `id_2` (`id`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- 表的索引 `video_time`
 --
 ALTER TABLE `video_time`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`);
 
 --
 -- 表的索引 `ysb`
 --
 ALTER TABLE `ysb`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `id_2` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 在导出的表使用AUTO_INCREMENT

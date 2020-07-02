@@ -2,7 +2,9 @@ package com.danbai.ys.entity;
 
 import java.io.Serializable;
 
-/**集类
+/**
+ * 集类
+ *
  * @author danbai
  * @date 2019/10/13
  */

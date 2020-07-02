@@ -1,17 +1,25 @@
 package com.danbai.ys.entity;
 
-/**返回类
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
+
+/**
+ * 返回类
+ *
  * @author danbai
  * @date 2019-10-29 15:05
  */
-public class BaseResult<T> {
-
+@ApiModel(value = "返回信息实体类", description = "序列化信息为json返回的类")
+public class BaseResult<T> implements Serializable {
+    @ApiModelProperty(value = "http状态码")
     private Integer code;
-
+    @ApiModelProperty(value = "状态码")
     private Integer status;
-
+    @ApiModelProperty(value = "消息")
     private String msg;
-
+    @ApiModelProperty(value = "数据")
     private T data;
 
     public Integer getCode() {

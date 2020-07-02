@@ -5,6 +5,8 @@ import com.danbai.ys.entity.Token;
 import com.danbai.ys.service.UserService;
 import com.danbai.ys.service.YsService;
 import com.danbai.ys.utils.ResultUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/api/v1")
+@Api(tags = "用户相关api app用")
 public class User {
     @Autowired
     UserService userService;
@@ -29,6 +32,7 @@ public class User {
      * @return BaseResult
      */
     @GetMapping("/user")
+    @ApiOperation(value ="获取用户信息", notes = "根据token获取")
     public BaseResult thisUser(HttpServletRequest request,Token token) {
         if(userService.checkToken(token)){
             com.danbai.ys.entity.User user = new com.danbai.ys.entity.User();
@@ -45,6 +49,7 @@ public class User {
      * @return BaseResult
      */
     @GetMapping("/user/gkls")
+    @ApiOperation(value ="获取观看历史", notes = "携带token获取")
     public BaseResult thisUserGkls(HttpServletRequest request,Token token,boolean sole) {
         if (userService.checkToken(token)){
             if(sole){
@@ -60,10 +65,12 @@ public class User {
         return ResultUtil.error("未登陆");
     }
     @PostMapping("/token")
+    @ApiOperation(value ="app的登录接口返回token")
     public BaseResult token(com.danbai.ys.entity.User user){
         return ResultUtil.success(userService.login(user));
     }
     @DeleteMapping("/token")
+    @ApiOperation(value ="退出登录删除token")
     public BaseResult exit(Token token){
         userService.deleteToken(token.getUsername());
         return ResultUtil.successOk();

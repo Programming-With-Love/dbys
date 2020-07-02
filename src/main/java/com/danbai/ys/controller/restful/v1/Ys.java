@@ -1,16 +1,13 @@
 package com.danbai.ys.controller.restful.v1;
 
-import com.alibaba.fastjson.JSON;
 import com.danbai.ys.entity.*;
-import com.danbai.ys.entity.User;
 import com.danbai.ys.service.UserService;
-import com.danbai.ys.service.YsService;
 import com.danbai.ys.service.impl.YsServiceImpl;
 import com.danbai.ys.utils.ResultUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/v1")
+@ApiOperation(value ="影视相关api App用")
 public class Ys {
     @Autowired
     YsServiceImpl ysService;
@@ -35,6 +33,7 @@ public class Ys {
      * @return BaseResult
      */
     @GetMapping("/ys")
+    @ApiOperation(value ="获取所有影视")
     public BaseResult ys() {
         return ResultUtil.success(ysService.getAll());
     }
@@ -46,6 +45,7 @@ public class Ys {
      * @return BaseResult
      */
     @GetMapping("/ys/{id}")
+    @ApiOperation(value ="获取影视根据id")
     public BaseResult ysOne(@PathVariable int id) {
         return ResultUtil.success(ysService.selectYsById(id));
     }
@@ -57,6 +57,7 @@ public class Ys {
      * @return BaseResult
      */
     @GetMapping("/ys/search/{gjc}")
+    @ApiOperation(value ="根据关键词搜索影视")
     public BaseResult search(@PathVariable String gjc) {
         if (gjc.length() > 1) {
             return ResultUtil.success(ysService.qcsy(ysService.selectYsByGjc(gjc)));
@@ -65,11 +66,13 @@ public class Ys {
     }
 
     @GetMapping("/ys/tv")
+    @ApiOperation(value ="获取tv列表")
     public BaseResult tv() {
         return ResultUtil.success(ysService.getAllTv());
     }
 
     @GetMapping("ys/type")
+    @ApiOperation(value ="获取类型影视")
     public BaseResult type(String type1, String type2, String region, String year, String sort, @NotNull int page) {
         if (type2.indexOf("'") > -1 | region.indexOf("'") > -1 | year.indexOf("'") > -1) {
             return ResultUtil.error("非法字符");
@@ -77,12 +80,14 @@ public class Ys {
         return ResultUtil.success(ysService.getByType(type1, type2, region, year, sort, page));
     }
     @PostMapping("/ys/time")
+    @ApiOperation(value ="获取观看时间")
     public void time(VideoTime videoTime, Token token) {
         if(userService.checkToken(token)){
             ysService.addYsTime(videoTime);
         }
     }
     @GetMapping("/ysAndLs")
+    @ApiOperation(value ="获取影视的同时获取观看时间")
     public BaseResult getys(int id,Token token){
         Map<String, Object> map = new HashMap<>(5);
         Ysb ys = ysService.selectYsById(id);

@@ -1,13 +1,19 @@
 package com.danbai.ys.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
  * @author danbai
  * @date 2019-11-21 14:21
  */
+@ApiModel(value = "token", description = "token")
 public class Token implements Serializable {
+    @ApiModelProperty(value = "用户名")
     private String username;
+    @ApiModelProperty(value = "token")
     private String token;
     public static final String TOKEN="token_";
 

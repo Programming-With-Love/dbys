@@ -1,9 +1,12 @@
 package com.danbai.ys.entity;
+
+import java.io.Serializable;
+
 /**
  * @author danbai
  * @date 2019-11-14 17:50
  */
-public class UpdateInfo {
+public class UpdateInfo implements Serializable {
     // 是否有新版本
     public boolean hasUpdate = false;
     // 是否静默下载：有新版本时不提示直接下载

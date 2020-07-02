@@ -8,6 +8,8 @@ import com.danbai.ys.entity.Ysb;
 import com.danbai.ys.service.impl.*;
 import com.danbai.ys.utils.SiteMapUtils;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,7 @@ import java.util.Map;
  * @date 2019/10/13
  */
 @Controller
+@Api(tags = "主要视图请求")
 public class MainController {
     @Autowired
     YsServiceImpl ysService;
@@ -33,12 +36,14 @@ public class MainController {
     AdminServiceImpl adminService;
     @Autowired
     CommImpl comm;
+
     @ModelAttribute
     public void bif(Model model) {
         model.addAllAttributes(comm.getAllComm());
     }
 
     @RequestMapping(value = {"/", "index"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "首页")
     String index(Model model) {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
         PageInfo ysbs1 = ysService.getYs("电视剧", 1, 12);
@@ -50,8 +55,10 @@ public class MainController {
         model.addAttribute("dm", ysbs3.getList());
         return "index";
     }
+
     @RequestMapping(value = {"/sy"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
+    @ApiOperation(value = "首页数据Json形式")
     String indexApi(HttpServletRequest request) {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
         PageInfo ysbs1 = ysService.getYs("电视剧", 1, 12);
@@ -69,6 +76,7 @@ public class MainController {
 
     @RequestMapping(value = {"/iflogin"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
+    @ApiOperation(value = "登陆判断")
     String ifLogin(HttpServletRequest request) {
         if (request.getSession().getAttribute(User.DEFAULT_USER) != null) {
             return "yes";
@@ -78,11 +86,13 @@ public class MainController {
     }
 
     @RequestMapping(value = "/adminlogin", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
-    String adminLogi() {
+    @ApiOperation(value = "后台登录视图")
+    String adminLogin() {
         return "adminlogin";
     }
 
     @RequestMapping(value = "/adminlogin", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
+    @ApiOperation(value = "后台登录api")
     String adminLogiApi(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
         if (userService.yzUser(user, request, response)) {
             return "redirect:admin";
@@ -92,16 +102,19 @@ public class MainController {
     }
 
     @RequestMapping(value = "/login", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "登录视图")
     String login() {
         return "login";
     }
 
     @RequestMapping(value = "/reg", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "注册视图")
     String reg() {
         return "reg";
     }
 
     @RequestMapping(value = "/reg", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
+    @ApiOperation(value = "注册api")
     String regApi(User user, Model model, String yzm) {
         userService.reg(user, model, yzm);
         return "reg";
@@ -109,11 +122,13 @@ public class MainController {
 
     @RequestMapping(value = "/regapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
+    @ApiOperation(value = "app注册接口", notes = "返回json")
     String regAppApi(User user, String yzm) {
         return userService.regapp(user, yzm);
     }
 
     @RequestMapping(value = "/login", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
+    @ApiOperation(value = "登录接口")
     String loginApi(User user, HttpServletRequest request, HttpServletResponse response, Model model) {
         if (userService.yzUser(user, request, response)) {
             return "redirect:/";
@@ -125,6 +140,7 @@ public class MainController {
 
     @RequestMapping(value = "/loginapp", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
+    @ApiOperation(value = "app登录接口", notes = "webapp登录接口返回用户信息基于cookie")
     String loginAppApi(User user, HttpServletRequest request, HttpServletResponse response) {
 
         if (userService.yzUser(user, request, response)) {
@@ -135,18 +151,21 @@ public class MainController {
     }
 
     @RequestMapping(value = "/logout", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
+    @ApiOperation(value = "退出登录")
     String logout(HttpServletRequest request) {
         request.getSession().removeAttribute("user");
         return "login";
     }
 
     @RequestMapping(value = "/hedimgupdate", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "头像上传视图", notes = "头像上传")
     String hedimgupdate() {
         return "hedimgupdate";
     }
 
     @RequestMapping(value = "/hedimgupdate", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
+    @ApiOperation(value = "头像上传接口")
     String hedimgupdateApi(String url, HttpServletRequest servletRequest) {
         User user = (User) servletRequest.getSession().getAttribute("user");
         if (user == null) {
@@ -161,6 +180,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/person", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "用户信息视图")
     String person(HttpServletRequest request, Model model) {
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
@@ -174,10 +194,12 @@ public class MainController {
         model.addAttribute("gkls", gkls);
         return "person";
     }
+
     @RequestMapping(value = "/yiqikan", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "一起看视图")
     String yiQiKan(HttpServletRequest request) {
 
-        if(request.getSession().getAttribute("user")==null){
+        if (request.getSession().getAttribute("user") == null) {
             return "redirect:/login";
         }
         return "yiqikan/index";

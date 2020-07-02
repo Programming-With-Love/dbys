@@ -5,6 +5,8 @@ import com.danbai.ys.entity.Token;
 import com.danbai.ys.entity.User;
 import com.danbai.ys.mapper.UserMapper;
 import com.danbai.ys.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,7 @@ import java.util.regex.Pattern;
  */
 @Service
 public class UserServiceImpl implements UserService {
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     UserMapper userMapper;
     @Autowired
@@ -42,6 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addUser(User user) {
         if (userMapper.insert(user) > 0) {
+            logger.info("有新的用户啦!--"+user.getUsername());
             return true;
         }
         return false;

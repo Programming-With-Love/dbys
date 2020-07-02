@@ -1,12 +1,18 @@
 package com.danbai.ys.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
-/**观看历史类
+/**
+ * 观看历史类
+ *
  * @author danbai
  * @date 2019/10/13
  */
+@ApiModel(value = "反馈信息实体类", description = "记录app反馈信息的类")
 public class Gkls implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -15,11 +21,17 @@ public class Gkls implements Serializable {
      * 最大历史记录
      */
     public static final int MAX = 30;
+    @ApiModelProperty(value = "影视图片地址")
     public String ysimg;
+    @ApiModelProperty(value = "影视片名")
     public String pm;
+    @ApiModelProperty(value = "影视集名")
     public String ji;
+    @ApiModelProperty(value = "观看时长")
     public String time;
+    @ApiModelProperty(value = "观看的时间")
     public Date gktime;
+    @ApiModelProperty(value = "id")
     public int id;
 
     public int getId() {

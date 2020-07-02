@@ -82,18 +82,20 @@ public class TvDmSocket {
         log.info(message);
         JSONObject jsonObject = JSON.parseObject(message);
         String type = jsonObject.getString("type");
-        if(type==null){return;}
+        if (type == null) {
+            return;
+        }
         try {
             switch (type) {
                 case "setdmid":
                     this.setDmid(jsonObject.getString("data"));
                     break;
                 case "send":
-                    if(this.getDmid()==null){
+                    if (this.getDmid() == null) {
                         this.sendMessage("先设置dmid");
                     }
                     SpringUtil.getBean(AsyncDmAllSend.class).sendInfoNothis(jsonObject.getJSONObject("data").toJSONString(),
-                            this.dmid,this);
+                            this.dmid, this);
                     break;
                 default:
                     this.sendMessage(message);
@@ -155,8 +157,12 @@ public class TvDmSocket {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || getClass() != o.getClass()) {return false;}
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         TvDmSocket that = (TvDmSocket) o;
         return Objects.equals(dmid, that.dmid) &&
                 Objects.equals(session, that.session);

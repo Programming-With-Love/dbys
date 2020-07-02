@@ -3,7 +3,9 @@ package com.danbai.ys.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**用户类
+/**
+ * 用户类
+ *
  * @author danbai
  * @date 2019/10/13
  */

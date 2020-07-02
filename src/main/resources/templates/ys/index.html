@@ -92,7 +92,7 @@
                         th:text="'《'+${ys.pm}+'》 - 1.在线视频 (支持手机)高清资源 - 在线播放 - 如果不能播放先刷新试试：'"></strong></div>
                 <ul class="dslist-group">
                     <li class="dslist-group-item on" th:each="ji : ${xs}">
-                        <span style="cursor:pointer;background-color: #F34868;color: #FFF;margin: 3px;  padding: 5px 12px 5px 10px;text-decoration: none;"
+                        <span style="cursor:pointer;background-color: #6495ED;color: #FFF;margin: 3px;  padding: 5px 12px 5px 10px;text-decoration: none;"
                               class="ji" th:text="${ji.name}" th:value="${ji.url}"></span>
                     </li>
                 </ul>
@@ -152,6 +152,10 @@
     })
     dp.seek(gettime());
     $(".ji").click(function () {
+        $(".ji").each(function () {
+            $(this).css({"background-color":"#6495ED"});
+        })
+        $(this).css({"background-color":"#FF6347"});
         ysid = id + $(this).html();
         var $this = $(this).parent();
         $(this).parent().parent().children().each(function (i, o) {
@@ -198,6 +202,7 @@
             dp.play();
             timeout = true;
         }
+        swcolor();
     });
     dp.on('pause', function () {
         dmtimeout = false;
@@ -268,7 +273,12 @@
             dsj();
         }
     });
-
+    function swcolor() {
+        $(".ji").each(function () {
+            $(this).css({"background-color":"#6495ED"});
+        })
+        $(".ji").eq(jii).css({"background-color":"#FF6347"});
+    }
     function gettagid() {
         $.ajax({
             type: "GET",
@@ -284,13 +294,13 @@
     }
 
     function getjii() {
-        console.log("1111")
         $(".dslist-group").children().each(function(i,n){
             var obj = $(n)
             if(obj.children().eq(0).html()==jiname){
                 jii=i;
             }
         });
+        swcolor();
     }
     function getdm(id, time) {
         $.getJSON("https://mfm.video.qq.com/danmu?otype=json&target_id=" + id + "&timestamp=" + time, function (json) {

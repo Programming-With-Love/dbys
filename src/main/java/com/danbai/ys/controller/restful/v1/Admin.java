@@ -6,6 +6,8 @@ import com.danbai.ys.entity.BaseResult;
 import com.danbai.ys.entity.Config;
 import com.danbai.ys.service.impl.AdminServiceImpl;
 import com.danbai.ys.utils.ResultUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,11 +22,13 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/v1")
+@Api(tags = "后台管理api")
 public class Admin {
     @Autowired
     AdminServiceImpl adminService;
 
     @PostMapping("/admin/config")
+    @ApiOperation(value = "配置修改api")
     public BaseResult updataConfig(String data, HttpServletRequest request) {
         if (adminService.isAdmin(request)) {
             JSONObject jsonObject = JSON.parseObject(data);

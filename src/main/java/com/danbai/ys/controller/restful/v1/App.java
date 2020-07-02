@@ -8,6 +8,7 @@ import com.danbai.ys.entity.UpdateInfo;
 import com.danbai.ys.service.impl.AdminServiceImpl;
 import com.danbai.ys.service.impl.CommImpl;
 import com.danbai.ys.utils.ResultUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/v1")
+@ApiOperation(value ="app相关API", notes = "移动app")
 public class App {
     @Autowired
     RedisTemplate redisTemplate;
@@ -30,18 +32,22 @@ public class App {
     @Autowired
     CommImpl comm;
     @GetMapping("/update")
+    @ApiOperation(value ="app更新查询", notes = "安卓apk")
     public BaseResult update() {
         return ResultUtil.success(JSONObject.parseObject((String) redisTemplate.opsForValue().get("appupdate"), UpdateInfo.class));
     }
     @GetMapping("/update-flutter")
+    @ApiOperation(value ="app更新查询", notes = "flutterApp")
     public JSONObject flutter() {
         return JSONObject.parseObject((String) redisTemplate.opsForValue().get("flutterAPPUpdate"));
     }
     @GetMapping("/gg")
+    @ApiOperation(value ="app公告获取")
     public BaseResult gg() {
         return ResultUtil.success(adminService.getConfig("appGG"));
     }
     @PostMapping("/feedback")
+    @ApiOperation(value ="反馈接口")
     public BaseResult feedback(Feedback feedback){
         feedback.setDispose(false);
         comm.addFeedback(feedback);

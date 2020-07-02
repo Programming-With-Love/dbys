@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
@@ -29,16 +30,16 @@ public class CinemaSocket {
     /**
      * 房间id 0为大厅
      */
-    private int roomId=0;
+    private int roomId = 0;
     /**
-     *  连接池
+     * 连接池
      */
     public static ConcurrentHashMap<String, CinemaSocket> POOL = new ConcurrentHashMap<>();
     /**
      * 房间池
      */
     public static ConcurrentHashMap<Integer, CinemaRoom> ROOM_POOL = new ConcurrentHashMap<>();
-    public static ConcurrentHashMap<String, Integer> DELETE_P00L =new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, Integer> DELETE_P00L = new ConcurrentHashMap<>();
     /**
      * 与某个客户端的连接会话，需要通过它来给客户端发送数据
      */
@@ -52,17 +53,17 @@ public class CinemaSocket {
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) {
         this.session = session;
-        this.username=username;
-        if(DELETE_P00L.containsKey(username)){
-            this.roomId=DELETE_P00L.get(username);
+        this.username = username;
+        if (DELETE_P00L.containsKey(username)) {
+            this.roomId = DELETE_P00L.get(username);
             DELETE_P00L.remove(username);
         }
         //加入POOL中
-        POOL.put(session.getId(),this);
+        POOL.put(session.getId(), this);
         //断线重连加房间
-        if(roomId!=0){
-            CinemaRoom room= ROOM_POOL.get(roomId);
-            if(room!=null){
+        if (roomId != 0) {
+            CinemaRoom room = ROOM_POOL.get(roomId);
+            if (room != null) {
                 ROOM_POOL.get(roomId).getSockets().add(session.getId());
             }
         }
@@ -78,9 +79,9 @@ public class CinemaSocket {
     public void onClose(Session session) {
         //从POOL中删除
         CinemaSocket cinemaSocket = POOL.get(session.getId());
-        if(cinemaSocket!=null){
-            DELETE_P00L.put(cinemaSocket.getUsername(),cinemaSocket.roomId);
-            if(cinemaSocket.roomId!=0){
+        if (cinemaSocket != null) {
+            DELETE_P00L.put(cinemaSocket.getUsername(), cinemaSocket.roomId);
+            if (cinemaSocket.roomId != 0) {
                 CinemaSocketManagement.exitRoom(session.getId());
             }
         }
@@ -95,42 +96,62 @@ public class CinemaSocket {
      * @param message 客户端发送过来的消息
      */
     @OnMessage
-    public void onMessage(String message,Session session) {
-        String id=session.getId();
+    public void onMessage(String message, Session session) {
+        String id = session.getId();
         CinemaSocket cinemaSocket = POOL.get(id);
-        if(cinemaSocket!=null){
+        if (cinemaSocket != null) {
             try {
                 JSONObject jsonObject = JSON.parseObject(message);
-            String type = jsonObject.getString("type");
-            if(jsonObject!=null&&type!=null){
+                String type = jsonObject.getString("type");
+                if (jsonObject != null && type != null) {
 
-                    switch (type){
-                        case "info":CinemaSocketManagement.info(id);break;
-                        case "join":CinemaSocketManagement.joinRoom(id,jsonObject.getInteger("roomId"),jsonObject.getString("pass"));break;
-                        case "newRoom":CinemaSocketManagement.newRoom(id,jsonObject.getString("name"),jsonObject.getString("pass"));break;
-                        case "exitRoom":CinemaSocketManagement.exitRoom(id);break;
-                        case "roomInfo":CinemaSocketManagement.roomInfo(id);break;
-                        case  "sendChat":CinemaSocketManagement.sendChat(id,jsonObject.getString("msg"));break;
-                        case  "sendUrl":CinemaSocketManagement.sendUrl(id,jsonObject.getString("url"));break;
-                        case  "sendTime":CinemaSocketManagement.sendTime(id,jsonObject.getDouble("time"));break;
-                        case "transfer":CinemaSocketManagement.transfer(id,jsonObject.getString("id"));break;
-                        default:log.info(message);
-                    }}
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }catch (JSONException e){
-                    log.info(message);
-                    e.printStackTrace();
+                    switch (type) {
+                        case "info":
+                            CinemaSocketManagement.info(id);
+                            break;
+                        case "join":
+                            CinemaSocketManagement.joinRoom(id, jsonObject.getInteger("roomId"), jsonObject.getString("pass"));
+                            break;
+                        case "newRoom":
+                            CinemaSocketManagement.newRoom(id, jsonObject.getString("name"), jsonObject.getString("pass"));
+                            break;
+                        case "exitRoom":
+                            CinemaSocketManagement.exitRoom(id);
+                            break;
+                        case "roomInfo":
+                            CinemaSocketManagement.roomInfo(id);
+                            break;
+                        case "sendChat":
+                            CinemaSocketManagement.sendChat(id, jsonObject.getString("msg"));
+                            break;
+                        case "sendUrl":
+                            CinemaSocketManagement.sendUrl(id, jsonObject.getString("url"));
+                            break;
+                        case "sendTime":
+                            CinemaSocketManagement.sendTime(id, jsonObject.getDouble("time"));
+                            break;
+                        case "transfer":
+                            CinemaSocketManagement.transfer(id, jsonObject.getString("id"));
+                            break;
+                        default:
+                            log.info(message);
+                    }
                 }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                log.info(message);
+                e.printStackTrace();
             }
+        }
 
     }
 
     /**
      * 发生错误时调用
      *
-     * @OnError 错误消息
      * @param session session
+     * @OnError 错误消息
      **/
     @OnError
     public void onError(Session session, Throwable error) {
@@ -145,7 +166,7 @@ public class CinemaSocket {
      *
      * @param message 消息
      */
-    public void sendMessage(String message){
+    public void sendMessage(String message) {
         synchronized (session) {
             if (session.isOpen()) {
                 this.session.getAsyncRemote().sendText(message);
@@ -176,20 +197,21 @@ public class CinemaSocket {
     public void setSession(Session session) {
         this.session = session;
     }
-    @Scheduled(cron="0 */1 * * * ?")
-    public void examine(){
+
+    @Scheduled(cron = "0 */1 * * * ?")
+    public void examine() {
         DELETE_P00L.clear();
         //删除断开的链接
-        POOL.forEach((id,e)->{
-            if(!e.session.isOpen()){
+        POOL.forEach((id, e) -> {
+            if (!e.session.isOpen()) {
                 POOL.remove(id);
             }
         });
-        ROOM_POOL.forEach((id,room)->{
-            if(POOL.get(room.getAuthorId())==null){
-                if(room.getSockets().size()<2){
+        ROOM_POOL.forEach((id, room) -> {
+            if (POOL.get(room.getAuthorId()) == null) {
+                if (room.getSockets().size() < 2) {
                     ROOM_POOL.remove(id);
-                }else {
+                } else {
                     //新房主
                     String newId = CinemaSocket.ROOM_POOL.get(id).getSockets().iterator().next();
                     //转让

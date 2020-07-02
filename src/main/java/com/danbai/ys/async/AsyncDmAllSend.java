@@ -14,7 +14,7 @@ import java.io.IOException;
 public class AsyncDmAllSend {
     /**
      * 群发自定义消息
-     * */
+     */
     @Async
     public void sendInfo(String message) throws IOException {
         for (TvDmSocket item : TvDmSocket.webSocketSet) {
@@ -25,10 +25,11 @@ public class AsyncDmAllSend {
             }
         }
     }
+
     @Async
-    public void sendInfo(String message,String dmid) throws IOException {
+    public void sendInfo(String message, String dmid) throws IOException {
         for (TvDmSocket item : TvDmSocket.webSocketSet) {
-            if(item.getDmid().equals(dmid)){
+            if (item.getDmid().equals(dmid)) {
                 try {
                     item.sendMessage(message);
                 } catch (IOException e) {
@@ -37,10 +38,11 @@ public class AsyncDmAllSend {
             }
         }
     }
+
     @Async
-    public void sendInfoNothis(String message,String dmid,TvDmSocket t) throws IOException {
+    public void sendInfoNothis(String message, String dmid, TvDmSocket t) throws IOException {
         for (TvDmSocket item : TvDmSocket.webSocketSet) {
-            if(item.getDmid().equals(dmid)&&item!=t){
+            if (item.getDmid().equals(dmid) && item != t) {
                 try {
                     item.sendMessage(message);
                 } catch (IOException e) {
