@@ -23,7 +23,7 @@ public class Swagger2Config {
     @Bean
     Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .host("https://dbys.vip")
+                .host("dbys.vip")
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.danbai.ys.controller"))
