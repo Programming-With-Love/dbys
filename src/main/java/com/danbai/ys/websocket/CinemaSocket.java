@@ -9,6 +9,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.entity.CinemaRoom;
+import com.danbai.ys.entity.Token;
+import com.danbai.ys.entity.VideoTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -132,6 +134,16 @@ public class CinemaSocket {
                             break;
                         case "transfer":
                             CinemaSocketManagement.transfer(id, jsonObject.getString("id"));
+                            break;
+                            //提交观看时间的减少http请求
+                        case "postTime":
+                            VideoTime videoTime = new VideoTime();
+                            videoTime.setUsername(jsonObject.getString("username"));
+                            videoTime.setYsid(jsonObject.getInteger("ysid"));
+                            videoTime.setYsjiname(jsonObject.getString("ysjiname"));
+                            videoTime.setTime(jsonObject.getFloat("time"));
+                            Token token = new Token(jsonObject.getString("username"),jsonObject.getString("token"));
+                            CinemaSocketManagement.postTime(videoTime,token);
                             break;
                         default:
                             log.info(message);

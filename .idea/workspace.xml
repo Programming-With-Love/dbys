@@ -8,13 +8,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a87420e7-7e0a-450a-a81f-05143288bb53" name="Default Changelist" comment="bug修复">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/py/tagpa.py" beforeDir="false" afterPath="$PROJECT_DIR$/py/tagpa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/YsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/YsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/YsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/Ys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/controller/restful/v1/Ys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/service/impl/YsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/EmailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/utils/EmailUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/websocket/CinemaSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/websocket/CinemaSocket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/danbai/ys/websocket/CinemaSocketManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/danbai/ys/websocket/CinemaSocketManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/ByteBuf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/ByteBuf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKey3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKey3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKey4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKey4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKey5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKey5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKeyUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/DynamicKeyUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/Packable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/Packable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/PackableEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/PackableEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/media/RtcTokenBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/media/RtcTokenBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/rtm/RtmTokenBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/rtm/RtmTokenBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/sample/DynamicKey5Sample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/sample/DynamicKey5Sample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/sample/RtcTokenBuilderSample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/sample/RtcTokenBuilderSample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/sample/RtmTokenBuilderSample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/sample/RtmTokenBuilderSample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/sample/SignalingTokenSample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/sample/SignalingTokenSample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/sample/Verifier5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/sample/Verifier5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/agora/signal/SignalingToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/agora/signal/SignalingToken.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generator/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generator/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/include/include.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/include/include.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/type/tv.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/type/tv.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/yiqikan/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/yiqikan/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/danbai/ys/YsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/danbai/ys/YsApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ys.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ys.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ys.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,9 +97,6 @@
     <option name="autoscrollToSource" value="true" />
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="dbys" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -95,7 +125,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="alwaysUpdateSnapshots" value="true" />
-        <option name="mavenHome" value="D:/Program Files/apache-maven-3.6.1" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../Program Files/apache-maven-3.6.1" />
         <option name="userSettingsFile" value="D:\Program Files\apache-maven-3.6.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -112,7 +142,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -639,18 +668,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SpringBeansView">
     <option name="beanDetailsProportion" value="0.3" />
   </component>
@@ -954,6 +971,7 @@
       <workItem from="1584712537391" duration="102000" />
       <workItem from="1584713188375" duration="2666000" />
       <workItem from="1584778047639" duration="6775000" />
+      <workItem from="1594790626398" duration="306000" />
     </task>
     <task id="LOCAL-00001" summary="新增影视页面">
       <created>1566958495571</created>
@@ -1302,16 +1320,14 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -1330,6 +1346,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="新增影视页面" />

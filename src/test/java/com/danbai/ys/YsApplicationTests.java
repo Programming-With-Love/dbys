@@ -1,14 +1,11 @@
 package com.danbai.ys;
 
 import com.alibaba.fastjson.JSONObject;
-import com.danbai.ys.entity.UpdateInfo;
-import com.danbai.ys.entity.User;
-import com.danbai.ys.entity.VideoTime;
-import com.danbai.ys.entity.Ysb;
+import com.danbai.ys.entity.*;
 import com.danbai.ys.mapper.VideoTimeMapper;
+import com.danbai.ys.service.impl.DmServiceImpl;
 import com.danbai.ys.service.impl.UserServiceImpl;
 import com.danbai.ys.service.impl.YsServiceImpl;
-import com.danbai.ys.utils.HtmlUtils;
 import com.danbai.ys.utils.Md5;
 import com.danbai.ys.utils.SiteMapUtils;
 import org.junit.Test;
@@ -17,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import java.util.List;
 
+import java.util.List;
 
 /**
  * @author danbai
@@ -37,6 +34,8 @@ public class YsApplicationTests {
     VideoTimeMapper videoTimeMapper;
     @Autowired
     UserServiceImpl userService;
+    @Autowired
+    DmServiceImpl dmService;
     @Test
     public void test() {
         System.out.println(redisTemplate.opsForValue().get("gg"));
@@ -83,4 +82,13 @@ public class YsApplicationTests {
             System.out.println(ysb.getDy());
         });
     }
+    @Test
+    public void dmList(){
+        PageResult<Dan> danPageResult = dmService.getDmListByYsUsername("danbai", 10, 1);
+        danPageResult.getList().forEach(d->{
+            System.out.println(d.getText());
+        });
+    }
+
+
 }

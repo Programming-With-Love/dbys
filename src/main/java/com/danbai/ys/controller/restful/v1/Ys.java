@@ -36,7 +36,7 @@ public class Ys {
      */
     @GetMapping("/ys/{id}")
     @ApiOperation(value ="获取影视根据id")
-    public BaseResult ysOne(@PathVariable int id) {
+    public BaseResult ysOne(@PathVariable Integer id) {
         return ResultUtil.success(ysService.selectYsById(id));
     }
 
@@ -78,7 +78,7 @@ public class Ys {
     }
     @GetMapping("/ysAndLs")
     @ApiOperation(value ="获取影视的同时获取观看时间")
-    public BaseResult getys(int id,Token token){
+    public BaseResult getys(Integer id,Token token){
         Map<String, Object> map = new HashMap<>(5);
         Ysb ys = ysService.selectYsById(id);
         map.put("ys", ys);

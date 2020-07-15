@@ -46,7 +46,7 @@ public class YsController {
 
     @ApiOperation(value = "影视详情页", notes = "根据 id 展示影视")
     @RequestMapping(value = "/ys", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
-    String ys(int id, Model model, HttpServletRequest request) {
+    String ys(Integer id, Model model, HttpServletRequest request) {
         Ysb ysb = ysService.selectYsById(id);
         model.addAttribute("ys", ysb);
         String tagpm = ysb.getPm() + ysb.getDy() + ysb.getLx();
@@ -78,7 +78,7 @@ public class YsController {
     @RequestMapping(value = "/getys", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "影视详情Json", notes = "根据 id 返回影视Json")
-    String getYsApi(int id, HttpServletRequest request) {
+    String getYsApi(Integer id, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>(5);
         Ysb ys = ysService.selectYsById(id);
         map.put("ys", ys);
@@ -101,7 +101,7 @@ public class YsController {
     @RequestMapping(value = "/gettypeys", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "类型影视分页", notes = "根据类型获取影视Json")
-    String getTypeYsApi(String type, int page) {
+    String getTypeYsApi(String type, Integer page) {
         PageInfo page1 = ysService.getYs(type, page, 24);
         Map<String, Object> map = new HashMap<>(10);
         map.put("list", ysService.qcsy(page1.getList()));
@@ -113,7 +113,7 @@ public class YsController {
 
     @RequestMapping(value = "/type/dy", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ApiOperation(value = "电影视图")
-    String dy(int page, Model model) {
+    String dy(Integer page, Model model) {
         PageInfo page1 = ysService.getYs("电影", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
@@ -123,7 +123,7 @@ public class YsController {
 
     @RequestMapping(value = "/type/dsj", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ApiOperation(value = "电视剧视图")
-    String dsj(int page, Model model) {
+    String dsj(Integer page, Model model) {
         PageInfo page1 = ysService.getYs("电视剧", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
@@ -140,7 +140,7 @@ public class YsController {
 
     @RequestMapping(value = "/type/dm", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ApiOperation(value = "动漫视图")
-    String dm(int page, Model model) {
+    String dm(Integer page, Model model) {
         PageInfo page1 = ysService.getYs("动漫", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());
@@ -150,7 +150,7 @@ public class YsController {
 
     @RequestMapping(value = "/type/zy", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ApiOperation(value = "综艺视图")
-    String zy(int page, Model model) {
+    String zy(Integer page, Model model) {
         PageInfo page1 = ysService.getYs("综艺", page, 24);
         model.addAttribute("ysb", page1.getList());
         model.addAttribute("zys", page1.getPages());

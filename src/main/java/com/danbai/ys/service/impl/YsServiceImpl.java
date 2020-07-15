@@ -157,6 +157,7 @@ public class YsServiceImpl implements YsService {
 
     @Override
     public void addYsTime(VideoTime videoTime) {
+
         VideoTime videoTime1 = new VideoTime();
         videoTime1.setUsername(videoTime.getUsername());
         videoTime1.setYsid(videoTime.getYsid());

@@ -4,8 +4,9 @@ import io.agora.media.RtcTokenBuilder;
 import io.agora.media.RtcTokenBuilder.Role;
 
 public class RtcTokenBuilderSample {
+    //注册声网申请appid
     public static String appId = "7d72365eb983485397e3e3f9d460bdda";
-    public static String appCertificate = "2082341273";
+    public static String appCertificate = "7d72365eb983485397e3e3f9d460bdda";
     static String channelName = "7d72365eb983485397e3e3f9d460bdda";
     static String userAccount = "2082341273";
     static int uid = 2082341273;

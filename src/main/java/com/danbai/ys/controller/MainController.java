@@ -59,7 +59,7 @@ public class MainController {
     @RequestMapping(value = {"/sy"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "首页数据Json形式")
-    String indexApi(HttpServletRequest request) {
+    String indexApi() {
         PageInfo ysbs = ysService.getYs("电影", 1, 12);
         PageInfo ysbs1 = ysService.getYs("电视剧", 1, 12);
         PageInfo ysbs2 = ysService.getYs("综艺", 1, 12);

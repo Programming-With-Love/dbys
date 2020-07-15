@@ -19,10 +19,10 @@ POOL = PooledDB(
 	setsession=[],	# 开始会话前执行的命令列表。如：["set datestyle to ...", "set time zone ..."]
 	ping=0,
 	# ping MySQL服务端，检查是否服务可用。# 如：0 = None = never, 1 = default = whenever it is requested, 2 = when a cursor is created, 4 = when a query is executed, 7 = always
-	host='185.207.153.189',
+	host='128.0.0.1',
 	port=3306,
 	user='ys',
-	password='hjj225',
+	password='123',
 	database='ys',
 	charset='utf8'
 )
@@ -67,7 +67,7 @@ def main():
 	print("结束")
 def type(t):
 	pool = ThreadPool(10)
-	rpool = redis.ConnectionPool(host='185.207.153.189', port=6379,db=0,password='danbairedis225')
+	rpool = redis.ConnectionPool(host='127.0.0.1', port=6379,db=0,password='123123')
 	conn = POOL.connection()
 	for j in range(10):
 		try:

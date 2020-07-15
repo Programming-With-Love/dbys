@@ -48,6 +48,9 @@
 </style>
 <script>
     $(function () {
+        if(window.location.protocol.split(':')[0]!="http"){
+            window.location="http://dbys.vip/type/tv";
+        }
         var pdname = null;
         var pd = null;
         if (pdname == null) {

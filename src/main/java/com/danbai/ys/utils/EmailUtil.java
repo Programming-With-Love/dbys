@@ -20,8 +20,8 @@ public class EmailUtil {
     private static final String HOST = "smtpdm.aliyun.com";
     private static final String PROTOCOL = "smtp";
     private static final int PORT = 465;
-    private static final String FROM = "dbys@p00q.cn";
-    private static final String PWD = "DBYSdbys225";
+    private static final String FROM = "danbaiyingshi@p00q.cn";
+    private static final String PWD = "123";
 
     private static JavaMailSenderImpl javaMailSender;
 

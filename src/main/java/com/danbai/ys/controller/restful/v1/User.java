@@ -50,7 +50,7 @@ public class User {
      */
     @GetMapping("/user/gkls")
     @ApiOperation(value ="获取观看历史", notes = "携带token获取")
-    public BaseResult thisUserGkls(HttpServletRequest request,Token token,boolean sole) {
+    public BaseResult thisUserGkls(HttpServletRequest request,Token token,Boolean sole) {
         if (userService.checkToken(token)){
             if(sole){
                 return ResultUtil.success(ysService.getGklsSole(token.getUsername()));

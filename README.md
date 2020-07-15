@@ -8,7 +8,7 @@
 以及它的[子项目](https://github.com/danbai225/dbyswebapp)基于Vue+Element-ui实现手机端
 以及它的[子项目](https://github.com/danbai225/dbysapp)安卓端
 以及它的[子项目](https://github.com/danbai225/dbys_flutter)Flutter实现
-![](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.1-blue)
+![](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-1.1.1-blue)
 ![](https://img.shields.io/badge/完善维护-brightgreen)
 
 [线上地址](https://dbys.vip)

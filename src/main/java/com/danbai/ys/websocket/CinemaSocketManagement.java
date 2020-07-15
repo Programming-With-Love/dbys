@@ -9,11 +9,16 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.danbai.ys.async.CinemaSocketAsync;
 import com.danbai.ys.entity.CinemaRoom;
+import com.danbai.ys.entity.Token;
+import com.danbai.ys.entity.VideoTime;
+import com.danbai.ys.service.impl.UserServiceImpl;
+import com.danbai.ys.service.impl.YsServiceImpl;
 import com.danbai.ys.utils.Md5;
 import com.danbai.ys.utils.SpringUtil;
 
 import io.agora.media.RtcTokenBuilder;
 import io.agora.sample.RtcTokenBuilderSample;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -223,6 +228,14 @@ public class CinemaSocketManagement {
         CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
         if (room.getAuthorId().equals(socketId)) {
             CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId()).setAuthorId(Integer.toHexString(Integer.valueOf(transferId)));
+        }
+    }
+
+    public static void postTime(VideoTime videoTime, Token token){
+
+        //与一起看无关  观看历史同步
+        if(SpringUtil.getBean(UserServiceImpl.class).checkToken(token)){
+            SpringUtil.getBean(YsServiceImpl.class).addYsTime(videoTime);
         }
     }
 }

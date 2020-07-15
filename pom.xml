@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.danbai</groupId>
     <artifactId>ys</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <name>ys</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -133,7 +133,16 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>dbys</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -178,6 +187,9 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+
+
         </plugins>
     </build>
 
