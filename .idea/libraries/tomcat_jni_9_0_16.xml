@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="tomcat-jni-9.0.16">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../库文件/java/apache-mina-2.1.0/lib/tomcat-jni-9.0.16.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
