@@ -113,6 +113,12 @@ public class MainController {
         return "reg";
     }
 
+    @RequestMapping(value = "/forgetpass", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
+    @ApiOperation(value = "注册视图")
+    String forgetPass() {
+        return "forgetPass";
+    }
+
     @RequestMapping(value = "/reg", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
     @ApiOperation(value = "注册api")
     String regApi(User user, Model model, String yzm) {

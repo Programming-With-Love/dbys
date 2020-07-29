@@ -69,10 +69,16 @@ public class User {
     public BaseResult token(com.danbai.ys.entity.User user){
         return ResultUtil.success(userService.login(user));
     }
+
     @DeleteMapping("/token")
     @ApiOperation(value ="退出登录删除token")
     public BaseResult exit(Token token){
         userService.deleteToken(token.getUsername());
         return ResultUtil.successOk();
+    }
+    @PostMapping("/forgetPass")
+    @ApiOperation(value ="忘记密码通过邮箱修改")
+    public BaseResult forgetPass(com.danbai.ys.entity.User user,String yzm){
+        return ResultUtil.success(userService.forgetPass(user, yzm));
     }
 }

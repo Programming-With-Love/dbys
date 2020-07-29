@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.Cookie;
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService {
     RegisterValidateServiceImpl registerValidateService;
     @Autowired
     RedisTemplate redisTemplate;
+
     @Override
     public User getUser(User user) {
         return userMapper.selectOne(user);
@@ -45,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addUser(User user) {
         if (userMapper.insert(user) > 0) {
-            logger.info("有新的用户啦!--"+user.getUsername());
+            logger.info("有新的用户啦!--" + user.getUsername());
             return true;
         }
         return false;
@@ -83,13 +85,13 @@ public class UserServiceImpl implements UserService {
             user1.setUsername(user.getUsername());
             User user2 = getUser(user1);
             if (user2 != null) {
-                if (DigestUtils.md5DigestAsHex((user.getUsername()+user.getPassword()).getBytes()).equals(user2.getPassword())) {
+                if (DigestUtils.md5DigestAsHex((user.getUsername() + user.getPassword()).getBytes()).equals(user2.getPassword())) {
                     HttpSession sessoin = request.getSession();
                     sessoin.setMaxInactiveInterval(60 * 60 * 24);
                     user2.setPassword("password");
                     sessoin.setAttribute("user", user2);
                     Cookie cookie = new Cookie("JSESSIONID", sessoin.getId());
-                    cookie.setMaxAge(60 * 60 * 24*7);
+                    cookie.setMaxAge(60 * 60 * 24 * 7);
                     response.addCookie(cookie);
                     return true;
                 }
@@ -106,7 +108,7 @@ public class UserServiceImpl implements UserService {
                 return;
             }
 
-            if(!Pattern.matches("^[\u4e00-\u9fa5_a-zA-Z0-9]+$",user.getUsername())){
+            if (!Pattern.matches("^[\u4e00-\u9fa5_a-zA-Z0-9]+$", user.getUsername())) {
                 model.addAttribute("message", "用户名不能有符号");
                 return;
             }
@@ -122,7 +124,7 @@ public class UserServiceImpl implements UserService {
                     return;
                 }
                 if (user1 == null) {
-                    user.setPassword(DigestUtils.md5DigestAsHex((user.getUsername()+user.getPassword()).getBytes()));
+                    user.setPassword(DigestUtils.md5DigestAsHex((user.getUsername() + user.getPassword()).getBytes()));
                     user.setUserType(1);
                     user.setHeadurl("http://gravatar.com/avatar/" + user.getUsername() + "?s=256&d=identicon");
                     if (addUser(user)) {
@@ -159,7 +161,7 @@ public class UserServiceImpl implements UserService {
                     return JSON.toJSONString(map);
                 }
                 if (user1 == null) {
-                    user.setPassword(DigestUtils.md5DigestAsHex((user.getUsername()+user.getPassword()).getBytes()));
+                    user.setPassword(DigestUtils.md5DigestAsHex((user.getUsername() + user.getPassword()).getBytes()));
                     user.setUserType(1);
                     user.setHeadurl("http://gravatar.com/avatar/" + user.getUsername() + "?s=256&d=identicon");
                     if (addUser(user)) {
@@ -179,21 +181,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Token createToken(String username) {
-        String tokenid= UUID.randomUUID().toString().replace ("-", "");
-        Token token=new Token(username,tokenid);
-        redisTemplate.opsForValue().set(Token.TOKEN+username,token,7,TimeUnit.DAYS);
+        String tokenid = UUID.randomUUID().toString().replace("-", "");
+        Token token = new Token(username, tokenid);
+        redisTemplate.opsForValue().set(Token.TOKEN + username, token, 7, TimeUnit.DAYS);
         return token;
     }
 
     @Override
     public boolean checkToken(Token token) {
-        if (token == null||token.getUsername()==null||token.getToken()==null||token.getUsername().length()<1|token.getToken().length()<1) {
+        if (token == null || token.getUsername() == null || token.getToken() == null || token.getUsername().length() < 1 | token.getToken().length() < 1) {
             return false;
         }
-        Token rtoken = (Token) redisTemplate.opsForValue().get(Token.TOKEN+token.getUsername());
-        if(rtoken!=null&&rtoken.getToken().equals(token.getToken())){
+        Token rtoken = (Token) redisTemplate.opsForValue().get(Token.TOKEN + token.getUsername());
+        if (rtoken != null && rtoken.getToken().equals(token.getToken())) {
             // 如果验证成功，说明此用户进行了一次有效操作，延长 token 的过期时间
-            redisTemplate.expire(Token.TOKEN+token.getUsername (),7, TimeUnit.DAYS);
+            redisTemplate.expire(Token.TOKEN + token.getUsername(), 7, TimeUnit.DAYS);
             return true;
         }
         return false;
@@ -201,7 +203,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteToken(String username) {
-        redisTemplate.delete(Token.TOKEN+username);
+        redisTemplate.delete(Token.TOKEN + username);
     }
 
     @Override
@@ -211,10 +213,40 @@ public class UserServiceImpl implements UserService {
             user1.setUsername(user.getUsername());
             User user2 = getUser(user1);
             if (user2 != null) {
-                if (DigestUtils.md5DigestAsHex((user.getUsername()+user.getPassword()).getBytes()).equals(user2.getPassword())) {
-                    return createToken(user.getUsername());                }
+                if (DigestUtils.md5DigestAsHex((user.getUsername() + user.getPassword()).getBytes()).equals(user2.getPassword())) {
+                    return createToken(user.getUsername());
+                }
             }
         }
         return null;
+    }
+
+    @Override
+    public String forgetPass(User user, String yzm) {
+        if (StringUtils.isEmpty(yzm)) {
+            return "验证码不能为空";
+        }
+        if (user != null) {
+            String str = registerValidateService.getVerificationCode(user.getEmail());
+            if (str != null && str.equals(yzm)) {
+                registerValidateService.deleteVerificationCode(user.getEmail());
+                User user2 = new User();
+                user2.setUsername(user.getUsername());
+                User user1 = getUser(user2);
+                if (!user1.getEmail().equals(user.getEmail())) {
+                    return "用户名和邮箱不匹配";
+                }
+                user1.setPassword(DigestUtils.md5DigestAsHex((user.getUsername() + user.getPassword()).getBytes()));
+                if (userMapper.updateByPrimaryKey(user1) == 1) {
+                    //退出登录
+                    deleteToken(user1.getUsername());
+                    return "修改成功";
+                }
+
+            } else {
+                return "验证码有误";
+            }
+        }
+        return "请求数据有误，请检查";
     }
 }

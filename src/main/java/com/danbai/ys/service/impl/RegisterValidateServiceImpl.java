@@ -38,8 +38,8 @@ public class RegisterValidateServiceImpl implements RegisterValidateService {
         for (int i = 0; i < MAXINT; i++) {
             yzm += String.valueOf(r.nextInt(10));
         }
-        String content = "欢迎注册淡白影视,您的验证码是:" + yzm + ",有效时间4分钟";
-        emailUtil.sendEmail("淡白影视注册邮件", content, email);
+        String content = "欢迎使用淡白影视,您的验证码是:" + yzm + ",有效时间4分钟";
+        emailUtil.sendEmail("淡白影视验证码邮件", content, email);
         redisTemplate.opsForValue().set(email, yzm, 4, TimeUnit.MINUTES);
         logger.info("向邮箱"+email+"发送验证邮件");
     }

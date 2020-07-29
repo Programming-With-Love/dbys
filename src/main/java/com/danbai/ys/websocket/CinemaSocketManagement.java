@@ -168,7 +168,13 @@ public class CinemaSocketManagement {
         JSONObject roomJson = new JSONObject();
         roomJson.put("type", "roomInfo");
         CinemaSocket cinemaSocket = CinemaSocket.POOL.get(socketId);
+        if(cinemaSocket==null){
+            return;
+        }
         CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
+        if(room==null){
+            return;
+        }
         roomJson.put("id", room.getId());
         roomJson.put("name", room.getName());
         roomJson.put("online", room.getSockets().size());
@@ -189,7 +195,13 @@ public class CinemaSocketManagement {
 
     public static void sendChat(String socketId, String msg) {
         CinemaSocket cinemaSocket = CinemaSocket.POOL.get(socketId);
+        if(cinemaSocket==null){
+            return;
+        }
         CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
+        if(room==null){
+            return;
+        }
         JSONObject sendMsg = new JSONObject();
         sendMsg.put("type", "sendChat");
         sendMsg.put("id", Integer.parseInt(socketId, 16));
@@ -201,7 +213,13 @@ public class CinemaSocketManagement {
 
     public static void sendUrl(String socketId, String url) {
         CinemaSocket cinemaSocket = CinemaSocket.POOL.get(socketId);
+        if(cinemaSocket==null){
+            return;
+        }
         CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
+        if(room==null){
+            return;
+        }
         if (room.getAuthorId().equals(socketId)) {
             CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId()).setUrl(url);
             JSONObject sendMsg = new JSONObject();
@@ -213,7 +231,13 @@ public class CinemaSocketManagement {
 
     public static void sendTime(String socketId, double time) {
         CinemaSocket cinemaSocket = CinemaSocket.POOL.get(socketId);
+        if(cinemaSocket==null){
+            return;
+        }
         CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
+        if(room==null){
+            return;
+        }
         if (room.getAuthorId().equals(socketId)) {
             CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId()).setTime(time);
             JSONObject sendMsg = new JSONObject();
@@ -225,14 +249,19 @@ public class CinemaSocketManagement {
 
     public static void transfer(String socketId, String transferId) {
         CinemaSocket cinemaSocket = CinemaSocket.POOL.get(socketId);
+        if(cinemaSocket==null){
+            return;
+        }
         CinemaRoom room = CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId());
+        if(room==null){
+            return;
+        }
         if (room.getAuthorId().equals(socketId)) {
             CinemaSocket.ROOM_POOL.get(cinemaSocket.getRoomId()).setAuthorId(Integer.toHexString(Integer.valueOf(transferId)));
         }
     }
 
     public static void postTime(VideoTime videoTime, Token token){
-
         //与一起看无关  观看历史同步
         if(SpringUtil.getBean(UserServiceImpl.class).checkToken(token)){
             SpringUtil.getBean(YsServiceImpl.class).addYsTime(videoTime);

@@ -105,4 +105,12 @@ public interface UserService {
      * @return
      */
     Token login(User user);
+
+    /**
+     * 忘记密码通过邮箱修改
+     * @param user
+     * @param yzm
+     * @return
+     */
+    String forgetPass(User user,String yzm);
 }

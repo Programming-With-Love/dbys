@@ -3,7 +3,7 @@
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>淡白影视 - 注册</title>
+<title>淡白影视 - 忘记密码</title>
 <link rel="shortcut icon" href="https://cdn.p00q.cn/favicon.ico">
 <link href="https://cdn.p00q.cn/hAdmin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="https://cdn.p00q.cn/hAdmin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
@@ -22,13 +22,14 @@
         <div>
             <h1 class="logo-name">DB</h1>
         </div>
-        <h3>欢迎注册 淡白影视</h3>
-        <form id="bd" class="m-t" role="form" action="/reg" method="post">
+        <h3>欢迎使用 淡白影视</h3>
+        <p class="msg"></p>
+        <form id="bd" class="m-t" role="form" action="/api/v1/forgetPass" method="post">
             <div class="form-group">
                 <input id="username" name="username" type="text" class="form-control" placeholder="请输入用户名" required="">
             </div>
             <div class="form-group">
-                <input id="password" name="password" type="password" class="form-control" placeholder="请输入密码"
+                <input id="password" name="password" type="password" class="form-control" placeholder="请输入新密码"
                        required="">
             </div>
             <div class="form-group">
@@ -41,15 +42,8 @@
                 <input name="yzm" type="text" class="form-control" placeholder="请输入验证码" required="">
                 <button type="button" id="getyzm" class="btn btn-block">请求验证码</button>
             </div>
-            <div class="form-group text-left">
-                <div class="checkbox i-checks">
-                    <label class="no-padding">
-                        <input name="xy" type="checkbox" class="icheckbox_square-green"><i></i> 我同意注册协议</label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>
+            <button type="button" onclick="tj()" class="btn btn-primary block full-width m-b">设置密码</button>
             <p class="text-muted text-center">
-                <small>已经有账户了？</small>
                 <a href="/login">点此登录</a>
             </p>
         </form>
@@ -89,6 +83,20 @@
             }
         })
     });
+    function tj(){
+        $.ajax({
+            type : 'post',
+            url : '/api/v1/forgetPass',
+            dataType : 'json',
+            data : $("#bd").serialize(),
+            success : function(data) {
+                $(".msg").text(data.msg)
+            },
+            error : function(){
+                $(".msg").text("请求出错")
+            }
+        })
+    }
     $("#getyzm").click(function () {
 
         var email = $("#email").val();
