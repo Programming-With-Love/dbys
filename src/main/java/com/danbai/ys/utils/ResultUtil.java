@@ -22,7 +22,7 @@ public class ResultUtil {
     public static <T> BaseResult<T> error(Integer code, String errorMsg) {
         return commonResult(0, code, errorMsg, null);
     }
-    public static <T> BaseResult<T> success(String msg) {
+    public static <T> BaseResult<T> successMsg(String msg) {
         return commonResult(1, 200, msg, null);
     }
     private static <T> BaseResult<T> commonResult(Integer status, Integer code, String errMsg, T data) {

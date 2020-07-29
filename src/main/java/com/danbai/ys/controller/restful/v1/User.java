@@ -79,6 +79,6 @@ public class User {
     @PostMapping("/forgetPass")
     @ApiOperation(value ="忘记密码通过邮箱修改")
     public BaseResult forgetPass(com.danbai.ys.entity.User user,String yzm){
-        return ResultUtil.success(userService.forgetPass(user, yzm));
+        return ResultUtil.successMsg(userService.forgetPass(user, yzm));
     }
 }
