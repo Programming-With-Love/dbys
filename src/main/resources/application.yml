@@ -10,7 +10,7 @@ spring:
   mail:
     host: smtpdm.aliyun.com
     username: ys@p00q.cn
-    password: 123
+    password: 123123
     default-encoding: utf-8
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
