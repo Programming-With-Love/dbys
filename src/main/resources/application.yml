@@ -7,6 +7,11 @@ spring:
   mvc:
     favicon:
       enabled: false
+  mail:
+    host: smtpdm.aliyun.com
+    username: ys@p00q.cn
+    password: 123
+    default-encoding: utf-8
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -19,7 +24,7 @@ spring:
   datasource:
     druid:
       url: jdbc:mysql://10.0.91.46:3306/ys?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8
-      username: ys
+      username: 123
       password: 123
       initial-size: 1
       min-idle: 1
@@ -41,3 +46,5 @@ logging:
   path: "./logs/"
   file: "./logs/dbys.log"
   file.max-size: 100MB
+dbys:
+  mail-sender: "ys@p00q.cn"

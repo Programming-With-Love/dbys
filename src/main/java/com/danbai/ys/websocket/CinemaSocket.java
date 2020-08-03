@@ -149,10 +149,7 @@ public class CinemaSocket {
                             log.info(message);
                     }
                 }
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                log.info(message);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
