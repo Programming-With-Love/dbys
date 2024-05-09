@@ -5,3 +5,4 @@
 # Qikar
 
 [线上地址](https://qiakr.sbs)
+Alist挂载地址（webdav）：https://qiakr.sbs/webdav
